@@ -1,0 +1,18 @@
+@startuml SearchSystem
+package "Search System" {
+    
+    ' Define main classes
+    class BookSearch {
+        - BookManager : BooksList
+        + searchBookByTitle()
+        + searchBookByAuthor()
+        + searchBookByISBN()
+    }
+
+    class PatronSearch {
+        - PatronManager : PatronsList
+        + searchPatronByName()
+        + searchPatronByMembershipNumber()
+    }
+}
+@enduml 

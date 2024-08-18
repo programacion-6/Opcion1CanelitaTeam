@@ -1,0 +1,21 @@
+@startuml FineSystem
+package "Fine System" {
+    
+    ' Define main classes
+
+    class FineManager {
+        - List : Fines
+        + AddFine()
+        + ShowFines()
+        + FinesFromUser()
+    }
+
+    class Fine {
+        - Paid: bool
+        - Borrow: Borrow
+        - Cost : int
+        + CalculateFine()
+        + FineDetails()
+    }
+}
+@enduml 

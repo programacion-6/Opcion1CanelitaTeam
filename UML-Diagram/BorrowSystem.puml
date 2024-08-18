@@ -1,0 +1,28 @@
+@startuml BorrowSystem
+package "Borrow System" {
+    
+    ' Define main interface 
+    interface IBorrowing{
+        + ReturnBook()
+    }
+
+    ' Define main classes
+    class BorrowManager {
+        - BorrowList : List
+        + AddBorrow()
+        + RemoveBorrow()
+        + FindBorrow()
+        + ActiveBorrowsFromPatron()
+    }
+
+    class Borrow implements IBorrowing {
+        - Book : Book
+        - Patron : Patron
+        - BorrowDate : DateTime
+        - DueDate : DateTIme
+        - Delivered : Boolean
+        + ReturnBook()
+    }
+
+}
+@enduml 

@@ -1,0 +1,84 @@
+@startuml UIConsole
+package "Console" {
+    
+    ' Define main classes
+    class HomePageMenu{
+        - PatronManager : Patrons
+        - StaffManager : Staffs
+        - BorrowManager : Borrows
+        - BookManager : Books
+        - FineManager : Fines
+        + WelcomeMenu()  
+    }
+
+    class PatronMenu{
+        - Patron : Patron
+        - BorrowManager : Borrows
+        - BookManager : Books
+        - FineManager : Fines
+        + ShowPatronMenu()
+    }
+
+    class PatronSearchMenu{
+        - BookManager : Books
+        + PatronSearchMenuOptions()
+        + SearchByTitle()
+        + SearchByAuthor()
+        + SearchByISBN()
+    }
+
+    class PatronBorrowMenu{
+        - BorrowManager : Borrows
+        - Patron : Patron
+        - BookManager : Books
+        - FineManager : Fines
+        + PatronBooksMenu()
+        + BorrowBookOption()
+        + ReturnBookOption()
+    }
+
+
+    class StaffMenu{
+        - Staff : Staff
+        - BorrowManager : Borrows
+        - BookManager : Books
+        - FineManager : Fines
+        + ShowStaffMenu()
+    }
+
+    class BookStaffManagement{
+        - BookManager : Books
+        + BookStaffMenu()
+        + AddBook()
+        + UpdateBook()
+        + RemoveBook()
+    }
+
+    class ReportStaffMenu{
+        - BorrowManager : Borrows
+        - FineManager : Fines
+        + ReportMenu()
+        + ShowBorrowPatronHistory()
+        + ShowCurrentBorrowedBooksReport()
+        + ShowStatistics()
+        + ShowFines()
+    }
+
+    class StaffSearchMenu{
+        - BookManager : Borrows
+        - PatronManager : Patrons
+        + PatronSearchMenuOptions()
+        + SearchPatronByName()
+        + SearchPatronByMembershipNumber()
+
+    }
+
+    class MenuGenerator{
+        + GenericMenu()
+    }
+
+    class Login{
+        + LoginMenu()
+    }
+}
+@enduml 

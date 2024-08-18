@@ -1,0 +1,59 @@
+@startuml UsersSystem
+package "Users System"{
+
+    ' Define main abstractc
+    interface UserCreator {
+        + Create()
+    }
+
+    ' Define main interface
+    abstract class User {
+        - name: String
+        - membershipNumber: String
+        - phoneNumber: int
+        - direction: String
+        + UserInformation()
+    }
+
+    ' Define main classes
+    class StaffManager {
+        - StaffList : List
+        + AddStaff()
+        + Update()
+        + RemoveStaff()
+        + FoundStaffBYName()
+        + ValidateStaff()
+    }
+
+    class PatronManager {
+        - PatronList : List
+        + AddPatron()
+        + Update()
+        + RemovePatron()
+        + FoundPatronByName()
+        + ValidatePatron()
+    }
+
+    class PatronCreator implements UserCreator{
+        + CreatePatron()
+    }
+
+    class StaffCreator implements UserCreator{
+        + CreateStaff()
+    }
+
+    class StaffConcrete extends User{
+        - name: String
+        - membershipNumber: String
+        - phoneNumber: int
+        - direction: String
+    }
+
+    class PatronConcrete extends User{
+        - name: String
+        - membershipNumber: String
+        - phoneNumber: int
+        - direction: String
+    }
+}
+@enduml
