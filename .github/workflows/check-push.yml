@@ -1,0 +1,70 @@
+name: CI Workflow with .Net
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - test
+
+permissions: read-all      
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+        
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with: 
+          dotnet-version: 8.0.107
+      
+      - name: Build using .Net
+        run: dotnet build
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Test using .Net
+        run: dotnet test
+
+  check_commits_convention:
+    name: Conventional Commits Message
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: '(?:feat|fix|chore|test|docs|build|ci|style|refactor|perf|revert|hotfix)(?:\(\w+\))?:\s[a-z]{1,2}.+'
+          error: 'The commit message must have the following structure: <type>(?): <description>'
+          excludeDescription: 'true'
+          excludeTitle: 'true'
+          checkAllCommitMessages: 'true'
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
+
+  check_branches_convention:
+    name: Conventional Branches Name
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '([a-z]+)/([a-z]+)'
+          allowed_prefixes: 'stable,fix,chore,docs,feat,build,ci,refactor,perf,hotfix'
+          ignore: main,develop
+          min_length: 4
+          max_length: 100
