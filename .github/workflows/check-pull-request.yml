@@ -1,0 +1,87 @@
+name: Develop Workflow with .Net
+
+on:
+  pull_request:
+    branches:
+      - '**'
+
+permissions: read-all      
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+        
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with: 
+          dotnet-version: 8.0.107
+      
+      - name: Build using .Net
+        run: dotnet build
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Test using .Net
+        run: dotnet test
+
+  semantic_pull_request:
+    name: Conventional Pull Request
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            chore
+            test
+            docs
+            build
+            ci
+            style
+            fix
+            hotfix
+            refactor
+            perf
+            revert
+          requireScope: false
+          subjectPattern: ^(?![A-Z]).+$
+          subjectPatternError: |
+            The subject "{subject}" found in the pull request title "{title}"
+            didn't match the configured pattern. Please ensure that the subject
+            doesn't start with an uppercase character.
+          headerPattern: '^(\w*)(?:\(([\w$.\-*/ ]*)\))?: (.*)$'
+          headerPatternCorrespondence: type, scope, subject
+          validateSingleCommit: true
+          
+  check_commit_messages:
+    name: Conventional Commits Message
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: '(?:feat|fix|chore|test|docs|build|ci|style|refactor|perf|revert|hotfix)(?:\(\w+\))?:\s[a-z]{1,2}.+'
+          error: 'The commit message must have the following structure: <type>(?): <description>'
+          excludeDescription: 'true'
+          excludeTitle: 'true'
+          checkAllCommitMessages: 'true'
+          accessToken: ${{ secrets.GITHUB_TOKEN }}
