@@ -1,0 +1,31 @@
+@startuml ReportSystem
+package "Report System" {
+    
+    ' Define main abstractc
+    abstract class ABorrowReport implements IReporting{
+        - BorrowManager : BorrowList
+    }
+
+    abstract class APatronReport implements IReporting{
+        - PatronManager : PatronList
+    }
+
+    ' Define main interface
+    interface IReporting {
+        + generateReport()
+    }
+
+    ' Define main classes
+    class BookCurrentBorrwedReport extends ABorrowReport {
+        + BookBorrowedReportFormat()
+    }
+
+    class OverdueBooksReport extends ABorrowReport {
+        + OverdueBooksFormat()
+    }
+
+    class BorrowingHistoryReport extends APatronReport {
+        + BorrowHistoryFormat()
+    }
+}
+@enduml 

@@ -1,0 +1,66 @@
+@startuml LibraryManagementSystem
+package "Library system"{
+    ' Define modules
+    !include UserSystem.puml
+    !include ReportSystem.puml
+    !include BorrowSystem.puml
+    !include BookSystem.puml
+    !include SearchSystem.puml
+    !include FineSystem.puml
+    !include UI.puml
+
+    ' Define classes
+
+    class Statistics {
+        - BorrowManager : Borrows
+        + MostBorrowedBooks()
+        + MostActivePatron()
+    }
+
+    class Library {
+        - PatronManager patronManager
+        - StaffManager staffManager
+        - BorrowManager borrowManager
+        - BookManager bookManager
+        - FinesManager FinesManager
+        + InitializeProgram()
+    }
+
+    ' Define relationships
+    Library ..* PatronManager
+    Library ..* StaffManager
+    Library ..* BorrowManager
+    Library ..* BookManager
+    Library ..* FineManager
+    FineManager ..* Fine
+    Statistics ..* BorrowManager
+    PatronSearch ..* PatronManager
+    BookSearch ..* BookManager
+    Borrow ..* Book
+    Borrow ..* PatronConcrete
+    BorrowManager ..* Borrow
+    UserCreator ..> User
+    Library ..> HomePageMenu
+    HomePageMenu ..> Login
+    Login ..> PatronMenu
+    PatronMenu ..> PatronSearchMenu
+    PatronMenu ..> PatronBorrowMenu
+    StaffMenu ..> BookStaffManagement
+    StaffMenu ..> ReportStaffMenu
+    StaffMenu ..> StaffSearchMenu
+    Login ..> StaffMenu
+    ABorrowReport ..* BorrowManager
+    APatronReport ..* PatronManager
+    PatronManager ..* PatronConcrete
+    StaffManager ..* StaffConcrete
+    BookManager ..* Book
+    PatronSearchMenu ..> MenuGenerator
+    PatronBorrowMenu ..> MenuGenerator
+    ReportStaffMenu ..> MenuGenerator
+    StaffSearchMenu ..> MenuGenerator
+    BookStaffManagement ..> MenuGenerator
+    PatronMenu ..> MenuGenerator
+    StaffMenu ..> MenuGenerator
+
+}
+@enduml
