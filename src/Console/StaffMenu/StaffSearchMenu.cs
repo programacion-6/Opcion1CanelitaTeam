@@ -5,9 +5,9 @@ using userSystem;
 using userSystem.Concrete;
 
 public class StaffSearchMenu{
-    BookManager Books;
+    BookRepository Books;
     PatronManager Patrons;
-    public StaffSearchMenu(BookManager books, PatronManager patrons){
+    public StaffSearchMenu(BookRepository books, PatronManager patrons){
         this.Books = books;
         this.Patrons = patrons;
     }

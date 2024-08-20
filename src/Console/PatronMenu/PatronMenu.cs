@@ -9,10 +9,10 @@ public class PatronMenu{
 
     Patron Patron;
     BorrowManager Borrows;
-    BookManager Books;
+    BookRepository Books;
     FineManager Fines;
 
-    public PatronMenu(Patron patron, BorrowManager borrows, BookManager books, FineManager fines){
+    public PatronMenu(Patron patron, BorrowManager borrows, BookRepository books, FineManager fines){
         this.Patron = patron;
         this.Borrows = borrows;
         this.Books = books;

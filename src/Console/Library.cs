@@ -11,10 +11,10 @@ public class Library
     PatronManager Patrons;
     StaffManager Staffs;
     BorrowManager Borrows;
-    BookManager Books;
+    BookRepository Books;
     FineManager Fines;
 
-    public Library(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookManager books, FineManager fines)
+    public Library(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookRepository books, FineManager fines)
     {
         this.Patrons = patrons;
         this.Staffs = staffs;

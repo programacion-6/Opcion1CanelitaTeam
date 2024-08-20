@@ -11,10 +11,10 @@ public class Login{
     PatronManager Patrons;
     StaffManager Staffs;
     BorrowManager Borrows;
-    BookManager Books;
+    BookRepository Books;
     FineManager Fines;
 
-    public Login (PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookManager books, FineManager fines)
+    public Login (PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookRepository books, FineManager fines)
     {
         this.Patrons = patrons;
         this.Staffs = staffs;

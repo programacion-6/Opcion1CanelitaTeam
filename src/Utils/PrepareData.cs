@@ -82,7 +82,7 @@ public class PrepareData
         Patrons.SetPatrons(PreparePatrons());
         StaffManager Staffs = new StaffManager();
         Staffs.SetStaffs(PrepareStaff());
-        BookManager Books = new BookManager();
+        BookRepository Books = new BookRepository();
         Books.SetBooksList(PrepareBooks());
 
         FineManager Fines = new FineManager(); 

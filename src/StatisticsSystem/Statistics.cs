@@ -14,7 +14,7 @@ public class Statistics
             var borrowList = Borrows.GetBorrows();
 
             var mostBorrowedBook = borrowList
-                .GroupBy(b => b.GetBook().getTitle())
+                .GroupBy(b => b.GetBook().Title)
                 .OrderByDescending(g => g.Count())
                 .FirstOrDefault();
 
