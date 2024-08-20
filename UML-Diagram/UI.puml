@@ -16,6 +16,7 @@ package "Console" {
         - BorrowManager : Borrows
         - BookManager : Books
         - FineManager : Fines
+        - ReturnManager : ReturnContext
         + ShowPatronMenu()
     }
 
@@ -34,6 +35,14 @@ package "Console" {
         - FineManager : Fines
         + PatronBooksMenu()
         + BorrowBookOption()
+        + ReturnBookOption()
+    }
+
+    class PatronReturnMenu {
+        - BorrowManager : Borrows
+        - Patron : Patron
+        - BookManager : Books
+        - FineManager : Fines
         + ReturnBookOption()
     }
 

@@ -9,6 +9,7 @@ package "Library system"{
     !include FineSystem.puml
     !include UI.puml
     !include StatisticSystem.puml
+    !include ReturnSystem.puml
 
     ' Define classes
 
@@ -40,6 +41,8 @@ package "Library system"{
     Login ..> PatronMenu
     PatronMenu ..> PatronSearchMenu
     PatronMenu ..> PatronBorrowMenu
+    PatronMenu ..> ReturnContext : uses
+    PatronMenu *.. PatronReturnMenu : has
     StaffMenu ..> BookStaffManagement
     StaffMenu ..> ReportStaffMenu
     StaffMenu ..> StaffSearchMenu
@@ -63,5 +66,7 @@ package "Library system"{
     StaffSearchMenu ..> PerformPatronSearch
     Statistic ..> StatisticReport
     ReportStaffMenu ..> Statistic
+    ReturnContext o-- Borrow
+    ReturnContext o-- Fine
 }
 @enduml
