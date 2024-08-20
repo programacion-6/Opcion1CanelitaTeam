@@ -8,14 +8,9 @@ package "Library system"{
     !include SearchSystem.puml
     !include FineSystem.puml
     !include UI.puml
+    !include StatisticSystem.puml
 
     ' Define classes
-
-    class Statistics {
-        - BorrowManager : Borrows
-        + MostBorrowedBooks()
-        + MostActivePatron()
-    }
 
     class Library {
         - PatronManager patronManager
@@ -66,6 +61,7 @@ package "Library system"{
     PatronSearchMenu ..> PerformBookSearch
     StaffSearchMenu ..> PerformBookSearch
     StaffSearchMenu ..> PerformPatronSearch
-
+    Statistic ..> StatisticReport
+    ReportStaffMenu ..> Statistic
 }
 @enduml
