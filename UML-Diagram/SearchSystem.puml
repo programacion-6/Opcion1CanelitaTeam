@@ -1,18 +1,70 @@
 @startuml SearchSystem
 package "Search System" {
-    
-    ' Define main classes
-    class BookSearch {
-        - BookManager : BooksList
-        + searchBookByTitle()
-        + searchBookByAuthor()
-        + searchBookByISBN()
+
+    ' Define abstract classes
+
+    abstract class SearchBase {
+
+        - Manager : M
+        + PerformSearch()
+        + Search()
+        + SearchResult()
+        + DisplayDetails()
+        + NoResultsFound()
+
     }
 
-    class PatronSearch {
-        - PatronManager : PatronsList
-        + searchPatronByName()
-        + searchPatronByMembershipNumber()
+    abstract class PatronSearch extends SearchBase {
+        - PatronManager Patrons
+        + override DisplayDetails()
+        + override NotResultFound()
+        + abstract Search()
+    }
+
+    abstract class BookSearch extends SearchBase {
+        - BookManager Books
+        + override DisplayDetails()
+        + override NotResultFound()
+        + abstract Search()
+    }
+    
+    ' Define main classes
+    class PatronSearchByName extends PatronSearch{
+        - PatronManager Patrons
+        + override Search()
+    }
+
+    class PatronSearchByMembership extends PatronSearch{
+        - PatronManager Patrons
+        + override Search()
+    }
+
+    class BookSearchByName extends BookSearch {
+        - BookManager : Books
+        + override Search()
+    }
+
+    class BookSearchByTitle extends BookSearch {
+        - BookManager : Books
+        + override Search()
+    }
+
+    class BookSearchByISBN extends BookSearch {
+        - BookManager : Books
+        + override Search()
+    }
+    
+    class BookSearchByAuthor extends BookSearch {
+        - BookManager : Books
+        + override Search()
+    }
+
+    class PerformPatronSearch {
+        + PatronPerformSearch() 
+    }
+
+     class PerformBookSearch {
+        + BookPerformSearch() 
     }
 }
 @enduml 
