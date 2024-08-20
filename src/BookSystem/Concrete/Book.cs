@@ -1,19 +1,55 @@
 namespace BookSystem;
 public class Book{
-    public string Title { get; set; }
-    public string Author { get; set; }
-    public string Genre { get; set; }
-    public string ISBN { get; set; }
-    public DateTime PublicationDate { get; set; }
-    public int Stock { get; set; }
+    private string _title;
+    private string _author;
+    private string _genre;
+    private string _isbn;
+    private DateTime _publicationDate;
+    private int _stock;
 
-    public Book(string title, string author, string genre, DateTime publicationDate, string isbn )
+    public string Title
     {
-        Title = title;
-        Author = author;
-        Genre = genre;
-        PublicationDate = publicationDate;
-        ISBN = isbn;
+        get { return _title; }
+        set { _title = value; }
+    }
+
+    public string Author
+    {
+        get { return _author; }
+        set { _author = value; }
+    }
+
+    public string Genre
+    {
+        get { return _genre; }
+        set { _genre = value; }
+    }
+
+    public string ISBN
+    {
+        get { return _isbn; }
+        set { _isbn = value; }
+    }
+
+    public DateTime PublicationDate
+    {
+        get { return _publicationDate; }
+        set { _publicationDate = value; }
+    }
+
+    public int Stock
+    {
+        get { return _stock; }
+        set { _stock = value; }
+    }
+
+    public Book(string title, string author, string genre, DateTime publicationDate, string isbn)
+    {
+        _title = title;
+        _author = author;
+        _genre = genre;
+        _publicationDate = publicationDate;
+        _isbn = isbn;
     }
 
     public void BookDetails()
