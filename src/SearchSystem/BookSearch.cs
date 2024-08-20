@@ -1,58 +1,54 @@
 using BookSystem;
-using userSystem;
-using userSystem.Concrete;
+using System.Linq;
 
-public class BookSearch{
-    BookManager BooksList;
-    public BookSearch(BookManager bookManager){
-        this.BooksList = bookManager;
+public class BookSearch
+{
+    private BookRepository _booksList;
+
+    public BookSearch(BookRepository booksList)
+    {
+        _booksList = booksList;
     }
 
     public void SearchBookByTitle(string title)
     {
-        List<Book> result = new List<Book>();
-        foreach (Book book in BooksList.getBooksList())
-        {
-            if (book.getTitle().Equals(title, StringComparison.OrdinalIgnoreCase))
-            {
-                result.Add(book);
-            }
-        }
+        List<Book> result = _booksList.GetBooksList()
+            .Where(book => book.Title.Equals(title, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
         SearchResult(result);
     }
 
     public void SearchBookByAuthor(string author)
     {
-        List<Book> result = new List<Book>();
-        foreach (Book book in BooksList.getBooksList())
-        {
-            if (book.getAuthor().Equals(author, StringComparison.OrdinalIgnoreCase))
-            {
-                result.Add(book);
-            }
-        }
+        List<Book> result = _booksList.GetBooksList()
+            .Where(book => book.Author.Equals(author, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
         SearchResult(result);
     }
 
     public void SearchBookByISBN(string isbn)
     {
-        List<Book> result = new List<Book>();
-        foreach (Book book in BooksList.getBooksList())
-        {
-            if (book.getISBN().Equals(isbn, StringComparison.OrdinalIgnoreCase))
-            {
-                result.Add(book);
-            }
-        }
+        List<Book> result = _booksList.GetBooksList()
+            .Where(book => book.ISBN.Equals(isbn, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
         SearchResult(result);
     }
 
-    public void SearchResult(List<Book> BooksResult)
+    public void SearchResult(List<Book> booksResult)
     {
-        foreach(Book book in BooksResult)
+        if (booksResult.Count == 0)
         {
-            book.BookDetails();
+            Console.WriteLine("No books found.");
+        }
+        else
+        {
+            foreach (Book book in booksResult)
+            {
+                book.BookDetails();
+            }
         }
     }
-    
 }

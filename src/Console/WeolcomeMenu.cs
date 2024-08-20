@@ -11,10 +11,10 @@ public class WelcomeMenu{
     PatronManager Patrons;
     StaffManager Staffs;
     BorrowManager Borrows;
-    BookManager Books;
+    BookRepository Books;
     FineManager Fines;
 
-    public WelcomeMenu(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookManager books, FineManager fines)
+    public WelcomeMenu(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookRepository books, FineManager fines)
     {
         this.Patrons = patrons;
         this.Staffs = staffs;

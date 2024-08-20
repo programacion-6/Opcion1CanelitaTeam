@@ -5,9 +5,9 @@ using LibraryConsole.Utils;
 
 public class BookStaffManagement
 {
-    BookManager Books;
+    BookRepository Books;
 
-    public BookStaffManagement(BookManager books)
+    public BookStaffManagement(BookRepository books)
     {
         this.Books = books;
     }
@@ -66,7 +66,7 @@ public class BookStaffManagement
         string stockInput = Console.ReadLine();
         int stock = int.Parse(stockInput);
         Book newBook = new Book(title, author, genre, publicationDate, isbn);
-        newBook.setStock(stock);
+        newBook.Stock = stock;
         Books.AddBook(newBook);
 
         Console.WriteLine("Book added successfully.");

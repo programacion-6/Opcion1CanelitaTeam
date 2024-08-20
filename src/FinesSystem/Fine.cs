@@ -28,7 +28,7 @@ public class Fine{
     {
         Console.WriteLine("========== Fine Details ==========");
         Console.WriteLine($"Patron Name:          {Borrow.GetPatron().getName()}");
-        Console.WriteLine($"Book Title:           {Borrow.GetBook().getTitle()}");
+        Console.WriteLine($"Book Title:           {Borrow.GetBook().Title}");
         Console.WriteLine($"Borrow Date:          {Borrow.GetBorrowDate()}");
         Console.WriteLine($"Due Date:             {Borrow.GetDueDate()}");
         Console.WriteLine($"Return Date:          {DateTime.Now}");

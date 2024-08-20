@@ -8,10 +8,10 @@ public class PatronsBorrowMenu
 {
     BorrowManager Borrows;
     Patron Patron;
-    BookManager Books;
+    BookRepository Books;
     FineManager Fines;
 
-    public PatronsBorrowMenu(BorrowManager Borrows, Patron patron, BookManager books, FineManager fines)
+    public PatronsBorrowMenu(BorrowManager Borrows, Patron patron, BookRepository books, FineManager fines)
     {
         this.Borrows = Borrows;
         this.Patron = patron;
@@ -63,7 +63,7 @@ public class PatronsBorrowMenu
         {
             DateTime BorrowDate = DateTime.Now;
             DateTime DueDate = BorrowDate.AddMonths(1);
-            book.decreaseStock();
+            book.DecreaseStock();
             
             Borrows.AddBorrow(Patron, book, BorrowDate, DueDate);
         }else{
@@ -79,7 +79,7 @@ public class PatronsBorrowMenu
         Borrow borrow = Borrows.FindBorrow(Patron.getName(), bookTitle);
         if(borrow != null){
             borrow.ReturnBook();
-            Books.FoundBookByTitle(bookTitle).increaseStock();
+            Books.FoundBookByTitle(bookTitle).IncreaseStock();
             Console.WriteLine($"Succesfull returned {bookTitle}");
             if(DateTime.Now > borrow.GetDueDate()){
                 Fine currentFine = new Fine(borrow);

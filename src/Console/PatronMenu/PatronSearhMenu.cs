@@ -2,8 +2,8 @@ using BookSystem;
 using LibraryConsole.Utils;
 
 public class PatronSearchMenu{
-    BookManager Books;
-    public PatronSearchMenu(BookManager books){
+    BookRepository Books;
+    public PatronSearchMenu(BookRepository books){
         this.Books = books;
     }
 

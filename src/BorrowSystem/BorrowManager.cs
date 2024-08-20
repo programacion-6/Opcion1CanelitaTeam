@@ -11,11 +11,11 @@ public class BorrowManager{
     public void AddBorrow(Patron patron, Book book, DateTime borrowDate, DateTime dueDate)
     {
         Borrow borrow = new Borrow(patron, book, borrowDate, dueDate);
-        if(book.getStock() > 0){
+        if(book.Stock > 0){
             Borrows.Add(borrow);
-            Console.WriteLine($"Successfull Borrow of {book.getTitle()}"); 
+            Console.WriteLine($"Successfull Borrow of {book.Title} by {patron.getName()}"); 
         }else{
-            Console.WriteLine($"{book.getTitle} Has no available copies the stock is {book.getStock}");
+            Console.WriteLine($"{book.Title} Has no available copies the stock is {book.Title}");
         }
            
     }
@@ -34,7 +34,7 @@ public class BorrowManager{
         foreach (Borrow borrow in Borrows)
             {
                 string currentPatron = borrow.GetPatron().getName();
-                string currentBook = borrow.GetBook().getTitle(); 
+                string currentBook = borrow.GetBook().Title; 
                 if (currentPatron == patronName && currentBook == bookTitle)
                 {
                     return borrow;

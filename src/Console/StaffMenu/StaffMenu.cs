@@ -10,11 +10,11 @@ public class StaffMenu{
 
     Staff Staff;
     BorrowManager Borrows;
-    BookManager Books;
+    BookRepository Books;
     PatronManager Patrons;
     FineManager Fines;
 
-    public StaffMenu(Staff staff, BorrowManager borrows, BookManager books, PatronManager patrons, FineManager Fines){
+    public StaffMenu(Staff staff, BorrowManager borrows, BookRepository books, PatronManager patrons, FineManager Fines){
         this.Staff = staff;
         this.Borrows = borrows;
         this.Books = books;

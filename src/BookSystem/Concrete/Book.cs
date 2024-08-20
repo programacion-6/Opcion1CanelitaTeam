@@ -1,34 +1,23 @@
 namespace BookSystem;
 public class Book{
-    string Title;
-    string Author;
-    string Genre;
-    string ISBN;
-    DateTime PublicationDate;  
-    int Stock;
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public string Genre { get; set; }
+    public string ISBN { get; set; }
+    public DateTime PublicationDate { get; set; }
+    public int Stock { get; set; }
 
-    public Book(string Title, string Author, string Genre, DateTime PublicationDate, string ISBN){
-        this.Title = Title;
-        this.Author = Author;
-        this.Genre = Genre;
-        this.PublicationDate = PublicationDate;
-        this.ISBN = ISBN;
+    public Book(string title, string author, string genre, DateTime publicationDate, string isbn )
+    {
+        Title = title;
+        Author = author;
+        Genre = genre;
+        PublicationDate = publicationDate;
+        ISBN = isbn;
     }
-    public string getTitle() => Title;
-    public string getAuthor() => Author;
-    public string getGenre() => Genre;
-    public DateTime getPublicationDate() => PublicationDate;
-    public int getStock() => Stock;
-    public string getISBN() => ISBN;
 
-    public void setTitle(string title) => this.Title = title;
-    public void setAuthor(string author) => this.Author = author;
-    public void setGenre(string genre) => this.Genre = genre;
-    public void setPublicationDate(DateTime publicationDate) => this.PublicationDate = publicationDate;
-    public void setStock(int stock) => this.Stock = stock;
-    public void getISBN(string isbn) => this.ISBN = isbn;
-
-    public void BookDetails(){
+    public void BookDetails()
+    {
         Console.WriteLine("========== Book Information ==========");
         Console.WriteLine($"Title:              {Title}");
         Console.WriteLine($"Author:             {Author}");
@@ -39,11 +28,21 @@ public class Book{
         Console.WriteLine("======================================");
     }
 
-    public void increaseStock(){
-        this.Stock = Stock + 1;
+    public void IncreaseStock()
+    {
+        Stock++;
     }
 
-    public void decreaseStock(){
-        this.Stock = Stock - 1;
+    public void DecreaseStock()
+    {
+        if (Stock > 0)
+        {
+            Stock--;
+        }
+    }
+
+    internal void setStock(int v)
+    {
+        Stock = v;
     }
 }

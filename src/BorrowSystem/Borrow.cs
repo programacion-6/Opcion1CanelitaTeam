@@ -39,7 +39,7 @@ public class Borrow : Borrowing{
     {
         Console.WriteLine("========== Borrow Details ==========");
         Console.WriteLine($"Patron Name:          {Patron.getName()}");
-        Console.WriteLine($"Book Title:           {Book.getTitle()}");
+        Console.WriteLine($"Book Title:           {Book.Title}");
         Console.WriteLine($"Borrow Date:          {BorrowDate}");
         Console.WriteLine($"Due Date:             {DueDate}");
         Console.WriteLine($"Delivered:               {Delivered}");
