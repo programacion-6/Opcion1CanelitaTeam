@@ -15,7 +15,7 @@ public class PatronSearchMenu{
         {
             MenuGenerator.genericMenu("Books Search Menu", options);
             Console.Write("Please select an option: ");
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
             if (int.TryParse(input, out int selectedIndex) && selectedIndex > 0 && selectedIndex <= options.Count)
             {
@@ -49,26 +49,26 @@ public class PatronSearchMenu{
     public void SearchByTitle()
     {
         Console.Write("Enter the title of the book: ");
-        string title = Console.ReadLine();
-        BookSearch search = new BookSearch(Books);
-        search.SearchBookByTitle(title);
+        string? title = Console.ReadLine();
+        BookPerformSearch.BookSearchOption(new BookSearchByTitle(Books), title);
+
         
     }
 
     public void SearchByAuthor()
     {
         Console.Write("Enter the author of the book: ");
-        string author = Console.ReadLine();
-        BookSearch search = new BookSearch(Books);
-        search.SearchBookByAuthor(author);
+        string? author = Console.ReadLine();
+        BookPerformSearch.BookSearchOption(new BookSearchByAuthor(Books), author);
+
     }
 
     public void SearchByISBN()
     {
         Console.Write("Enter the ISBN of the book: ");
-        string isbn = Console.ReadLine();
-        BookSearch search = new BookSearch(Books);
-        search.SearchBookByISBN(isbn);
+        string? isbn = Console.ReadLine();
+        BookPerformSearch.BookSearchOption(new BookSearchByISBN(Books), isbn);
+
     }
 
 

@@ -1,6 +1,6 @@
 using BookSystem;
 using LibraryConsole.Utils;
-using searchSystem;
+using SearchSystem;
 using userSystem;
 using userSystem.Concrete;
 
@@ -20,7 +20,7 @@ public class StaffSearchMenu{
         {
             MenuGenerator.genericMenu("Search Menu", options);
             Console.Write("Please select an option: ");
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
             if (int.TryParse(input, out int selectedIndex) && selectedIndex > 0 && selectedIndex <= options.Count)
             {
@@ -63,21 +63,19 @@ public class StaffSearchMenu{
     private void SearchPatronByName()
     {
         Console.Write("Enter the Name of the Patron: ");
-        string patronName = Console.ReadLine();
-        PatronSearch search = new PatronSearch(Patrons);
-        search.SearchPatronByName(patronName);
+        string? patronName = Console.ReadLine();
+        PatronPerformSearch.PatronSearchOption(new PatronSearchByName(Patrons), patronName);
         
     }
 
     private void SearchPatronByMembershipNumber()
     {
         Console.Write("Enter the Membership Number of the Patron: ");
-        string input = Console.ReadLine();
+        string? input = Console.ReadLine();
         int patronMemberShip;
         if (int.TryParse(input, out patronMemberShip))
         {
-            PatronSearch search = new PatronSearch(Patrons);
-            search.SearchPatronByMembershipNumber(patronMemberShip);
+            PatronPerformSearch.PatronSearchOption(new PatronSearchByMembershipNumber(Patrons), patronMemberShip);
         }
         else
         {
