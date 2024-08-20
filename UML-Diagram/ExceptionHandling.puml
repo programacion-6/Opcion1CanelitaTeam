@@ -1,0 +1,36 @@
+@startuml
+
+package "Exception Handling" {
+    ' Native from C#
+    class Exception {
+        + Message : String
+    }
+
+    enum Severity {
+        {static} + LOW
+        {static} + MEDIUM
+        {static} + HIGH
+        {static} + CRITICAL
+    }
+
+    abstract class GlobalException {
+        + Message : String
+        + Severity : Severity
+        + GlobalException(String message, Severity severity)
+    }
+
+    class BookNotFoundException {
+        + BookNotFoundException(String message)
+    }
+
+    class PatronNotFoundException {
+        + PatronNotFoundException(String message)
+    }
+
+    Exception <|-- GlobalException
+    GlobalException <|-- BookNotFoundException
+    GlobalException <|-- PatronNotFoundException
+    GlobalException --> Severity
+}
+
+@enduml
