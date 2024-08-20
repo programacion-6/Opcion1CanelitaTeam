@@ -1,0 +1,28 @@
+@startuml ReturnSystem
+
+package "Return System" {
+    interface IReturnStrategy {
+        + ReturnProcess(Book[] books)
+    }
+
+    class ReturnContext {
+        - borrow : Borrow
+        - fine : Fine
+        - returnStrategy : IReturnStrategy
+        + ReturnContext(IReturnStrategy returnStrategy)
+        + setReturnStrategy(IReturnStrategy returnStrategy) : void
+        + performReturn() : void
+    }
+
+    class RegularReturnStrategy implements IReturnStrategy {
+        + ReturnProcess(Book[] books)
+    }
+
+    class LateReturnStrategy implements IReturnStrategy {
+        + ReturnProcess(Book[] books)
+    }
+
+    ReturnContext ..> IReturnStrategy
+}
+
+@enduml
