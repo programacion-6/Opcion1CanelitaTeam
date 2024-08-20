@@ -19,7 +19,6 @@ package "Library system"{
         - BorrowManager borrowManager
         - BookManager bookManager
         - FinesManager FinesManager
-        - ReturnContext returnContext
         + InitializeProgram()
     }
 
@@ -29,7 +28,6 @@ package "Library system"{
     Library ..* BorrowManager
     Library ..* BookManager
     Library ..* FineManager
-    Library ..* ReturnContext
     FineManager ..* Fine
     Statistics ..* BorrowManager
     PatronSearch ..* PatronManager
@@ -43,6 +41,8 @@ package "Library system"{
     Login ..> PatronMenu
     PatronMenu ..> PatronSearchMenu
     PatronMenu ..> PatronBorrowMenu
+    PatronMenu ..> ReturnContext : uses
+    PatronMenu *.. PatronReturnMenu : has
     StaffMenu ..> BookStaffManagement
     StaffMenu ..> ReportStaffMenu
     StaffMenu ..> StaffSearchMenu
