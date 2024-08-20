@@ -9,6 +9,7 @@ package "Library system"{
     !include FineSystem.puml
     !include UI.puml
     !include StatisticSystem.puml
+    !include ReturnSystem.puml
 
     ' Define classes
 
@@ -18,6 +19,7 @@ package "Library system"{
         - BorrowManager borrowManager
         - BookManager bookManager
         - FinesManager FinesManager
+        - ReturnContext returnContext
         + InitializeProgram()
     }
 
@@ -27,6 +29,7 @@ package "Library system"{
     Library ..* BorrowManager
     Library ..* BookManager
     Library ..* FineManager
+    Library ..* ReturnContext
     FineManager ..* Fine
     Statistics ..* BorrowManager
     PatronSearch ..* PatronManager
@@ -63,5 +66,7 @@ package "Library system"{
     StaffSearchMenu ..> PerformPatronSearch
     Statistic ..> StatisticReport
     ReportStaffMenu ..> Statistic
+    ReturnContext o-- Borrow
+    ReturnContext o-- Fine
 }
 @enduml
