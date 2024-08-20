@@ -56,6 +56,11 @@ package "Library system"{
     BookStaffManagement ..> MenuGenerator
     PatronMenu ..> MenuGenerator
     StaffMenu ..> MenuGenerator
+    PerformPatronSearch ..> PatronSearch
+    PerformBookSearch ..> BookSearch
+    PatronSearchMenu ..> PerformBookSearch
+    StaffSearchMenu ..> PerformBookSearch
+    StaffSearchMenu ..> PerformPatronSearch
     Statistic ..> StatisticReport
     ReportStaffMenu ..> Statistic
 }
