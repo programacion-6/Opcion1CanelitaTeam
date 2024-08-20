@@ -3,7 +3,7 @@ using BorrowSystem;
 using FinesSystem;
 using LibraryConsole.Utils;
 using ReportSystem.Concrete;
-using StatisticsSystem;
+using StatisticSystem;
 
 public class ReportStaffMenu
 {
@@ -81,9 +81,11 @@ public class ReportStaffMenu
 
     private void ShowStatistics()
     {
-        Statistics statistics = new Statistics(Borrows);
-        statistics.MostActivePatron();
-        statistics.MostBorrowedBook();
+        Statistic statistics = new Statistic(new MostActivePatron(Borrows));
+        statistics.makeStatistic();
+        statistics = new Statistic(new MostBorrowedBook(Borrows));
+        statistics.makeStatistic();
+        
     }
 
     public void ShowFines(){
