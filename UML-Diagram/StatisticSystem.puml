@@ -1,0 +1,29 @@
+@startuml StatisticSystem
+package "Statistic System" {
+    
+    ' Define abstract classes
+    
+    abstract class StatisticReport {
+        - BorrowManager : Borrows
+        + abstract Report()
+    }
+    
+    ' Define main classes
+
+    class MostBorrowedBook extends StatisticReport {
+        - BorrowManager : Borrows
+        + override Report ()
+    }
+
+    class MostActivePatron extends StatisticReport {
+        - BorrowManager : Borrows
+        + override Report ()
+    }
+
+    class Statistic {
+        - StatisticReport : Report
+        + void makeStatistic()
+    }
+
+}
+@enduml 
