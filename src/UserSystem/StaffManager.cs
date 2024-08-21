@@ -1,27 +1,30 @@
 namespace userSystem;
 
+using Interfaces;
 using userSystem.Concrete;
 using Utils;
 
 public class StaffManager{
+    private readonly IUserRepository _repository;
+    
     List<Staff> StaffList;
 
-    public StaffManager()
+    public StaffManager(IUserRepository repository)
     {
-        StaffList = new List<Staff>();    
+        _repository = repository;
     }
 
     public void AddStaff(Staff staff)
     {
-        string staffName = staff.getName();
+        string staffName = staff.Name;
         if (FoundStaffByName(staffName) == null)
         {
             StaffList.Add(staff);
-            Console.WriteLine($"Staff with name '{staff.getName()}' has been added.");
+            Console.WriteLine($"Staff with name '{staff.Name}' has been added.");
         }
         else
         {
-            Console.WriteLine($"Staff with name '{staff.getName()}' already exists.");
+            Console.WriteLine($"Staff with name '{staff.Name}' already exists.");
         }
     }
 
@@ -32,23 +35,23 @@ public class StaffManager{
         {
             if (!string.IsNullOrEmpty(newName))
             {
-                staff.setName(newName);
+                staff.Name = newName;
             }
             if (newMembershipNumber.HasValue)
             {
-                staff.setMemberShipNumber(newMembershipNumber.Value);
+                staff.MemberShipNumber =newMembershipNumber.Value;
             }
             if (newPhoneNumber.HasValue)
             {
-                staff.setPhoneNumber(newPhoneNumber.Value);
+                staff.PhoneNumber = newPhoneNumber.Value;
             }
             if (!string.IsNullOrEmpty(newDirection))
             {
-                staff.setDirection(newDirection);
+                staff.Direction = newDirection;
             }
             if (!string.IsNullOrEmpty(newPassword))
             {
-                staff.setPassword(newPassword);
+                staff.Password = newPassword;
             }
             Console.WriteLine($"Staff with name '{name}' has been updated.");
         }
@@ -78,7 +81,7 @@ public class StaffManager{
         {
             foreach (Staff staff in StaffList)
             {
-                string staffName = staff.getName();
+                string staffName = staff.Name;
                 if (StringComparator.compare(staffName, name))
                 {
                     return staff;
@@ -99,8 +102,8 @@ public class StaffManager{
         {
             foreach (Staff staff in StaffList)
             {
-                string staffName = staff.getName();
-                string staffPassword = staff.getPassword();
+                string staffName = staff.Name;
+                string staffPassword = staff.Password;
                 if (StringComparator.compare(staffName, name) && StringComparator.compare(staffPassword, password))
                 {
                     return staff;

@@ -13,10 +13,10 @@ public class PatronManager{
 
     public void addPatron (Patron patron)
     {
-        string patronName = patron.getName();
+        string patronName = patron.Name;
         if(FoundPatronByName(patronName) == null){
         PatronsList.Add(patron);
-        Console.WriteLine($"Patron with name '{patron.getName}' has been added.");
+        Console.WriteLine($"Patron with name '{patron.Name}' has been added.");
         }
     }
     public void UpdatePatron(string name, string? newName = null, int? newMembershipNumber = null, int? newPhoneNumber = null, string? newDirection = null, string? newPassword = null)
@@ -25,23 +25,23 @@ public class PatronManager{
         if(patron != null){
             if (!string.IsNullOrEmpty(newName))
             {
-                patron.setName(newName);
+                patron.Name = newName;
             }
             if (newMembershipNumber.HasValue)
             {
-                patron.setMemberShipNumber(newMembershipNumber.Value);
+                patron.MemberShipNumber = newMembershipNumber.Value;
             }
             if (newPhoneNumber.HasValue)
             {
-            patron.setPhoneNumber(newPhoneNumber.Value);
+            patron.PhoneNumber = newPhoneNumber.Value;
             }
             if (!string.IsNullOrEmpty(newDirection))
             {
-            patron.setDirection(newDirection);
+            patron.Direction = newDirection;
             }
             if (!string.IsNullOrEmpty(newPassword))
             {
-            patron.setPassword(newPassword);
+            patron.Password = newPassword;
             }
         }
 
@@ -61,7 +61,7 @@ public class PatronManager{
         {
             foreach (Patron patron in PatronsList)
             {
-                string patronName = patron.getName();
+                string patronName = patron.Name;
                 if (StringComparator.compare(patronName, name))
                 {
                     return patron;
@@ -82,8 +82,8 @@ public class PatronManager{
         {
             foreach (Patron patron in PatronsList)
             {
-                string patronName = patron.getName();
-                string patronPassword = patron.getPassword();
+                string patronName = patron.Name;
+                string patronPassword = patron.Password;
                 if (StringComparator.compare(patronName, name) && StringComparator.compare(patronPassword, password))
                 {
                     return patron;

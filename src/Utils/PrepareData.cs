@@ -1,8 +1,10 @@
 using BookSystem;
 using BorrowSystem;
 using FinesSystem;
+using Interfaces;
 using LibraryConsole;
 using Opcion1AlexPaca.Creator;
+using Repositories;
 using userSystem;
 using userSystem.Concrete;
 
@@ -80,8 +82,8 @@ public class PrepareData
     public static Library PrepareLibrary(){
         PatronManager Patrons = new PatronManager();
         Patrons.SetPatrons(PreparePatrons());
-        StaffManager Staffs = new StaffManager();
-        Staffs.SetStaffs(PrepareStaff());
+        IUserRepository userRepository = new InMemoryUserRepository();
+        StaffManager Staffs = new StaffManager(userRepository);
         BookRepository Books = new BookRepository();
         Books.SetBooksList(PrepareBooks());
 
