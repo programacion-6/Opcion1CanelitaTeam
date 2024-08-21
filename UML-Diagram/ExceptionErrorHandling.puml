@@ -1,11 +1,6 @@
 @startuml
 
 package "Exception Handling" {
-    ' Native from C#
-    class Exception {
-        + Message : String
-    }
-
     enum Severity {
         {static} + LOW
         {static} + MEDIUM
@@ -31,6 +26,19 @@ package "Exception Handling" {
     GlobalException <|-- BookNotFoundException
     GlobalException <|-- PatronNotFoundException
     GlobalException --> Severity
+}
+
+package "Error Handling" {
+    class ILogService {
+        + LogError(Severity severity, string message) : void
+    }
+
+    class LogService implements ILogService {
+        + LogError(Severity severity, string message) : void
+        + GenerateLogFile() : void
+    }
+
+    ILogService --> Severity
 }
 
 @enduml
