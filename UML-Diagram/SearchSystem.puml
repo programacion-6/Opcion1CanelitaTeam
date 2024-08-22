@@ -4,7 +4,6 @@ package "Search System" {
     ' Define abstract classes
 
     abstract class SearchBase {
-
         - Manager : M
         + PerformSearch()
         + Search()
@@ -15,6 +14,7 @@ package "Search System" {
     }
 
     abstract class PatronSearch extends SearchBase {
+        - PatronNotFoundException : PatronNotFoundException
         - PatronManager Patrons
         + override DisplayDetails()
         + override NotResultFound()
@@ -22,6 +22,7 @@ package "Search System" {
     }
 
     abstract class BookSearch extends SearchBase {
+        - BookNotFoundException : BookNotFoundException
         - BookManager Books
         + override DisplayDetails()
         + override NotResultFound()
