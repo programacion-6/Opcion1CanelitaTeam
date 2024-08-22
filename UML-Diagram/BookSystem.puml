@@ -33,6 +33,5 @@ package "Book System" {
         - genre: String
         - publicationYear: Date
     }
-    
 }
-@enduml 
+@enduml

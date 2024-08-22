@@ -17,7 +17,7 @@ package "Library system"{
         - PatronManager patronManager
         - StaffManager staffManager
         - BorrowManager borrowManager
-        - BookRepository ookRepository
+        - BookRepository bookRepository
         - FinesManager FinesManager
         + InitializeProgram()
     }
