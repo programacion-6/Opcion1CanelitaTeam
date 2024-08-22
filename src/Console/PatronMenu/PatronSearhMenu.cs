@@ -1,5 +1,6 @@
 using BookSystem;
 using LibraryConsole.Utils;
+using SearchSystem;
 
 public class PatronSearchMenu{
     BookRepository Books;
@@ -50,25 +51,42 @@ public class PatronSearchMenu{
     {
         Console.Write("Enter the title of the book: ");
         string? title = Console.ReadLine();
-        BookPerformSearch.BookSearchOption(new BookSearchByTitle(Books), title);
-
-        
+        if (!string.IsNullOrEmpty(title))
+        {
+            PerformSearch.Search(new BookSearchByTitle(Books), title);
+        }
+        else
+        {
+            Console.WriteLine("Title cannot be null or empty.");
+        }
     }
 
     public void SearchByAuthor()
     {
         Console.Write("Enter the author of the book: ");
         string? author = Console.ReadLine();
-        BookPerformSearch.BookSearchOption(new BookSearchByAuthor(Books), author);
-
+        if (!string.IsNullOrEmpty(author))
+        {
+            PerformSearch.Search(new BookSearchByAuthor(Books), author);    
+        }
+        else
+        {
+            Console.WriteLine("Title cannot be null or empty.");
+        }
     }
 
     public void SearchByISBN()
     {
         Console.Write("Enter the ISBN of the book: ");
         string? isbn = Console.ReadLine();
-        BookPerformSearch.BookSearchOption(new BookSearchByISBN(Books), isbn);
-
+        if (!string.IsNullOrEmpty(isbn))
+        {
+            PerformSearch.Search(new BookSearchByISBN(Books), isbn);
+        }
+        else
+        {
+            Console.WriteLine("Title cannot be null or empty.");
+        }
     }
 
 

@@ -2,7 +2,6 @@ using BookSystem;
 using LibraryConsole.Utils;
 using SearchSystem;
 using userSystem;
-using userSystem.Concrete;
 
 public class StaffSearchMenu{
     BookRepository Books;
@@ -64,8 +63,14 @@ public class StaffSearchMenu{
     {
         Console.Write("Enter the Name of the Patron: ");
         string? patronName = Console.ReadLine();
-        PatronPerformSearch.PatronSearchOption(new PatronSearchByName(Patrons), patronName);
-        
+        if (!string.IsNullOrEmpty(patronName))
+        {
+            PerformSearch.Search(new PatronSearchByName(Patrons), patronName);    
+        }
+        else
+        {
+            Console.WriteLine("Title cannot be null or empty.");
+        }
     }
 
     private void SearchPatronByMembershipNumber()
@@ -75,14 +80,11 @@ public class StaffSearchMenu{
         int patronMemberShip;
         if (int.TryParse(input, out patronMemberShip))
         {
-            PatronPerformSearch.PatronSearchOption(new PatronSearchByMembershipNumber(Patrons), patronMemberShip);
+            PerformSearch.Search(new PatronSearchByMembershipNumber(Patrons), patronMemberShip);
         }
         else
         {
             Console.WriteLine("Invalid membership number. Please enter a valid number.");
         }
     }
-
-
-
 }
