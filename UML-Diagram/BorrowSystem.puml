@@ -8,6 +8,7 @@ package "Borrow System" {
 
     ' Define main classes
     class BorrowManager {
+        - LogService : LogService
         - BorrowList : List
         + AddBorrow()
         + RemoveBorrow()

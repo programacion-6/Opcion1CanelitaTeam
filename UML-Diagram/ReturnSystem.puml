@@ -6,6 +6,7 @@ package "Return System" {
     }
 
     class ReturnContext {
+        - LogService : LogService
         - borrow : Borrow
         - fine : Fine
         - returnStrategy : IReturnStrategy

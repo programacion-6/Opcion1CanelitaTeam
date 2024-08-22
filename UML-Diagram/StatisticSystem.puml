@@ -4,6 +4,7 @@ package "Statistic System" {
     ' Define abstract classes
     
     abstract class StatisticReport {
+        - LogService : LogService
         - BorrowManager : Borrows
         + abstract Report()
     }

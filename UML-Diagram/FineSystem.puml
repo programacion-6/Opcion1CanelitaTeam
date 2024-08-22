@@ -4,6 +4,7 @@ package "Fine System" {
     ' Define main classes
 
     class FineManager {
+        - LogService : LogService
         - List : Fines
         + AddFine()
         + ShowFines()
