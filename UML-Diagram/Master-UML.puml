@@ -29,7 +29,6 @@ package "Library system"{
     Library ..* BookRepository
     Library ..* FineManager
     FineManager ..* Fine
-    Statistics ..* BorrowManager
     PatronSearch ..* PatronManager
     BookSearch ..* BookRepository
     Borrow ..* Book
@@ -59,11 +58,9 @@ package "Library system"{
     BookStaffManagement ..> MenuGenerator
     PatronMenu ..> MenuGenerator
     StaffMenu ..> MenuGenerator
-    PerformPatronSearch ..> PatronSearch
-    PerformBookSearch ..> BookSearch
-    PatronSearchMenu ..> PerformBookSearch
-    StaffSearchMenu ..> PerformBookSearch
-    StaffSearchMenu ..> PerformPatronSearch
+    PatronSearchMenu ..> PerformSearch
+    StaffSearchMenu ..> PerformSearch
+    PerformSearch ..> SearchBase
     Statistic ..> StatisticReport
     ReportStaffMenu ..> Statistic
     ReturnContext o-- Borrow
