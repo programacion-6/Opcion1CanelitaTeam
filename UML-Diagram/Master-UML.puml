@@ -75,5 +75,8 @@ package "Library system"{
     GlobalException <|-- PatronNotFoundException
     GlobalException --> Severity
     ILogService --> Severity
+
+    PatronSearch ..> BookNotFoundException
+    BookSearch ..> PatronNotFoundException
 }
 @enduml
