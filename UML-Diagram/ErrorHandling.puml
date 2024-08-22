@@ -1,0 +1,14 @@
+@startuml
+
+package "Error Handling" {
+    class ILogService {
+        + LogError(Severity severity, string message) : void
+    }
+
+    class LogService implements ILogService {
+        + LogError(Severity severity, string message) : void
+        + GenerateLogFile() : void
+    }
+}
+
+@enduml

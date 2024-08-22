@@ -1,0 +1,26 @@
+@startuml
+
+package "Exception Handling" {
+    enum Severity {
+        {static} + LOW
+        {static} + MEDIUM
+        {static} + HIGH
+        {static} + CRITICAL
+    }
+
+    abstract class GlobalException {
+        + Message : String
+        + Severity : Severity
+        + GlobalException(String message, Severity severity)
+    }
+
+    class BookNotFoundException {
+        + BookNotFoundException(String message)
+    }
+
+    class PatronNotFoundException {
+        + PatronNotFoundException(String message)
+    }
+}
+
+@enduml

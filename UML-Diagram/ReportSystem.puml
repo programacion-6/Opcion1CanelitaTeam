@@ -12,6 +12,7 @@ package "Report System" {
 
     ' Define main interface
     interface IReporting {
+        - LogService : ILogService
         + generateReport()
     }
 

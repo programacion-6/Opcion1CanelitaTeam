@@ -10,6 +10,8 @@ package "Library system"{
     !include UI.puml
     !include StatisticSystem.puml
     !include ReturnSystem.puml
+    !include ErrorHandling.puml
+    !include ExceptionHandling.puml
 
     ' Define classes
 
@@ -65,5 +67,13 @@ package "Library system"{
     ReportStaffMenu ..> Statistic
     ReturnContext o-- Borrow
     ReturnContext o-- Fine
+
+    GlobalException <|-- BookNotFoundException
+    GlobalException <|-- PatronNotFoundException
+    GlobalException --> Severity
+    ILogService --> Severity
+
+    PatronSearch ..> BookNotFoundException
+    BookSearch ..> PatronNotFoundException
 }
 @enduml

@@ -4,7 +4,6 @@ package "Search System" {
     ' Define abstract classes
 
     abstract class SearchBase {
-
         - Manager : M
         + PerformSearch()
         + Search()
