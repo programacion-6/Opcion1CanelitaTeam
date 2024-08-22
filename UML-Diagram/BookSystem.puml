@@ -3,7 +3,7 @@ package "Book System" {
     
     ' Define main interfaces
     
-    interface IBookManagement {
+    interface IBookRepository {
         + addBook()
         + updateBook()
         + removeBook()
@@ -13,9 +13,17 @@ package "Book System" {
     
     ' Define main classes
 
-    class BookManager implements IBookManagement {
-        - BookList : List
-        + FoundBookByTitle()
+    class BookRepository implements IBookRepository  {
+        - _books: List<Book>
+        + AddBook(book: Book)
+        + UpdateBook()
+        + RemoveBook(title: string)
+        + ListBooksByGenre(genre: string)
+        + CheckAvailability(title: string)
+        + FoundBookByTitle(title: string): Book
+        + AvailableBooks()
+        + GetBooksList(): List<Book>
+        + SetBooksList(books: List<Book>)
     }
 
     class Book {
@@ -25,6 +33,6 @@ package "Book System" {
         - genre: String
         - publicationYear: Date
     }
-
+    
 }
 @enduml 
