@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-
 public abstract class SearchBase < M, E, T >
 {
     protected M Repository;
 
     public SearchBase(M manager)
     {
-        this.Repository = manager;
+        Repository = manager;
     }
 
     public virtual void PerformSearch(T criterion)
@@ -18,7 +15,6 @@ public abstract class SearchBase < M, E, T >
         {
             SearchResult(results);
         }
-        
         else
         {
             NoResultsFound();
@@ -37,8 +33,5 @@ public abstract class SearchBase < M, E, T >
 
     protected abstract void DisplayDetails(E item);
 
-    protected virtual void NoResultsFound()
-    {
-        Console.WriteLine("No results found.");
-    }
+    protected abstract void NoResultsFound();
 }
