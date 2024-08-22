@@ -21,24 +21,6 @@ package "Exception Handling" {
     class PatronNotFoundException {
         + PatronNotFoundException(String message)
     }
-
-    Exception <|-- GlobalException
-    GlobalException <|-- BookNotFoundException
-    GlobalException <|-- PatronNotFoundException
-    GlobalException --> Severity
-}
-
-package "Error Handling" {
-    class ILogService {
-        + LogError(Severity severity, string message) : void
-    }
-
-    class LogService implements ILogService {
-        + LogError(Severity severity, string message) : void
-        + GenerateLogFile() : void
-    }
-
-    ILogService --> Severity
 }
 
 @enduml
