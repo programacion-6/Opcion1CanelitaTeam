@@ -1,3 +1,4 @@
+using Core.Exceptions;
 using userSystem;
 using userSystem.Concrete;
 
@@ -12,7 +13,7 @@ public abstract class PatronSearchTemplate <T> : SearchBase<PatronManager, Patro
 
     protected override void NoResultsFound()
     {
-        Console.WriteLine("No Patron found.");
+        throw new PatronNotFoundException("No patrons found matching with the search criteria.");
     }
 
     protected abstract override List<Patron> Search( T criterion);
