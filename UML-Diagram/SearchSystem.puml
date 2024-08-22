@@ -59,12 +59,8 @@ package "Search System" {
         + override Search()
     }
 
-    class PerformPatronSearch {
-        + PatronPerformSearch() 
-    }
-
-     class PerformBookSearch {
-        + BookPerformSearch() 
+    class PerformSearch{
+        + Search() : SearchBase
     }
 }
 @enduml 
