@@ -17,7 +17,7 @@ package "Library system"{
         - PatronManager patronManager
         - StaffManager staffManager
         - BorrowManager borrowManager
-        - BookManager bookManager
+        - BookRepository bookRepository
         - FinesManager FinesManager
         + InitializeProgram()
     }
@@ -26,12 +26,12 @@ package "Library system"{
     Library ..* PatronManager
     Library ..* StaffManager
     Library ..* BorrowManager
-    Library ..* BookManager
+    Library ..* BookRepository
     Library ..* FineManager
     FineManager ..* Fine
     Statistics ..* BorrowManager
     PatronSearch ..* PatronManager
-    BookSearch ..* BookManager
+    BookSearch ..* BookRepository
     Borrow ..* Book
     Borrow ..* PatronConcrete
     BorrowManager ..* Borrow
@@ -51,7 +51,7 @@ package "Library system"{
     APatronReport ..* PatronManager
     PatronManager ..* PatronConcrete
     StaffManager ..* StaffConcrete
-    BookManager ..* Book
+    BookRepository ..* Book
     PatronSearchMenu ..> MenuGenerator
     PatronBorrowMenu ..> MenuGenerator
     ReportStaffMenu ..> MenuGenerator
