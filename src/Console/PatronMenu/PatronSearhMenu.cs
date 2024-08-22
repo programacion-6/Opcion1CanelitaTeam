@@ -1,5 +1,6 @@
 using BookSystem;
 using LibraryConsole.Utils;
+using SearchSystem;
 
 public class PatronSearchMenu{
     BookRepository Books;
@@ -15,7 +16,7 @@ public class PatronSearchMenu{
         {
             MenuGenerator.genericMenu("Books Search Menu", options);
             Console.Write("Please select an option: ");
-            string input = Console.ReadLine();
+            string? input = Console.ReadLine();
 
             if (int.TryParse(input, out int selectedIndex) && selectedIndex > 0 && selectedIndex <= options.Count)
             {
@@ -49,26 +50,43 @@ public class PatronSearchMenu{
     public void SearchByTitle()
     {
         Console.Write("Enter the title of the book: ");
-        string title = Console.ReadLine();
-        BookSearch search = new BookSearch(Books);
-        search.SearchBookByTitle(title);
-        
+        string? title = Console.ReadLine();
+        if (!string.IsNullOrEmpty(title))
+        {
+            PerformSearch.Search(new BookSearchByTitle(Books), title);
+        }
+        else
+        {
+            Console.WriteLine("Title cannot be null or empty.");
+        }
     }
 
     public void SearchByAuthor()
     {
         Console.Write("Enter the author of the book: ");
-        string author = Console.ReadLine();
-        BookSearch search = new BookSearch(Books);
-        search.SearchBookByAuthor(author);
+        string? author = Console.ReadLine();
+        if (!string.IsNullOrEmpty(author))
+        {
+            PerformSearch.Search(new BookSearchByAuthor(Books), author);    
+        }
+        else
+        {
+            Console.WriteLine("Title cannot be null or empty.");
+        }
     }
 
     public void SearchByISBN()
     {
         Console.Write("Enter the ISBN of the book: ");
-        string isbn = Console.ReadLine();
-        BookSearch search = new BookSearch(Books);
-        search.SearchBookByISBN(isbn);
+        string? isbn = Console.ReadLine();
+        if (!string.IsNullOrEmpty(isbn))
+        {
+            PerformSearch.Search(new BookSearchByISBN(Books), isbn);
+        }
+        else
+        {
+            Console.WriteLine("Title cannot be null or empty.");
+        }
     }
 
 
