@@ -1,18 +1,25 @@
-using System.Collections.Generic;
 using BorrowSystem;
+using Opcion1CanelitaTeam.ReportSystem.Concretes;
 using Spectre.Console;
 
 namespace ReportSystem.Concrete
 {
-    public class CurrrentBorrowBooksReport : BookReport
+    public class CurrentBorrowBooksReport : BaseReport
     {
-        public CurrrentBorrowBooksReport(BorrowManager borrowList) : base(borrowList) {}
+        public CurrentBorrowBooksReport(BorrowManager borrowManager) 
+            : base(borrowManager)
+        { }
+    
+        public override void GenerateReport()
+        {
+            Console.WriteLine("This is a Current Book Borrow Report");
+        }
 
         public void BorrowedBooksReport()
         {
-            generateReport();
+            GenerateReport();
 
-            var activeBorrows = BorrowList.GetBorrows().Where(borrow => !borrow.GetDelivered()).ToList();
+            var activeBorrows = _borrowManager.GetBorrows().Where(borrow => !borrow.GetDelivered()).ToList();
 
            
             int pageSize = 2;

@@ -4,6 +4,7 @@ using FinesSystem;
 using Spectre.Console;
 using ReportSystem.Concrete;
 using StatisticSystem;
+using Opcion1CanelitaTeam.ReportSystem.Concretes;
 
 public class ReportStaffMenu
 {
@@ -51,7 +52,7 @@ public class ReportStaffMenu
                     Console.ReadKey(); 
                     break;
                 case "Current Borrowed Books":
-                    var borrowedBooks = new CurrrentBorrowBooksReport(_borrows);
+                    var borrowedBooks = new CurrentBorrowBooksReport(_borrows);
                     borrowedBooks.BorrowedBooksReport();
                     break;
                 case "Overdue Books Report":
