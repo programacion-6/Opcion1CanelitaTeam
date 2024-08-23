@@ -1,4 +1,5 @@
 @startuml LibraryManagementSystem
+
 package "Library system"{
     ' Define modules
     !include UserSystem.puml
@@ -48,8 +49,6 @@ package "Library system"{
     StaffMenu ..> ReportStaffMenu
     StaffMenu ..> StaffSearchMenu
     Login ..> StaffMenu
-    ABorrowReport ..* BorrowManager
-    APatronReport ..* PatronManager
     PatronManager ..* PatronConcrete
     StaffManager ..* StaffConcrete
     BookRepository ..* Book
@@ -76,4 +75,5 @@ package "Library system"{
     PatronSearch ..> BookNotFoundException
     BookSearch ..> PatronNotFoundException
 }
+
 @enduml
