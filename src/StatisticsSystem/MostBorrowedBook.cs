@@ -1,41 +1,63 @@
-using System.Linq;
 using BorrowSystem;
 using Spectre.Console;
+using Core.Exceptions;
+using Core.Handlers;
 
 public class MostBorrowedBook : StatisticReport
 {
-    public MostBorrowedBook(BorrowManager borrows) : base(borrows)
+    private readonly ILogService _logService;
+
+    public MostBorrowedBook(BorrowManager borrows)
+        : base(borrows)
     {
+        _logService = new LogService();
     }
 
     public override void Report()
     {
-        var borrowList = Borrows.GetBorrows();
-
-        var topBooks = borrowList
-            .GroupBy(b => b.GetBook().Title)
-            .OrderByDescending(g => g.Count())
-            .Take(3)
-            .Select(g => new { BookTitle = g.Key, BorrowCount = g.Count() })
-            .ToList();
-
-        if (topBooks.Any())
+        try
         {
-            var chart = new BarChart()
-                .Width(60)
-                .Label("[bold underline]Top 3 Most Borrowed Books[/]")
-                .CenterLabel();
-
-            foreach (var book in topBooks)
+            var borrowList = Borrows.GetBorrows();
+            
+            if (borrowList == null)
             {
-                chart.AddItem(book.BookTitle, book.BorrowCount, Color.Blue);
+                throw new BorrowNotFoundException("Failed to retrieve borrow records. The list doesn't exist.");
             }
 
-            AnsiConsole.Write(chart);
+            var topBooks = borrowList
+                .GroupBy(b => b.GetBook().Title)
+                .OrderByDescending(g => g.Count())
+                .Take(3)
+                .Select(g => new { BookTitle = g.Key, BorrowCount = g.Count() })
+                .ToList();
+
+            if (topBooks.Any())
+            {
+                var chart = new BarChart()
+                    .Width(60)
+                    .Label("[bold underline]Top 3 Most Borrowed Books[/]")
+                    .CenterLabel();
+
+                foreach (var book in topBooks)
+                {
+                    chart.AddItem(book.BookTitle, book.BorrowCount, Color.Blue);
+                }
+
+                AnsiConsole.Write(chart);
+            }
+            else
+            {
+                AnsiConsole.MarkupLine("[red]No books have been borrowed yet.[/]");
+            }
         }
-        else
+        catch (BorrowNotFoundException ex)
         {
-            AnsiConsole.MarkupLine("[red]No books have been borrowed yet.[/]");
+            Console.WriteLine(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An unexpected error occurred while generating the report. Please contact your administrator.");
+            _logService.LogError(Severity.MEDIUM, $"{ex.Message}");
         }
     }
 }
