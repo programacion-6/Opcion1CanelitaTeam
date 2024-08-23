@@ -1,32 +1,28 @@
 @startuml ReportSystem
+
 package "Report System" {
-    
-    ' Define main abstractc
-    abstract class ABorrowReport implements IReporting{
-        - BorrowManager : BorrowList
+    ' Define main contract
+    interface IReport {
+        + GenerateReport() : void
     }
 
-    abstract class APatronReport implements IReporting{
-        - PatronManager : PatronList
-    }
-
-    ' Define main interface
-    interface IReporting {
-        - LogService : ILogService
-        + generateReport()
+    ' Define main abstract base
+    abstract class BaseReport implements IReport {
+        - BorrowManager : _borrowManager
     }
 
     ' Define main classes
-    class BookCurrentBorrwedReport extends ABorrowReport {
-        + BookBorrowedReportFormat()
+    class BorrowPatronHistory extends BaseReport {
+        + PatronBorrowHistoryReport() : void
     }
 
-    class OverdueBooksReport extends ABorrowReport {
-        + OverdueBooksFormat()
+    class CurrentBorrowBooksReport extends BaseReport {
+        + BorrowedBooksReport() : void
     }
 
-    class BorrowingHistoryReport extends APatronReport {
-        + BorrowHistoryFormat()
+    class OverdueBooksReport extends BaseReport {
+        + OverdueBooksListReport() : void
     }
 }
-@enduml 
+
+@enduml
