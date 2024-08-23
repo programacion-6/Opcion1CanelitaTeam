@@ -1,27 +1,34 @@
 using BorrowSystem;
-using userSystem.Concrete;
 
 namespace FinesSystem;
-public class Fine{
 
+public class Fine
+{
     bool Paid;
     Borrow Borrow;
-
     int Cost;
 
-    public Fine(Borrow borrow){
-        this.Borrow = borrow;
+    public Fine(Borrow borrow)
+    {
+        Borrow = borrow;
         CalculateFine();
     }
 
     public void CalculateFine()
     {
+        const int BASE_FINE = 20;
+        const int WEEKLY_FINE = 10;
         DateTime returnDate = DateTime.Now;
         TimeSpan difference = returnDate - Borrow.GetDueDate();
-
+        
+        if (difference.TotalDays < 0)
+        {
+            throw new InvalidOperationException("Return date cannot be before the due date.");
+        }
+        
         int weeksLate = (int)(difference.TotalDays / 7);
 
-        this.Cost = difference.TotalDays > 0 ? 20 + weeksLate * 10 : 0;
+        Cost = difference.TotalDays > 0 ? BASE_FINE + weeksLate * WEEKLY_FINE : 0;
     }
 
     public void FineDetails()
@@ -40,6 +47,8 @@ public class Fine{
     public bool GetPaid() => Paid;
 
     public int GetCost() => Cost;
+
     public Borrow GetBorrow() => Borrow;
-    public void SetPaid(bool paid) => this.Paid = paid;
+    
+    public void SetPaid(bool paid) => Paid = paid;
 }
