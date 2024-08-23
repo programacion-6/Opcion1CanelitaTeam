@@ -14,7 +14,8 @@ public class StaffManager{
     public void AddStaff(Staff staff)
     {
         string staffName = staff.getName();
-        if (FoundStaffByName(staffName) == null)
+        Staff? staffaux = (Staff)PerformFind.Execute(new FindStaffByName(StaffList, staffName));
+        if (staffaux == null)
         {
             StaffList.Add(staff);
             Console.WriteLine($"Staff with name '{staff.getName()}' has been added.");
@@ -27,7 +28,7 @@ public class StaffManager{
 
     public void UpdateStaff(string name, string? newName = null, int? newMembershipNumber = null, int? newPhoneNumber = null, string? newDirection = null, string? newPassword = null)
     {
-        Staff? staff = FoundStaffByName(name);
+        Staff? staff = (Staff)PerformFind.Execute(new FindStaffByName(StaffList, name));
         if (staff != null)
         {
             if (!string.IsNullOrEmpty(newName))
@@ -60,7 +61,7 @@ public class StaffManager{
 
     public void RemoveStaff(string name)
     {
-        Staff? staff = FoundStaffByName(name);
+        Staff? staff = (Staff)PerformFind.Execute(new FindStaffByName(StaffList, name));
         if (staff != null)
         {
             StaffList.Remove(staff);
@@ -70,27 +71,6 @@ public class StaffManager{
         {
             Console.WriteLine($"Staff with name '{name}' not found.");
         }
-    }
-
-    private Staff? FoundStaffByName(string name)
-    {
-        try
-        {
-            foreach (Staff staff in StaffList)
-            {
-                string staffName = staff.getName();
-                if (StringComparator.compare(staffName, name))
-                {
-                    return staff;
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred while searching for the staff: {ex.Message}");
-        }
-
-        return null;
     }
 
      public Staff? ValidateStaff(string name, string password)

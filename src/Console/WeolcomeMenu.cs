@@ -2,51 +2,54 @@ using BookSystem;
 using BorrowSystem;
 using FinesSystem;
 using LibraryConsole.Login;
-using LibraryConsole.Utils;
+using Spectre.Console;
 using userSystem;
 
 namespace LibraryMenu;
 
-public class WelcomeMenu{
-    PatronManager Patrons;
-    StaffManager Staffs;
-    BorrowManager Borrows;
-    BookRepository Books;
-    FineManager Fines;
+public class WelcomeMenu
+{
+    private readonly PatronManager _patrons;
+    private readonly StaffManager _staffs;
+    private readonly BorrowManager _borrows;
+    private readonly BookRepository _books;
+    private readonly FineManager _fines;
 
     public WelcomeMenu(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookRepository books, FineManager fines)
     {
-        this.Patrons = patrons;
-        this.Staffs = staffs;
-        this.Borrows = borrows;
-        this.Books = books;
-        this.Fines = fines;
+        _patrons = patrons;
+        _staffs = staffs;
+        _borrows = borrows;
+        _books = books;
+        _fines = fines;
     }
 
-    
-        public void ShowMenu()
+    public void ShowMenu()
+    {
+        while (true)
         {
-            while (true)
-            {
-                List<string> options = new List<string> { "Login", "Exit" };
-                MenuGenerator.genericMenu("Welcome to the Library System", options);
+            var choice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[green]Welcome to the Library System[/]")
+                    .PageSize(10)
+                    .AddChoices(new[] { "Login", "Exit" }));
 
-                string choice = Console.ReadLine();
-                switch (choice)
-                {
-                    case "1":
-                        Login login = new Login(Patrons, Staffs, Borrows, Books, Fines);
-                        login.LoginMenu();
-                        break;
-                    case "2":
-                        Console.WriteLine("Exiting the system. Goodbye!");
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.WriteLine("Invalid choice. Please try again.");
-                        break;
-                }
+            switch (choice)
+            {
+                case "Login":
+                    var login = new Login(_patrons, _staffs, _borrows, _books, _fines);
+                    login.LoginMenu();
+                    break;
+
+                case "Exit":
+                    AnsiConsole.MarkupLine("[yellow]Exiting the system. Goodbye![/]");
+                    Environment.Exit(0);
+                    break;
+
+                default:
+                    AnsiConsole.MarkupLine("[red]Invalid choice. Please try again.[/]");
+                    break;
             }
         }
+    }
 }
-

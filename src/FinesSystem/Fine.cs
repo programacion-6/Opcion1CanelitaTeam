@@ -38,6 +38,8 @@ public class Fine{
     }
 
     public bool GetPaid() => Paid;
+
+    public int GetCost() => Cost;
     public Borrow GetBorrow() => Borrow;
     public void SetPaid(bool paid) => this.Paid = paid;
 }

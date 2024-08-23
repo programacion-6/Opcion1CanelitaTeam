@@ -5,64 +5,61 @@ using LibraryMenu;
 using userSystem;
 using userSystem.Concrete;
 using FinesSystem;
-namespace LibraryConsole.Login;
+using Spectre.Console;
 
-public class Login{
-    PatronManager Patrons;
-    StaffManager Staffs;
-    BorrowManager Borrows;
-    BookRepository Books;
-    FineManager Fines;
-
-    public Login (PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookRepository books, FineManager fines)
+namespace LibraryConsole.Login
+{
+    public class Login
     {
-        this.Patrons = patrons;
-        this.Staffs = staffs;
-        this.Borrows = borrows;
-        this.Books = books;
-        this.Fines = fines;
-    }
+        private readonly PatronManager _patrons;
+        private readonly StaffManager _staffs;
+        private readonly BorrowManager _borrows;
+        private readonly BookRepository _books;
+        private readonly FineManager _fines;
 
-    public void LoginMenu()
+        public Login(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookRepository books, FineManager fines)
         {
-            Console.WriteLine("===== Login =====");
-            Console.Write("Enter Username: ");
-            string? username = Console.ReadLine();
-            Console.Write("Enter Password: ");
-            string? password = Console.ReadLine();
-            if(username != null && password != null){
-                Staff? staff = Staffs.ValidateStaff(username, password);
+            _patrons = patrons;
+            _staffs = staffs;
+            _borrows = borrows;
+            _books = books;
+            _fines = fines;
+        }
+
+        public void LoginMenu()
+        {
+            AnsiConsole.MarkupLine("[green]===== Login =====[/]");
+
+            string? username = AnsiConsole.Ask<string>("Enter [yellow]Username[/]:");
+            string? password = AnsiConsole.Prompt(
+                new TextPrompt<string>("Enter [yellow]Password[/]:")
+                    .PromptStyle("red")
+                    .Secret());
+
+            if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
+            {
+                Staff? staff = _staffs.ValidateStaff(username, password);
                 if (staff != null)
                 {
-                    Console.WriteLine($"Welcome, {staff.getName()} (Staff)!");
-                    StaffMenu(staff);
+                    AnsiConsole.MarkupLine($"[green]Welcome, {staff.getName()} (Staff)![/]");
+                    var staffOptions = new StaffMenu(staff, _borrows, _books, _patrons, _fines);
+                    staffOptions.UserMenu();
                     return;
                 }
 
-                Patron? patron = Patrons.ValidatePatron(username, password);
+                Patron? patron = _patrons.ValidatePatron(username, password);
                 if (patron != null)
                 {
-                    Console.WriteLine($"Welcome, {patron.getName()} (Patron)!");
-                    PatronMenu(patron);
+                    AnsiConsole.MarkupLine($"[green]Welcome, {patron.getName()} (Patron)![/]");
+                    var patronOptions = new PatronMenu(patron, _borrows, _books, _fines);
+                    patronOptions.UserMenu();
                     return;
                 }
             }
-            
 
-            Console.WriteLine("Invalid username or password. Please try again.");
-            WelcomeMenu menu = new WelcomeMenu(Patrons, Staffs , Borrows, Books, Fines);
+            AnsiConsole.MarkupLine("[red]Invalid username or password. Please try again.[/]");
+            var menu = new WelcomeMenu(_patrons, _staffs, _borrows, _books, _fines);
             menu.ShowMenu();
         }
-
-        private void StaffMenu(Staff staff)
-        {
-            StaffMenu StaffOptions = new StaffMenu(staff, Borrows, Books, Patrons, Fines);
-            StaffOptions.ShowStaffMenu();
-        }
-
-        private void PatronMenu(Patron patron)
-        {
-            PatronMenu PatronOptions = new PatronMenu(patron, Borrows, Books, Fines);
-            PatronOptions.ShowPatronMenu();
-        }
+    }
 }
