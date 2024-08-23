@@ -1,4 +1,6 @@
 using BorrowSystem;
+using Core.Exceptions;
+using Core.Handlers;
 
 namespace FinesSystem;
 
@@ -7,28 +9,44 @@ public class Fine
     bool Paid;
     Borrow Borrow;
     int Cost;
+    private readonly ILogService _logService;
 
     public Fine(Borrow borrow)
     {
         Borrow = borrow;
         CalculateFine();
+        _logService = new LogService();
     }
 
     public void CalculateFine()
     {
-        const int BASE_FINE = 20;
-        const int WEEKLY_FINE = 10;
-        DateTime returnDate = DateTime.Now;
-        TimeSpan difference = returnDate - Borrow.GetDueDate();
-        
-        if (difference.TotalDays < 0)
+        try
         {
-            throw new InvalidOperationException("Return date cannot be before the due date.");
-        }
-        
-        int weeksLate = (int)(difference.TotalDays / 7);
+            const int BASE_FINE = 20;
+            const int WEEKLY_FINE = 10;
+            const int NUMBER_OF_DAYS = 7;
+            
+            DateTime returnDate = DateTime.Now;
+            TimeSpan difference = returnDate - Borrow.GetDueDate();
 
-        Cost = difference.TotalDays > 0 ? BASE_FINE + weeksLate * WEEKLY_FINE : 0;
+            if (difference.TotalDays < 0)
+            {
+                throw new InvalidDateRangeException("Return date cannot be before the due date.");
+            }
+
+            int weeksLate = (int)(difference.TotalDays / NUMBER_OF_DAYS);
+
+            Cost = difference.TotalDays > 0 ? BASE_FINE + weeksLate * WEEKLY_FINE : 0;
+        }
+        catch (InvalidDateRangeException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred while calculating the fine.");
+            _logService.LogError(Severity.HIGH, $"{ex.Message}");
+        }
     }
 
     public void FineDetails()
