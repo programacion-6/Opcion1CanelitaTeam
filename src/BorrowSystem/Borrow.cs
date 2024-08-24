@@ -1,5 +1,6 @@
 namespace BorrowSystem;
 using BookSystem;
+using Spectre.Console;
 using userSystem.Concrete;
 
 public class Borrow : Borrowing{
@@ -35,15 +36,17 @@ public class Borrow : Borrowing{
     public void SetDueDate(DateTime dueDate) => this.DueDate = dueDate;
     public void SetDelivered(bool delivered) => this.Delivered = delivered;
 
-    public void BorrowDetails() 
-    {
-        Console.WriteLine("========== Borrow Details ==========");
-        Console.WriteLine($"Patron Name:          {Patron.getName()}");
-        Console.WriteLine($"Book Title:           {Book.Title}");
-        Console.WriteLine($"Borrow Date:          {BorrowDate}");
-        Console.WriteLine($"Due Date:             {DueDate}");
-        Console.WriteLine($"Delivered:               {Delivered}");
-        Console.WriteLine("====================================");
-    }
+    public void BorrowDetails()
+        {
+            var deliveredText = Delivered ? "[green]Yes[/]" : "[red]No[/]";
+
+            AnsiConsole.MarkupLine("[bold]========== Borrow Details ==========[/]");
+            AnsiConsole.MarkupLine($"[bold]Patron Name:[/]      {Patron.getName()}");
+            AnsiConsole.MarkupLine($"[bold]Book Title:[/]       {Book.Title}");
+            AnsiConsole.MarkupLine($"[bold]Borrow Date:[/]      {BorrowDate:yyyy-MM-dd}");
+            AnsiConsole.MarkupLine($"[bold]Due Date:[/]         {DueDate:yyyy-MM-dd}");
+            AnsiConsole.MarkupLine($"[bold]Delivered:[/]        {deliveredText}");
+            AnsiConsole.MarkupLine("[bold]====================================[/]");
+        }
 
 }

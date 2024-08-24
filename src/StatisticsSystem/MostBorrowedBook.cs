@@ -1,4 +1,6 @@
+using System.Linq;
 using BorrowSystem;
+using Spectre.Console;
 
 public class MostBorrowedBook : StatisticReport
 {
@@ -10,18 +12,30 @@ public class MostBorrowedBook : StatisticReport
     {
         var borrowList = Borrows.GetBorrows();
 
-        var mostBorrowedBook = borrowList
+        var topBooks = borrowList
             .GroupBy(b => b.GetBook().Title)
             .OrderByDescending(g => g.Count())
-            .FirstOrDefault();
+            .Take(3)
+            .Select(g => new { BookTitle = g.Key, BorrowCount = g.Count() })
+            .ToList();
 
-        if (mostBorrowedBook != null)
+        if (topBooks.Any())
         {
-            Console.WriteLine($"Most Borrowed Book: {mostBorrowedBook.Key} - {mostBorrowedBook.Count()} times");
+            var chart = new BarChart()
+                .Width(60)
+                .Label("[bold underline]Top 3 Most Borrowed Books[/]")
+                .CenterLabel();
+
+            foreach (var book in topBooks)
+            {
+                chart.AddItem(book.BookTitle, book.BorrowCount, Color.Blue);
+            }
+
+            AnsiConsole.Write(chart);
         }
         else
         {
-            Console.WriteLine("No books have been borrowed yet.");
+            AnsiConsole.MarkupLine("[red]No books have been borrowed yet.[/]");
         }
     }
 }

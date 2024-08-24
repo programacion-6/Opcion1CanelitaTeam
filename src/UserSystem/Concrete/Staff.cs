@@ -1,3 +1,5 @@
+using Spectre.Console;
+
 namespace userSystem.Concrete;
 
 public class Staff : User
@@ -7,12 +9,13 @@ public class Staff : User
     }
 
     public override void UserInformation()
-    {
-        Console.WriteLine("========== Staff Information ==========");
-        Console.WriteLine($"Name:               {Name}");
-        Console.WriteLine($"Membership Number:  {MemberShipNumber}");
-        Console.WriteLine($"Phone Number:       {PhoneNumber}");
-        Console.WriteLine($"Direction:          {Direction}");
-        Console.WriteLine("======================================");
-    }
+        {
+            AnsiConsole.Clear();
+            AnsiConsole.MarkupLine("[bold]========== Staff Information ==========[/]");
+            AnsiConsole.MarkupLine($"[bold]Name:[/]               {Name}");
+            AnsiConsole.MarkupLine($"[bold]Membership Number:[/]  {MemberShipNumber}");
+            AnsiConsole.MarkupLine($"[bold]Phone Number:[/]       {PhoneNumber}");
+            AnsiConsole.MarkupLine($"[bold]Direction:[/]          {Direction}");
+            AnsiConsole.MarkupLine("[bold]=======================================[/]");
+        }
 }

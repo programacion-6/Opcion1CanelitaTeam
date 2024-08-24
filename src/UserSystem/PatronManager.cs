@@ -14,14 +14,15 @@ public class PatronManager{
     public void addPatron (Patron patron)
     {
         string patronName = patron.getName();
-        if(FoundPatronByName(patronName) == null){
+        Patron? patronaux = (Patron)PerformFind.Execute(new FindPatronByName(PatronsList, patronName));
+        if(patronaux == null){
         PatronsList.Add(patron);
         Console.WriteLine($"Patron with name '{patron.getName}' has been added.");
         }
     }
     public void UpdatePatron(string name, string? newName = null, int? newMembershipNumber = null, int? newPhoneNumber = null, string? newDirection = null, string? newPassword = null)
     {
-        Patron? patron = FoundPatronByName(name);
+        Patron? patron = (Patron)PerformFind.Execute(new FindPatronByName(PatronsList, name));
         if(patron != null){
             if (!string.IsNullOrEmpty(newName))
             {
@@ -48,32 +49,11 @@ public class PatronManager{
     }
 
     public void RemovePatron (string name){
-        Patron? patron = FoundPatronByName(name);
+        Patron? patron = (Patron)PerformFind.Execute(new FindPatronByName(PatronsList, name));
         if(patron!= null){
             PatronsList.Remove(patron);
             Console.WriteLine($"Patron with name '{name}' has been removed.");
         }       
-    }
-
-    private Patron? FoundPatronByName(string name)
-    {
-        try
-        {
-            foreach (Patron patron in PatronsList)
-            {
-                string patronName = patron.getName();
-                if (StringComparator.compare(patronName, name))
-                {
-                    return patron;
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred while searching for the patron: {ex.Message}");
-        }
-
-        return null;
     }
 
     public Patron? ValidatePatron(string name, string password)

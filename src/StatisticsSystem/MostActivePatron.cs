@@ -1,4 +1,6 @@
+using System.Linq;
 using BorrowSystem;
+using Spectre.Console;
 
 public class MostActivePatron : StatisticReport
 {
@@ -10,18 +12,30 @@ public class MostActivePatron : StatisticReport
     {
         var borrowList = Borrows.GetBorrows();
 
-        var mostActivePatron = borrowList
+        var topPatrons = borrowList
             .GroupBy(b => b.GetPatron().getName())
             .OrderByDescending(g => g.Count())
-            .FirstOrDefault();
+            .Take(3)
+            .Select(g => new { PatronName = g.Key, BorrowCount = g.Count() })
+            .ToList();
 
-        if (mostActivePatron != null)
+        if (topPatrons.Any())
         {
-            Console.WriteLine($"Most Active Patron: {mostActivePatron.Key} - {mostActivePatron.Count()} borrows");
+            var chart = new BarChart()
+                .Width(60)
+                .Label("[bold underline]Top 3 Most Active Patrons[/]")
+                .CenterLabel();
+
+            foreach (var patron in topPatrons)
+            {
+                chart.AddItem(patron.PatronName, patron.BorrowCount, Color.Green);
+            }
+
+            AnsiConsole.Write(chart);
         }
         else
         {
-            Console.WriteLine("No patrons have borrowed books yet.");
+            AnsiConsole.MarkupLine("[red]No patrons have borrowed books yet.[/]");
         }
     }
 }
