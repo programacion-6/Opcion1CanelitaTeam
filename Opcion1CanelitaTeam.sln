@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opcion1CanelitaTeam", "Opcion1CanelitaTeam.csproj", "{9C0241CE-4DDE-4F7D-8F44-21F74E225A9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS.DataAccess", "LMS.DataAccess\LMS.DataAccess.csproj", "{CDA04D11-917D-4E9B-9EA4-36309BEBBF0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS.Tests", "LMS.Tests\LMS.Tests.csproj", "{401E6044-0BB8-42E6-8AA4-6FB6230A060B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +16,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9C0241CE-4DDE-4F7D-8F44-21F74E225A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C0241CE-4DDE-4F7D-8F44-21F74E225A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C0241CE-4DDE-4F7D-8F44-21F74E225A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C0241CE-4DDE-4F7D-8F44-21F74E225A9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA04D11-917D-4E9B-9EA4-36309BEBBF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA04D11-917D-4E9B-9EA4-36309BEBBF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA04D11-917D-4E9B-9EA4-36309BEBBF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA04D11-917D-4E9B-9EA4-36309BEBBF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{401E6044-0BB8-42E6-8AA4-6FB6230A060B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{401E6044-0BB8-42E6-8AA4-6FB6230A060B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{401E6044-0BB8-42E6-8AA4-6FB6230A060B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{401E6044-0BB8-42E6-8AA4-6FB6230A060B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
