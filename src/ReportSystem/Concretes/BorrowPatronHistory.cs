@@ -1,15 +1,26 @@
 using BorrowSystem;
+using Opcion1CanelitaTeam.ReportSystem.Abstracts;
 
-namespace ReportSystem.Concrete;
-public class BorrowPatronHistory : PatronReport
+namespace Opcion1CanelitaTeam.ReportSystem.Concretes;
+
+public class BorrowPatronHistory : BaseReport
 {
-    public BorrowPatronHistory(BorrowManager BorrowList) : base(BorrowList){}
-
-    public void PatronBorrowHistoryReport(string PatronName)
+    public BorrowPatronHistory(BorrowManager borrowManager) 
+        : base(borrowManager)
+    { }
+    
+    public override void GenerateReport()
     {
-        generateReport();
-        foreach(Borrow borrow in Borrows.GetBorrows()){
-            if(borrow.GetPatron().getName() == PatronName){
+        Console.WriteLine("This is a Patron Borrow Report");
+    }
+
+    public void PatronBorrowHistoryReport(string patronName)
+    {
+        GenerateReport();
+        foreach (Borrow borrow in _borrowManager.GetBorrows())
+        {
+            if (borrow.GetPatron().getName() == patronName)
+            {
                 borrow.BorrowDetails();
             }
         }        

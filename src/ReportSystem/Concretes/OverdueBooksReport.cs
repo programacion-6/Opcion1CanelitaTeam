@@ -1,15 +1,26 @@
 using BorrowSystem;
+using Opcion1CanelitaTeam.ReportSystem.Abstracts;
 
-namespace ReportSystem.Concrete;
-public class OverdueBooksReport : BookReport
+namespace Opcion1CanelitaTeam.ReportSystem.Concretes;
+
+public class OverdueBooksReport : BaseReport
 {
-    public OverdueBooksReport(BorrowManager BorrowList) : base(BorrowList){}
+    public OverdueBooksReport(BorrowManager borrowManager) 
+        : base(borrowManager)
+    { }
+
+    public override void GenerateReport()
+    {
+        Console.WriteLine("This is an Overdue Book Borrow Report");
+    }
 
     public void OverdueBooksListReport()
     {
-        generateReport();
-        foreach(Borrow borrow in BorrowList.GetBorrows()){
-            if(DateTime.Now > borrow.GetDueDate()){
+        GenerateReport();
+        foreach (Borrow borrow in _borrowManager.GetBorrows())
+        {
+            if (DateTime.Now > borrow.GetDueDate())
+            {
                 borrow.BorrowDetails();
             }
         }        
