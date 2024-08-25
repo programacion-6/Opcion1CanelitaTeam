@@ -7,7 +7,7 @@ using LMS.DataAccess.UserSystem;
 using LMS.DataAccess.UserSystem.Concretes;
 using Spectre.Console;
 
-namespace LMS.DataAccess.Console.Login;
+namespace LMS.DataAccess.Console.LoginMenu;
 
 public class Login
 {
