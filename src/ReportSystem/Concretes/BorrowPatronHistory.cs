@@ -1,4 +1,5 @@
 using BorrowSystem;
+using Opcion1CanelitaTeam.ReportSystem.Abstracts;
 
 namespace Opcion1CanelitaTeam.ReportSystem.Concretes;
 

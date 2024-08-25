@@ -1,5 +1,5 @@
 using BorrowSystem;
-using Opcion1CanelitaTeam.ReportSystem.Concretes;
+using Opcion1CanelitaTeam.ReportSystem.Abstracts;
 using Spectre.Console;
 
 namespace ReportSystem.Concrete

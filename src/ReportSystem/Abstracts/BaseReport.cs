@@ -1,7 +1,7 @@
 using BorrowSystem;
 using Opcion1CanelitaTeam.ReportSystem.Interfaces;
 
-namespace Opcion1CanelitaTeam.ReportSystem.Concretes;
+namespace Opcion1CanelitaTeam.ReportSystem.Abstracts;
 
 public abstract class BaseReport : IReport
 {
