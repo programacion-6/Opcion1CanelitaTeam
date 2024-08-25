@@ -64,7 +64,7 @@ public class BorrowManager
         }
     }
 
-    public Borrow? FindBorrow(string patronName, string bookTitle )
+    public Borrow? FindBorrow(string patronName, string bookTitle)
     {
         foreach (Borrow borrow in Borrows)
         {
@@ -77,11 +77,12 @@ public class BorrowManager
             }
         }
 
-        return null;        
+        return null;
     }
 
     public void ActiveBorrowsFromPatron(Patron patron)
     {
+
         try
         {
             System.Console.WriteLine("LIST OF NOT RETURNED BORROWS");

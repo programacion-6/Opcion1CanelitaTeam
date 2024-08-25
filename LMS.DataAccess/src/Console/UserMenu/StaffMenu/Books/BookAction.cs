@@ -2,17 +2,17 @@ using LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Interfaces;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books;
 
-public class BookAction 
+public class BookAction
 {
     BookInput? bookInput;
-    public void setBookInput (BookInput input)
+    public void setBookInput(BookInput input)
     {
         this.bookInput = input;
     }
 
     public void Execute()
     {
-        if(bookInput != null)
+        if (bookInput != null)
         {
             bookInput.BookOption();
         }

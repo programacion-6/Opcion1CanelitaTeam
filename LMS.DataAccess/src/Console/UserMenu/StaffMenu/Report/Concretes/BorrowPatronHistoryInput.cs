@@ -1,3 +1,4 @@
+using LMS.DataAccess.BorrowSystem;
 using LMS.DataAccess.Console.UserMenu.StaffMenu.Report.Interfaces;
 using LMS.DataAccess.ReportSystem.Concretes;
 
@@ -9,7 +10,8 @@ public class BorrowPatronHistoryInput : ReportInput
 {
     BorrowManager _borrows;
 
-    public BorrowPatronHistoryInput (BorrowManager _borrows) {
+    public BorrowPatronHistoryInput(BorrowManager _borrows)
+    {
         this._borrows = _borrows;
     }
     public void ReportOption()

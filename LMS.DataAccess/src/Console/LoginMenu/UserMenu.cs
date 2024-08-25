@@ -4,7 +4,8 @@ using LMS.DataAccess.FineSystem;
 
 namespace LMS.DataAccess.Console.LoginMenu;
 
-public abstract class UserMenu{
+public abstract class UserMenu
+{
     BorrowManager Borrows;
     BookRepository Books;
     FineManager Fines;

@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-using BorrowSystem;
-using Core.Handlers;
-using Opcion1CanelitaTeam.ReportSystem.Abstracts;
-=======
 using LMS.DataAccess.BorrowSystem;
-using LMS.DataAccess.ReportSystem.Abstract;
->>>>>>> 258ac0d (refactor: add namespaces and rename directories without errors)
+using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.ReportSystem.Abstracts;
 
 namespace LMS.DataAccess.ReportSystem.Concretes;
 
@@ -21,7 +16,7 @@ public class OverdueBooksReport : BaseReport
 
     public override void GenerateReport()
     {
-        Console.WriteLine("This is an Overdue Book Borrow Report");
+        System.Console.WriteLine("This is an Overdue Book Borrow Report");
     }
 
     public void OverdueBooksListReport()
@@ -46,11 +41,11 @@ public class OverdueBooksReport : BaseReport
         }
         catch (InvalidOperationException ex)
         {
-            Console.WriteLine(ex.Message);
+            System.Console.WriteLine(ex.Message);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An unexpected error occurred while generating the borrowed books report. Please contact your administrator.");
+            System.Console.WriteLine($"An unexpected error occurred while generating the borrowed books report. Please contact your administrator.");
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }

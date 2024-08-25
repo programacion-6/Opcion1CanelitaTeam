@@ -1,16 +1,11 @@
-<<<<<<< HEAD
-using BorrowSystem;
-using Core.Exceptions;
-using Core.Handlers;
-using Opcion1CanelitaTeam.ReportSystem.Abstracts;
-=======
 using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.Core.Exceptions;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.ReportSystem.Abstracts;
->>>>>>> 258ac0d (refactor: add namespaces and rename directories without errors)
 
 namespace LMS.DataAccess.ReportSystem.Concretes;
 
-public class BorrowPatronHistory : PatronReport
+public class BorrowPatronHistory : BaseReport
 {
     private readonly ILogService _logService;
 
@@ -22,7 +17,7 @@ public class BorrowPatronHistory : PatronReport
     
     public override void GenerateReport()
     {
-        Console.WriteLine("This is a Patron Borrow Report");
+        System.Console.WriteLine("This is a Patron Borrow Report");
     }
 
     public void PatronBorrowHistoryReport(string patronName)
@@ -34,7 +29,7 @@ public class BorrowPatronHistory : PatronReport
             List<Borrow> borrowList = _borrowManager.GetBorrows();
             if (borrowList == null || borrowList.Count == 0)
             {
-                Console.WriteLine("There are no borrowing records in the system.");
+                System.Console.WriteLine("There are no borrowing records in the system.");
                 return;
             }
 
@@ -56,11 +51,11 @@ public class BorrowPatronHistory : PatronReport
         }
         catch (BorrowNotFoundException ex)
         {
-            Console.WriteLine(ex.Message);
+            System.Console.WriteLine(ex.Message);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An unexpected error occurred. Please contact your administrator.");
+            System.Console.WriteLine($"An unexpected error occurred. Please contact your administrator.");
             _logService.LogError(Severity.MEDIUM, $"{ex.Message}");
         }
     }

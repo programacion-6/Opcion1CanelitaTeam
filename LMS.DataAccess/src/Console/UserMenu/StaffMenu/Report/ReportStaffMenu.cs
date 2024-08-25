@@ -5,6 +5,7 @@ using LMS.DataAccess.Console.Utils.ItemsList.Concretes;
 using LMS.DataAccess.FineSystem;
 using LMS.DataAccess.ReportSystem.Concretes;
 using LMS.DataAccess.StatisticSystem;
+
 using Spectre.Console;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Report;
@@ -22,14 +23,14 @@ public class ReportStaffMenu
 
     public void ReportMenu()
     {
-        var options = new List<string> 
-        { 
-            "Borrow Patron History", 
-            "Current Borrowed Books", 
-            "Overdue Books Report", 
-            "Statistics", 
-            "Fines List", 
-            "Exit" 
+        var options = new List<string>
+        {
+            "Borrow Patron History",
+            "Current Borrowed Books",
+            "Overdue Books Report",
+            "Statistics",
+            "Fines List",
+            "Exit"
         };
 
 
@@ -44,7 +45,7 @@ public class ReportStaffMenu
             );
 
             ReportAction report = new ReportAction();
-            ListAction page = new ListAction(); 
+            ListAction page = new ListAction();
 
             switch (selection)
             {
@@ -52,7 +53,7 @@ public class ReportStaffMenu
                     report.SetReportInput(new BorrowPatronHistoryInput(_borrows));
                     report.Execute();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    System.Console.ReadKey(); 
+                    System.Console.ReadKey();
                     break;
                 case "Current Borrowed Books":
                     var borrowedBooks = new CurrentBorrowBooksReport(_borrows);
@@ -62,7 +63,7 @@ public class ReportStaffMenu
                     var overdueBooks = new OverdueBooksReport(_borrows);
                     overdueBooks.OverdueBooksListReport();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    System.Console.ReadKey(); 
+                    System.Console.ReadKey();
                     break;
                 case "Statistics":
                     var statistics = new Statistic(new MostActivePatron(_borrows));
@@ -70,7 +71,7 @@ public class ReportStaffMenu
                     statistics = new Statistic(new MostBorrowedBook(_borrows));
                     statistics.makeStatistic();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    System.Console.ReadKey(); 
+                    System.Console.ReadKey();
                     break;
                 case "Fines List":
                     page.setPagination(new FinesPagination(_fines.GetFines()));

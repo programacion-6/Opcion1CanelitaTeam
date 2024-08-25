@@ -20,7 +20,7 @@ public class BookRepository : IBookRepository
     public void UpdateBook(string title, string? newTitle = null, string? newAuthor = null, string? newGenre = null, DateTime? newPublicationDate = null, int? newStock = null)
     {
         Book? bookToUpdate = _books.Find(b => b.Title == title);
-        
+
         if (bookToUpdate == null)
         {
             System.Console.WriteLine($"[ERROR] Book with title '{title}' not found.");
@@ -33,7 +33,7 @@ public class BookRepository : IBookRepository
         if (newPublicationDate != null) bookToUpdate.PublicationDate = newPublicationDate.Value;
         if (newStock != null)
         {
-            bookToUpdate.Stock = (int)newStock;
+            bookToUpdate.Stock = (int) newStock;
             System.Console.WriteLine($"[INFO] Stock updated to {newStock} for book '{title}'.");
         }
     }

@@ -4,7 +4,7 @@ using LMS.DataAccess.UserSystem.Concretes;
 
 namespace LMS.DataAccess.SearchSystem.PatronSearch.Concretes;
 
-public class PatronSearchByMembershipNumber : PatronSearchTemplate <int>
+public class PatronSearchByMembershipNumber : PatronSearchTemplate<int>
 {
     public PatronSearchByMembershipNumber(PatronManager patronManager) : base(patronManager) { }
 

@@ -1,5 +1,6 @@
 using LMS.DataAccess.BookSystem.Entities;
 using LMS.DataAccess.Console.Utils.ItemsList.Interfaces;
+
 using Spectre.Console;
 
 namespace LMS.DataAccess.Console.Utils.ItemsList.Concretes;
@@ -45,10 +46,10 @@ public class BookPagination : ListPagination
             foreach (var book in currentPageBooks)
             {
                 table.AddRow(
-                    book.Title, 
-                    book.Author, 
-                    book.Genre, 
-                    book.PublicationDate.ToString("yyyy-MM-dd"), 
+                    book.Title,
+                    book.Author,
+                    book.Genre,
+                    book.PublicationDate.ToString("yyyy-MM-dd"),
                     book.Stock.ToString());
             }
 

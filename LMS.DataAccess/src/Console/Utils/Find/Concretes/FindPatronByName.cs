@@ -8,7 +8,7 @@ public class FindPatronByName : FindProcess
 {
     List<Patron> _patrons;
     string criteria;
-    public FindPatronByName (List<Patron> _patrons, string criteria)
+    public FindPatronByName(List<Patron> _patrons, string criteria)
     {
         this._patrons = _patrons;
         this.criteria = criteria;
@@ -30,6 +30,6 @@ public class FindPatronByName : FindProcess
         {
             System.Console.WriteLine($"An error occurred while searching for the staff: {ex.Message}");
         }
-        throw new InvalidOperationException("The requested item was not found.");;   
+        throw new InvalidOperationException("The requested item was not found."); ;
     }
 }

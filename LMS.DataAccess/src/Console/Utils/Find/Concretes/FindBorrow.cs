@@ -8,7 +8,8 @@ public class FindBorrow : FindProcess
     BorrowManager Borrows;
     string PatronName;
     string BookTitle;
-    public FindBorrow (BorrowManager Borrows, string patronName, string BookTitle){
+    public FindBorrow(BorrowManager Borrows, string patronName, string BookTitle)
+    {
         this.Borrows = Borrows;
         this.PatronName = patronName;
         this.BookTitle = BookTitle;
@@ -19,12 +20,12 @@ public class FindBorrow : FindProcess
         foreach (Borrow borrow in Borrows.GetBorrows())
         {
             string currentPatron = borrow.GetPatron().getName();
-            string currentBook = borrow.GetBook().Title; 
+            string currentBook = borrow.GetBook().Title;
             if (currentPatron == PatronName && currentBook == BookTitle)
             {
                 return borrow;
             }
         }
-        throw new InvalidOperationException("The requested item was not found.");;   
+        throw new InvalidOperationException("The requested item was not found."); ;
     }
 }

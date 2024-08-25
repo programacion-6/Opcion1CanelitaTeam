@@ -5,27 +5,30 @@ using LMS.DataAccess.Utils;
 
 namespace LMS.DataAccess.UserSystem;
 
-public class PatronManager{
+public class PatronManager
+{
     List<Patron> PatronsList;
 
     public PatronManager()
     {
-        PatronsList = new List<Patron>();    
+        PatronsList = new List<Patron>();
     }
 
-    public void addPatron (Patron patron)
+    public void addPatron(Patron patron)
     {
         string patronName = patron.getName();
-        Patron? patronaux = (Patron)PerformFind.Execute(new FindPatronByName(PatronsList, patronName));
-        if(patronaux == null){
-        PatronsList.Add(patron);
-        System.Console.WriteLine($"Patron with name '{patron.getName}' has been added.");
+        Patron? patronaux = (Patron) PerformFind.Execute(new FindPatronByName(PatronsList, patronName));
+        if (patronaux == null)
+        {
+            PatronsList.Add(patron);
+            System.Console.WriteLine($"Patron with name '{patron.getName}' has been added.");
         }
     }
     public void UpdatePatron(string name, string? newName = null, int? newMembershipNumber = null, int? newPhoneNumber = null, string? newDirection = null, string? newPassword = null)
     {
-        Patron? patron = (Patron)PerformFind.Execute(new FindPatronByName(PatronsList, name));
-        if(patron != null){
+        Patron? patron = (Patron) PerformFind.Execute(new FindPatronByName(PatronsList, name));
+        if (patron != null)
+        {
             if (!string.IsNullOrEmpty(newName))
             {
                 patron.setName(newName);
@@ -36,26 +39,28 @@ public class PatronManager{
             }
             if (newPhoneNumber.HasValue)
             {
-            patron.setPhoneNumber(newPhoneNumber.Value);
+                patron.setPhoneNumber(newPhoneNumber.Value);
             }
             if (!string.IsNullOrEmpty(newDirection))
             {
-            patron.setDirection(newDirection);
+                patron.setDirection(newDirection);
             }
             if (!string.IsNullOrEmpty(newPassword))
             {
-            patron.setPassword(newPassword);
+                patron.setPassword(newPassword);
             }
         }
 
     }
 
-    public void RemovePatron (string name){
-        Patron? patron = (Patron)PerformFind.Execute(new FindPatronByName(PatronsList, name));
-        if(patron!= null){
+    public void RemovePatron(string name)
+    {
+        Patron? patron = (Patron) PerformFind.Execute(new FindPatronByName(PatronsList, name));
+        if (patron != null)
+        {
             PatronsList.Remove(patron);
             System.Console.WriteLine($"Patron with name '{name}' has been removed.");
-        }       
+        }
     }
 
     public Patron? ValidatePatron(string name, string password)

@@ -7,7 +7,7 @@ public class FineManager
 {
     List<Fine> Fines;
     private readonly ILogService _logService;
-    
+
     public FineManager()
     {
         Fines = new List<Fine>();
@@ -36,9 +36,12 @@ public class FineManager
         }
     }
 
-    public void FinesFromUser(string userName){
-        foreach(Fine fine in Fines){
-            if(fine.GetBorrow().GetPatron().getName().Equals(userName)){
+    public void FinesFromUser(string userName)
+    {
+        foreach (Fine fine in Fines)
+        {
+            if (fine.GetBorrow().GetPatron().getName().Equals(userName))
+            {
                 fine.FineDetails();
             }
         }

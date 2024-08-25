@@ -1,4 +1,4 @@
-namespace Opcion1CanelitaTeam.ReportSystem.Interfaces;
+namespace LMS.DataAccess.ReportSystem.Interfaces;
 
 public interface IReport
 {

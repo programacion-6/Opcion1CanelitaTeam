@@ -1,7 +1,7 @@
-using BorrowSystem;
-using Opcion1CanelitaTeam.ReportSystem.Interfaces;
+using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.ReportSystem.Interfaces;
 
-namespace Opcion1CanelitaTeam.ReportSystem.Abstracts;
+namespace LMS.DataAccess.ReportSystem.Abstracts;
 
 public abstract class BaseReport : IReport
 {

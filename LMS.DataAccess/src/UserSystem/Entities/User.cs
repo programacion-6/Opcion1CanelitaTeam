@@ -1,13 +1,15 @@
 namespace LMS.DataAccess.UserSystem.Entities;
 
-public abstract class User{
+public abstract class User
+{
 
     protected string Name;
     protected string Password;
     protected int MemberShipNumber;
     protected int PhoneNumber;
     protected string Direction;
-    public User(string Name, int MemberShipNumber, int PhoneNumber, string Direction, string Password){
+    public User(string Name, int MemberShipNumber, int PhoneNumber, string Direction, string Password)
+    {
         this.Name = Name;
         this.MemberShipNumber = MemberShipNumber;
         this.PhoneNumber = PhoneNumber;

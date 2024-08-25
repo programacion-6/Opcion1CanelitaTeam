@@ -7,6 +7,7 @@ using LMS.DataAccess.Console.Utils.ItemsList.Concretes;
 using LMS.DataAccess.FineSystem;
 using LMS.DataAccess.UserSystem;
 using LMS.DataAccess.UserSystem.Concretes;
+
 using Spectre.Console;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu;
@@ -53,7 +54,7 @@ public class StaffMenu : UserMenuTemplate
                 case "User details":
                     _staff.UserInformation();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    System.Console.ReadKey(); 
+                    System.Console.ReadKey();
                     break;
                 case "Book Management":
                     var bookManagement = new BookStaffManagement(_books);

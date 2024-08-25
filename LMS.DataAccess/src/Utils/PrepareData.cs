@@ -15,9 +15,9 @@ public class PrepareData
     {
         List<Patron> Patrons = new List<Patron>();
         PatronCreator creator = new PatronCreator();
-        Patron patron1 = (Patron)creator.CreateUser("Polo", 1212, 121243, "Sud", "Polo123");
-        Patron patron2 = (Patron)creator.CreateUser("Marco", 1213, 212121, "With Polo", "Marco123");
-        Patron patron3 = (Patron)creator.CreateUser("Midas", 1214, 999999, "Gold Castle", "Midas123");
+        Patron patron1 = (Patron) creator.CreateUser("Polo", 1212, 121243, "Sud", "Polo123");
+        Patron patron2 = (Patron) creator.CreateUser("Marco", 1213, 212121, "With Polo", "Marco123");
+        Patron patron3 = (Patron) creator.CreateUser("Midas", 1214, 999999, "Gold Castle", "Midas123");
 
         Patrons.Add(patron1);
         Patrons.Add(patron2);
@@ -30,8 +30,8 @@ public class PrepareData
     {
         List<Staff> Staffs = new List<Staff>();
         StaffCreator creator = new StaffCreator();
-        Staff patron1 = (Staff)creator.CreateUser("Admin", 2222, 111112, "Heraldo Town", "Admin123");
-        Staff patron2 = (Staff)creator.CreateUser("Stelio", 1111, 222221, "SuperMarket", "Stelio123");
+        Staff patron1 = (Staff) creator.CreateUser("Admin", 2222, 111112, "Heraldo Town", "Admin123");
+        Staff patron2 = (Staff) creator.CreateUser("Stelio", 1111, 222221, "SuperMarket", "Stelio123");
 
         Staffs.Add(patron1);
         Staffs.Add(patron2);
@@ -62,7 +62,7 @@ public class PrepareData
     {
         List<Borrow> borrows = new List<Borrow>();
 
-        DateTime overdue = new DateTime(2024,02,12);
+        DateTime overdue = new DateTime(2024, 02, 12);
 
         Borrow borrow1 = new Borrow(patrons[0], books[0], DateTime.Now.AddDays(-10), DateTime.Now.AddDays(20));
         Borrow borrow2 = new Borrow(patrons[1], books[1], DateTime.Now.AddDays(-5), DateTime.Now.AddDays(25));
@@ -79,7 +79,8 @@ public class PrepareData
         return borrows;
     }
 
-    public static Library PrepareLibrary(){
+    public static Library PrepareLibrary()
+    {
         PatronManager Patrons = new PatronManager();
         Patrons.SetPatrons(PreparePatrons());
         StaffManager Staffs = new StaffManager();
@@ -87,8 +88,8 @@ public class PrepareData
         BookRepository Books = new BookRepository();
         Books.SetBooksList(PrepareBooks());
 
-        FineManager Fines = new FineManager(); 
-        BorrowManager Borrows = new BorrowManager(PrepareBorrows(PreparePatrons(),PrepareBooks()));
+        FineManager Fines = new FineManager();
+        BorrowManager Borrows = new BorrowManager(PrepareBorrows(PreparePatrons(), PrepareBooks()));
         return new Library(Patrons, Staffs, Borrows, Books, Fines);
     }
 }

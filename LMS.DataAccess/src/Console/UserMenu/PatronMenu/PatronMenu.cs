@@ -6,6 +6,7 @@ using LMS.DataAccess.Console.Utils.ItemsList;
 using LMS.DataAccess.Console.Utils.ItemsList.Concretes;
 using LMS.DataAccess.FineSystem;
 using LMS.DataAccess.UserSystem.Concretes;
+
 using Spectre.Console;
 
 namespace LMS.DataAccess.Console.UserMenu.PatronMenu;
@@ -46,7 +47,7 @@ public class PatronMenu : UserMenuTemplate
                 case "User details":
                     _patron.UserInformation();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    System.Console.ReadKey(); 
+                    System.Console.ReadKey();
                     break;
 
                 case "Borrow Options":

@@ -2,7 +2,8 @@ using LMS.DataAccess.Console.UserMenu.StaffMenu.Report.Interfaces;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Report;
 
-public class ReportAction {
+public class ReportAction
+{
 
     ReportInput? _report;
     public void SetReportInput(ReportInput report)
@@ -12,7 +13,7 @@ public class ReportAction {
 
     public void Execute()
     {
-        if(_report != null)
+        if (_report != null)
         {
             _report.ReportOption();
         }

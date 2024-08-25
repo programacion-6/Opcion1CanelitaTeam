@@ -2,6 +2,7 @@ using LMS.DataAccess.BookSystem.Concretes;
 using LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Interfaces;
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
+
 using Spectre.Console;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
@@ -19,7 +20,7 @@ public class AddUpdateInput : BookInput
     {
         var title = AnsiConsole.Prompt(new TextPrompt<string>("Enter the title of the book to update:"));
 
-        BookSystem.Entities.Book? book = (BookSystem.Entities.Book)PerformFind.Execute(new FindBookByTitle(_books, title));
+        BookSystem.Entities.Book? book = (BookSystem.Entities.Book) PerformFind.Execute(new FindBookByTitle(_books, title));
 
         if (book != null)
         {
@@ -39,15 +40,15 @@ public class AddUpdateInput : BookInput
 
             if (!DateTime.TryParse(newDateInput, out DateTime newPublicationDate))
             {
-                newPublicationDate = book.PublicationDate; 
+                newPublicationDate = book.PublicationDate;
             }
 
-            _books.UpdateBook(title, 
+            _books.UpdateBook(title,
                 string.IsNullOrWhiteSpace(newTitle) ? book.Title : newTitle,
                 string.IsNullOrWhiteSpace(newAuthor) ? book.Author : newAuthor,
                 string.IsNullOrWhiteSpace(newGenre) ? book.Genre : newGenre,
                 newPublicationDate,
-                newStock); 
+                newStock);
 
             AnsiConsole.MarkupLine("[green]Book updated successfully.[/]");
         }

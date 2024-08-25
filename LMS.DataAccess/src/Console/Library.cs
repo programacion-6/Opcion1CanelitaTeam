@@ -22,7 +22,8 @@ public class Library
         this.Fines = fines;
     }
 
-    public void InitializeProgram(){
+    public void InitializeProgram()
+    {
         WelcomeMenu menu = new WelcomeMenu(Patrons, Staffs, Borrows, Books, Fines);
         menu.ShowMenu();
     }

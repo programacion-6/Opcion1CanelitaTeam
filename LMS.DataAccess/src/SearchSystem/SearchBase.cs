@@ -3,7 +3,7 @@ using LMS.DataAccess.Core.Handlers;
 
 namespace LMS.DataAccess.SearchSystem;
 
-public abstract class SearchBase < M, E, T >
+public abstract class SearchBase<M, E, T>
 {
     protected M Repository;
     private readonly ILogService _logService;

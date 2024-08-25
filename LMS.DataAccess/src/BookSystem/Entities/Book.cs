@@ -1,6 +1,7 @@
 namespace LMS.DataAccess.BookSystem.Entities;
 
-public class Book{
+public class Book
+{
     private string _title;
     private string _author;
     private string _genre;

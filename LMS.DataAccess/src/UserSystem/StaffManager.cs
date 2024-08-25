@@ -5,18 +5,19 @@ using LMS.DataAccess.Utils;
 
 namespace LMS.DataAccess.UserSystem;
 
-public class StaffManager{
+public class StaffManager
+{
     List<Staff> StaffList;
 
     public StaffManager()
     {
-        StaffList = new List<Staff>();    
+        StaffList = new List<Staff>();
     }
 
     public void AddStaff(Staff staff)
     {
         string staffName = staff.getName();
-        Staff? staffaux = (Staff)PerformFind.Execute(new FindStaffByName(StaffList, staffName));
+        Staff? staffaux = (Staff) PerformFind.Execute(new FindStaffByName(StaffList, staffName));
         if (staffaux == null)
         {
             StaffList.Add(staff);
@@ -30,7 +31,7 @@ public class StaffManager{
 
     public void UpdateStaff(string name, string? newName = null, int? newMembershipNumber = null, int? newPhoneNumber = null, string? newDirection = null, string? newPassword = null)
     {
-        Staff? staff = (Staff)PerformFind.Execute(new FindStaffByName(StaffList, name));
+        Staff? staff = (Staff) PerformFind.Execute(new FindStaffByName(StaffList, name));
         if (staff != null)
         {
             if (!string.IsNullOrEmpty(newName))
@@ -63,7 +64,7 @@ public class StaffManager{
 
     public void RemoveStaff(string name)
     {
-        Staff? staff = (Staff)PerformFind.Execute(new FindStaffByName(StaffList, name));
+        Staff? staff = (Staff) PerformFind.Execute(new FindStaffByName(StaffList, name));
         if (staff != null)
         {
             StaffList.Remove(staff);
@@ -75,7 +76,7 @@ public class StaffManager{
         }
     }
 
-     public Staff? ValidateStaff(string name, string password)
+    public Staff? ValidateStaff(string name, string password)
     {
         try
         {

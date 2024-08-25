@@ -1,5 +1,6 @@
 using LMS.DataAccess.Console.Utils.ItemsList.Interfaces;
 using LMS.DataAccess.UserSystem.Concretes;
+
 using Spectre.Console;
 
 namespace LMS.DataAccess.Console.Utils.ItemsList.Concretes;
@@ -17,7 +18,7 @@ public class PatronPagination : ListPagination
     {
         int pageSize = 2;
         int currentPage = 1;
-        int totalPages = (int)Math.Ceiling(_patrons.Count / (double)pageSize);
+        int totalPages = (int) Math.Ceiling(_patrons.Count / (double) pageSize);
 
         while (true)
         {

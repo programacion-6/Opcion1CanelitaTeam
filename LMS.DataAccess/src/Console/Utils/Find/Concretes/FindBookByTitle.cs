@@ -7,7 +7,7 @@ public class FindBookByTitle : FindProcess
 {
     BookRepository Books;
     string Criteria;
-    public FindBookByTitle (BookRepository Books, string criteria)
+    public FindBookByTitle(BookRepository Books, string criteria)
     {
         this.Books = Books;
         this.Criteria = criteria;

@@ -4,7 +4,7 @@ using LMS.DataAccess.SearchSystem.BookSearch.Abstract;
 
 namespace LMS.DataAccess.SearchSystem.BookSearch.Concretes;
 
-public class BookSearchByISBN : BookSearchTemplate <string>
+public class BookSearchByISBN : BookSearchTemplate<string>
 {
     public BookSearchByISBN(BookRepository bookManager) : base(bookManager) { }
 

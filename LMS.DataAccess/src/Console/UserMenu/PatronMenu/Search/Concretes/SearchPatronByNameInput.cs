@@ -19,7 +19,7 @@ public class SearchPatronByNameInput : SearchInput
         string? patronName = System.Console.ReadLine();
         if (!string.IsNullOrEmpty(patronName))
         {
-            PerformSearch.Search(new PatronSearchByName(_patrons), patronName);    
+            PerformSearch.Search(new PatronSearchByName(_patrons), patronName);
         }
         else
         {

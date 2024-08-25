@@ -1,12 +1,15 @@
 namespace LMS.DataAccess.StatisticSystem;
 
-public class Statistic{
+public class Statistic
+{
     StatisticReport Report;
-    public Statistic(StatisticReport report){
+    public Statistic(StatisticReport report)
+    {
         this.Report = report;
     }
 
-    public void makeStatistic(){
+    public void makeStatistic()
+    {
         Report.Report();
     }
 }

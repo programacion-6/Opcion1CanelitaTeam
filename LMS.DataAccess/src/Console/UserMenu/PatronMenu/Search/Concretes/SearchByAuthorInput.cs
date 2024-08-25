@@ -8,7 +8,7 @@ namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 public class SearchByAuthorInput : SearchInput
 {
     BookRepository _books;
-    public SearchByAuthorInput (BookRepository _books)
+    public SearchByAuthorInput(BookRepository _books)
     {
         this._books = _books;
     }
@@ -18,7 +18,7 @@ public class SearchByAuthorInput : SearchInput
         string? author = System.Console.ReadLine();
         if (!string.IsNullOrEmpty(author))
         {
-            PerformSearch.Search(new BookSearchByAuthor(_books), author);    
+            PerformSearch.Search(new BookSearchByAuthor(_books), author);
         }
         else
         {
