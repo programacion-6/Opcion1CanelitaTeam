@@ -14,15 +14,15 @@ public class SearchByISBNInput : SearchInput
     }
     public void SearchByInput()
     {
-        Console.Write("Enter the ISBN of the book: ");
-        string? isbn = Console.ReadLine();
+        System.Console.Write("Enter the ISBN of the book: ");
+        string? isbn = System.Console.ReadLine();
         if (!string.IsNullOrEmpty(isbn))
         {
             PerformSearch.Search(new BookSearchByISBN(_books), isbn);
         }
         else
         {
-            Console.WriteLine("Title cannot be null or empty.");
+            System.Console.WriteLine("Title cannot be null or empty.");
         }
     }
 }

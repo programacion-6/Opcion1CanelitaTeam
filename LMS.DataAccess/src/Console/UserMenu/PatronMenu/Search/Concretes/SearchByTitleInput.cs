@@ -14,15 +14,15 @@ public class SearchByTitleInput : SearchInput
     }
     public void SearchByInput()
     {
-        Console.Write("Enter the title of the book: ");
-        string? title = Console.ReadLine();
+        System.Console.Write("Enter the title of the book: ");
+        string? title = System.Console.ReadLine();
         if (!string.IsNullOrEmpty(title))
         {
             PerformSearch.Search(new BookSearchByTitle(_books), title);
         }
         else
         {
-            Console.WriteLine("Title cannot be null or empty.");
+            System.Console.WriteLine("Title cannot be null or empty.");
         }
     }
 }

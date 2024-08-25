@@ -1,14 +1,14 @@
 using LMS.DataAccess.BookSystem.Concretes;
 using LMS.DataAccess.BookSystem.Entities;
 using LMS.DataAccess.BorrowSystem;
-using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrow.Interfaces;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Interfaces;
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
 using LMS.DataAccess.FineSystem;
 using LMS.DataAccess.UserSystem.Concretes;
 using Spectre.Console;
 
-namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrow.Concretes;
+namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Concretes;
 
 public class ReturnBorrow : BorrowInput
 {
@@ -29,9 +29,9 @@ public class ReturnBorrow : BorrowInput
     {
         AnsiConsole.Clear();
         Borrows.ActiveBorrowsFromPatron(Patron); 
-        Console.WriteLine("Enter the title of the book to return: ");
+        System.Console.WriteLine("Enter the title of the book to return: ");
         
-        string? bookTitle = Console.ReadLine();
+        string? bookTitle = System.Console.ReadLine();
 
         if(bookTitle != null){
 
@@ -40,15 +40,15 @@ public class ReturnBorrow : BorrowInput
             if(borrow != null){
                 borrow.ReturnBook();
                 ((Book)PerformFind.Execute(new FindBookByTitle(Books, bookTitle))).IncreaseStock();
-                Console.WriteLine($"Succesfull returned {bookTitle}");
+                System.Console.WriteLine($"Succesfull returned {bookTitle}");
                 if(DateTime.Now > borrow.GetDueDate()){
                     Fine currentFine = new Fine(borrow);
                     Fines.AddFine(currentFine);
-                    Console.WriteLine($"A Fine was created because DueDate was {borrow.GetDueDate()} and was returned on {DateTime.Now}");
+                    System.Console.WriteLine($"A Fine was created because DueDate was {borrow.GetDueDate()} and was returned on {DateTime.Now}");
                     currentFine.FineDetails();
                 }
             }else{
-                Console.WriteLine($"User {Patron.getName()} dont have a borrow with this title");
+                System.Console.WriteLine($"User {Patron.getName()} dont have a borrow with this title");
             }       
         }
     }

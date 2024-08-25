@@ -52,7 +52,7 @@ public class ReportStaffMenu
                     report.SetReportInput(new BorrowPatronHistoryInput(_borrows));
                     report.Execute();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    Console.ReadKey(); 
+                    System.Console.ReadKey(); 
                     break;
                 case "Current Borrowed Books":
                     var borrowedBooks = new CurrentBorrowBooksReport(_borrows);
@@ -62,7 +62,7 @@ public class ReportStaffMenu
                     var overdueBooks = new OverdueBooksReport(_borrows);
                     overdueBooks.OverdueBooksListReport();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    Console.ReadKey(); 
+                    System.Console.ReadKey(); 
                     break;
                 case "Statistics":
                     var statistics = new Statistic(new MostActivePatron(_borrows));
@@ -70,7 +70,7 @@ public class ReportStaffMenu
                     statistics = new Statistic(new MostBorrowedBook(_borrows));
                     statistics.makeStatistic();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    Console.ReadKey(); 
+                    System.Console.ReadKey(); 
                     break;
                 case "Fines List":
                     page.setPagination(new FinesPagination(_fines.GetFines()));

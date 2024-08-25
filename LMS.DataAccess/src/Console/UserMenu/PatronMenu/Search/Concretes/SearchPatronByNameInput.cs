@@ -15,15 +15,15 @@ public class SearchPatronByNameInput : SearchInput
     }
     public void SearchByInput()
     {
-        Console.Write("Enter the Name of the Patron: ");
-        string? patronName = Console.ReadLine();
+        System.Console.Write("Enter the Name of the Patron: ");
+        string? patronName = System.Console.ReadLine();
         if (!string.IsNullOrEmpty(patronName))
         {
             PerformSearch.Search(new PatronSearchByName(_patrons), patronName);    
         }
         else
         {
-            Console.WriteLine("Title cannot be null or empty.");
+            System.Console.WriteLine("Title cannot be null or empty.");
         }
     }
 }

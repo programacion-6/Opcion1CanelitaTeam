@@ -20,11 +20,11 @@ public class StaffManager{
         if (staffaux == null)
         {
             StaffList.Add(staff);
-            Console.WriteLine($"Staff with name '{staff.getName()}' has been added.");
+            System.Console.WriteLine($"Staff with name '{staff.getName()}' has been added.");
         }
         else
         {
-            Console.WriteLine($"Staff with name '{staff.getName()}' already exists.");
+            System.Console.WriteLine($"Staff with name '{staff.getName()}' already exists.");
         }
     }
 
@@ -53,11 +53,11 @@ public class StaffManager{
             {
                 staff.setPassword(newPassword);
             }
-            Console.WriteLine($"Staff with name '{name}' has been updated.");
+            System.Console.WriteLine($"Staff with name '{name}' has been updated.");
         }
         else
         {
-            Console.WriteLine($"Staff with name '{name}' not found.");
+            System.Console.WriteLine($"Staff with name '{name}' not found.");
         }
     }
 
@@ -67,11 +67,11 @@ public class StaffManager{
         if (staff != null)
         {
             StaffList.Remove(staff);
-            Console.WriteLine($"Staff with name '{name}' has been removed.");
+            System.Console.WriteLine($"Staff with name '{name}' has been removed.");
         }
         else
         {
-            Console.WriteLine($"Staff with name '{name}' not found.");
+            System.Console.WriteLine($"Staff with name '{name}' not found.");
         }
     }
 
@@ -91,7 +91,7 @@ public class StaffManager{
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Invalid credentials: {ex.Message}");
+            System.Console.WriteLine($"Invalid credentials: {ex.Message}");
         }
 
         return null;

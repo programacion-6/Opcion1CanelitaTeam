@@ -1,13 +1,13 @@
 using LMS.DataAccess.BookSystem.Concretes;
 using LMS.DataAccess.BookSystem.Entities;
 using LMS.DataAccess.BorrowSystem;
-using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrow.Interfaces;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Interfaces;
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
 using LMS.DataAccess.UserSystem.Concretes;
 using Spectre.Console;
 
-namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrow.Concretes;
+namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Concretes;
 
 public class MakeBorrow : BorrowInput
 {
@@ -24,8 +24,8 @@ public class MakeBorrow : BorrowInput
     public void BorrowOption()
     {
         AnsiConsole.Clear();
-        Console.WriteLine("Enter the title of the book to borrow: ");
-        string? bookTitle = Console.ReadLine();
+        System.Console.WriteLine("Enter the title of the book to borrow: ");
+        string? bookTitle = System.Console.ReadLine();
 
         if(bookTitle != null){
             Book book = (Book)PerformFind.Execute(new FindBookByTitle(Books, bookTitle));
@@ -38,7 +38,7 @@ public class MakeBorrow : BorrowInput
                 
                 Borrows.AddBorrow(Patron, book, BorrowDate, DueDate);
             }else{
-                Console.WriteLine($"There is no book with {bookTitle} Title");
+                System.Console.WriteLine($"There is no book with {bookTitle} Title");
             }
         }
     }

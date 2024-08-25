@@ -28,7 +28,7 @@ public class FindStaffByName : FindProcess
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred while searching for the staff: {ex.Message}");
+            System.Console.WriteLine($"An error occurred while searching for the staff: {ex.Message}");
         }
         throw new InvalidOperationException("The requested item was not found.");;   
     }

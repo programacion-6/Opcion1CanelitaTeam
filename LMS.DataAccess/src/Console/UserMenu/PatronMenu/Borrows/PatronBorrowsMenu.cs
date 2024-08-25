@@ -1,11 +1,11 @@
 using LMS.DataAccess.BookSystem.Concretes;
 using LMS.DataAccess.BorrowSystem;
-using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrow.Concretes;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Concretes;
 using LMS.DataAccess.FineSystem;
 using LMS.DataAccess.UserSystem.Concretes;
 using Spectre.Console;
 
-namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrow;
+namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows;
 
 public class PatronsBorrowMenu
 {
@@ -49,7 +49,7 @@ public class PatronsBorrowMenu
                     break;
 
                 case "Exit":
-                    Console.WriteLine("Exiting to Patron Menu.");
+                    System.Console.WriteLine("Exiting to Patron Menu.");
                     return;
 
                 default:

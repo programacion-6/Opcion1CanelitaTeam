@@ -1,6 +1,6 @@
-using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrow.Interfaces;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Interfaces;
 
-namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrow;
+namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows;
 
 public class BorrowAction{
 

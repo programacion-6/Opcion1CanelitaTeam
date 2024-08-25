@@ -23,7 +23,7 @@ public class BookRepository : IBookRepository
         
         if (bookToUpdate == null)
         {
-            Console.WriteLine($"[ERROR] Book with title '{title}' not found.");
+            System.Console.WriteLine($"[ERROR] Book with title '{title}' not found.");
             return;
         }
 
@@ -34,7 +34,7 @@ public class BookRepository : IBookRepository
         if (newStock != null)
         {
             bookToUpdate.Stock = (int)newStock;
-            Console.WriteLine($"[INFO] Stock updated to {newStock} for book '{title}'.");
+            System.Console.WriteLine($"[INFO] Stock updated to {newStock} for book '{title}'.");
         }
     }
 

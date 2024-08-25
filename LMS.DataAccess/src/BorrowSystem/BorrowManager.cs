@@ -36,7 +36,7 @@ public class BorrowManager
         catch (Exception ex)
         {
             System.Console.WriteLine($"An unexpected error occurred while adding a borrow.");
-            _logService.LogError(Severity.HIGH, $"{ex.Message}");
+            _logService.LogError(Severity.HIGH, $"{ex.Message}");            
         }
     }
 

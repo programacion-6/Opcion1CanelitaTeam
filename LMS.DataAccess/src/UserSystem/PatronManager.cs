@@ -19,7 +19,7 @@ public class PatronManager{
         Patron? patronaux = (Patron)PerformFind.Execute(new FindPatronByName(PatronsList, patronName));
         if(patronaux == null){
         PatronsList.Add(patron);
-        Console.WriteLine($"Patron with name '{patron.getName}' has been added.");
+        System.Console.WriteLine($"Patron with name '{patron.getName}' has been added.");
         }
     }
     public void UpdatePatron(string name, string? newName = null, int? newMembershipNumber = null, int? newPhoneNumber = null, string? newDirection = null, string? newPassword = null)
@@ -54,7 +54,7 @@ public class PatronManager{
         Patron? patron = (Patron)PerformFind.Execute(new FindPatronByName(PatronsList, name));
         if(patron!= null){
             PatronsList.Remove(patron);
-            Console.WriteLine($"Patron with name '{name}' has been removed.");
+            System.Console.WriteLine($"Patron with name '{name}' has been removed.");
         }       
     }
 
@@ -74,7 +74,7 @@ public class PatronManager{
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Invalid credentials: {ex.Message}");
+            System.Console.WriteLine($"Invalid credentials: {ex.Message}");
         }
 
         return null;

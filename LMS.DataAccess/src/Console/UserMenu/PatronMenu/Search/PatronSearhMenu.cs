@@ -51,7 +51,7 @@ public class PatronSearchMenu
                     break;
 
                 case "Exit":
-                    Console.WriteLine("Exiting to main menu.");
+                    System.Console.WriteLine("Exiting to main menu.");
                     return;
 
                 default:

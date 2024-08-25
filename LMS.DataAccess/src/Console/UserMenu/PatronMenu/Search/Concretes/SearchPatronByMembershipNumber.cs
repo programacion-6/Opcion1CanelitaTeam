@@ -15,8 +15,8 @@ public class SearchPatronByMembershipNumberInput : SearchInput
     }
     public void SearchByInput()
     {
-        Console.Write("Enter the Membership Number of the Patron: ");
-        string? input = Console.ReadLine();
+        System.Console.Write("Enter the Membership Number of the Patron: ");
+        string? input = System.Console.ReadLine();
         int patronMemberShip;
         if (int.TryParse(input, out patronMemberShip))
         {
@@ -24,7 +24,7 @@ public class SearchPatronByMembershipNumberInput : SearchInput
         }
         else
         {
-            Console.WriteLine("Invalid membership number. Please enter a valid number.");
+            System.Console.WriteLine("Invalid membership number. Please enter a valid number.");
         }
     }
 }

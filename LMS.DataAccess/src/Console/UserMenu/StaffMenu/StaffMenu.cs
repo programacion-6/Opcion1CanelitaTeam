@@ -53,7 +53,7 @@ public class StaffMenu : UserMenuTemplate
                 case "User details":
                     _staff.UserInformation();
                     AnsiConsole.MarkupLine("[yellow]Press any key to return to the menu...[/]");
-                    Console.ReadKey(); 
+                    System.Console.ReadKey(); 
                     break;
                 case "Book Management":
                     var bookManagement = new BookStaffManagement(_books);

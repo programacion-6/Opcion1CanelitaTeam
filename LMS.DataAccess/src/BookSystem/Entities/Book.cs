@@ -55,14 +55,14 @@ public class Book{
 
     public void BookDetails()
     {
-        Console.WriteLine("========== Book Information ==========");
-        Console.WriteLine($"Title:              {Title}");
-        Console.WriteLine($"Author:             {Author}");
-        Console.WriteLine($"Genre:              {Genre}");
-        Console.WriteLine($"ISBN:               {ISBN}");
-        Console.WriteLine($"Publication Date:   {PublicationDate.ToShortDateString()}");
-        Console.WriteLine($"Stock:              {Stock}");
-        Console.WriteLine("======================================");
+        System.Console.WriteLine("========== Book Information ==========");
+        System.Console.WriteLine($"Title:              {Title}");
+        System.Console.WriteLine($"Author:             {Author}");
+        System.Console.WriteLine($"Genre:              {Genre}");
+        System.Console.WriteLine($"ISBN:               {ISBN}");
+        System.Console.WriteLine($"Publication Date:   {PublicationDate.ToShortDateString()}");
+        System.Console.WriteLine($"Stock:              {Stock}");
+        System.Console.WriteLine("======================================");
     }
 
     public void IncreaseStock()
