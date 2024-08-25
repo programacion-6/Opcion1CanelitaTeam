@@ -1,4 +1,6 @@
-using BorrowSystem;
+using LMS.DataAccess.Console.UserMenu.StaffMenu.Report.Interfaces;
+
+namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Report;
 
 public class ReportAction {
 

@@ -1,6 +1,9 @@
-using BookSystem;
-using userSystem;
+using LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
+using LMS.DataAccess.UserSystem;
 using Spectre.Console;
+
+namespace LMS.DataAccess.Console.UserMenu.StaffMenu;
 
 public class StaffSearchMenu
 {

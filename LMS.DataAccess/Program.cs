@@ -1,5 +1,6 @@
-﻿using LibraryConsole;
-using Utils;
+﻿using LMS.DataAccess.Utils;
+
+namespace LMS.DataAccess;
 
 class Program
 {

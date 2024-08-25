@@ -1,5 +1,8 @@
-namespace Opcion1AlexPaca.Creator;
-using userSystem.Concrete;
+using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.UserSystem.Entities;
+
+namespace LMS.DataAccess.UserSystem.Creator;
+
 public class StaffCreator : UserCreator
 {
     public User CreateUser(string Name, int MemberShipNumber, int PhoneNumber, string Direction, string Password)

@@ -1,6 +1,9 @@
-using BorrowSystem;
-using Opcion1CanelitaTeam.ReportSystem.Concretes;
+using LMS.DataAccess.Console.UserMenu.StaffMenu.Report.Interfaces;
+using LMS.DataAccess.ReportSystem.Concretes;
+
 using Spectre.Console;
+
+namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Report.Concretes;
 
 public class BorrowPatronHistoryInput : ReportInput
 {

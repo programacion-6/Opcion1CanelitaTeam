@@ -1,9 +1,9 @@
-using BookSystem;
-using Core.Exceptions;
-using Core.Handlers;
-using userSystem.Concrete;
+using LMS.DataAccess.BookSystem.Entities;
+using LMS.DataAccess.Core.Exceptions;
+using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.UserSystem.Concretes;
 
-namespace BorrowSystem;
+namespace LMS.DataAccess.BorrowSystem;
 
 public class BorrowManager
 {
@@ -27,15 +27,15 @@ public class BorrowManager
             
             Borrow borrow = new Borrow(patron, book, borrowDate, dueDate);
             Borrows.Add(borrow);
-            Console.WriteLine($"Successful Borrow of {book.Title} by {patron.getName()}"); 
+            System.Console.WriteLine($"Successful Borrow of {book.Title} by {patron.getName()}"); 
         }
         catch (InvalidDateRangeException ex)
         {
-            Console.WriteLine(ex.Message);
+            System.Console.WriteLine(ex.Message);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An unexpected error occurred while adding a borrow.");
+            System.Console.WriteLine($"An unexpected error occurred while adding a borrow.");
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }
@@ -55,11 +55,11 @@ public class BorrowManager
         }
         catch (BorrowNotFoundException ex)
         {
-            Console.WriteLine(ex.Message);
+            System.Console.WriteLine(ex.Message);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An unexpected error occurred while adding a borrow.");
+            System.Console.WriteLine($"An unexpected error occurred while adding a borrow.");
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }
@@ -84,7 +84,7 @@ public class BorrowManager
     {
         try
         {
-            Console.WriteLine("LIST OF NOT RETURNED BORROWS");
+            System.Console.WriteLine("LIST OF NOT RETURNED BORROWS");
 
             bool hasActiveBorrows = false;
             foreach (Borrow borrow in Borrows)
@@ -103,11 +103,11 @@ public class BorrowManager
         }
         catch (BorrowNotFoundException ex)
         {
-            Console.WriteLine(ex.Message);
+            System.Console.WriteLine(ex.Message);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An unexpected error occurred while listing active borrows.");
+            System.Console.WriteLine($"An unexpected error occurred while listing active borrows.");
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }

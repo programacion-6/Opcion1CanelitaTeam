@@ -1,6 +1,8 @@
-using BookSystem;
+using LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 using Spectre.Console;
-using SearchSystem;
+
+namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search;
 
 public class PatronSearchMenu
 {

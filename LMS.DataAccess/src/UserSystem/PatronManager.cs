@@ -1,7 +1,9 @@
-namespace userSystem;
+using LMS.DataAccess.Console.Utils.Find;
+using LMS.DataAccess.Console.Utils.Find.Concretes;
+using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Utils;
 
-using userSystem.Concrete;
-using Utils;
+namespace LMS.DataAccess.UserSystem;
 
 public class PatronManager{
     List<Patron> PatronsList;

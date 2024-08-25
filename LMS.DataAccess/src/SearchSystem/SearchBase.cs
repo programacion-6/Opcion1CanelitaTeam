@@ -1,5 +1,7 @@
-using Core.Exceptions;
-using Core.Handlers;
+using LMS.DataAccess.Core.Exceptions;
+using LMS.DataAccess.Core.Handlers;
+
+namespace LMS.DataAccess.SearchSystem;
 
 public abstract class SearchBase < M, E, T >
 {
@@ -29,15 +31,15 @@ public abstract class SearchBase < M, E, T >
         }
         catch (BookNotFoundException ex)
         {
-            Console.WriteLine(ex.Message);
+            System.Console.WriteLine(ex.Message);
         }
         catch (PatronNotFoundException ex)
         {
-            Console.WriteLine(ex.Message);
+            System.Console.WriteLine(ex.Message);
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An unexpected error occurred while searching.");
+            System.Console.WriteLine($"An unexpected error occurred while searching.");
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }

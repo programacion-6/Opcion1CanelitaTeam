@@ -1,5 +1,5 @@
+namespace LMS.DataAccess.Utils;
 
-namespace Utils;
 public class StringComparator{
     public static bool compare(string actual, string compare){
         bool equals = false;

@@ -1,12 +1,14 @@
-using BookSystem;
-using BorrowSystem;
-using FinesSystem;
-using LibraryConsole;
-using Opcion1AlexPaca.Creator;
-using userSystem;
-using userSystem.Concrete;
+using LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.BookSystem.Entities;
+using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.Console;
+using LMS.DataAccess.FineSystem;
+using LMS.DataAccess.UserSystem;
+using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.UserSystem.Creator;
 
-namespace Utils;
+namespace LMS.DataAccess.Utils;
+
 public class PrepareData
 {
     private static List<Patron> PreparePatrons()

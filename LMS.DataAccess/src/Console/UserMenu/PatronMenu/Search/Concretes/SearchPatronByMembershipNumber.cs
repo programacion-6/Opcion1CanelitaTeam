@@ -1,6 +1,9 @@
-using SearchSystem;
-using userSystem;
-using userSystem.Concrete;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Interfaces;
+using LMS.DataAccess.SearchSystem;
+using LMS.DataAccess.SearchSystem.PatronSearch.Concretes;
+using LMS.DataAccess.UserSystem;
+
+namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 
 public class SearchPatronByMembershipNumberInput : SearchInput
 {

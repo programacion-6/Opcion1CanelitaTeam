@@ -1,6 +1,8 @@
-using BookSystem;
-using BorrowSystem;
-using FinesSystem;
+using LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.FineSystem;
+
+namespace LMS.DataAccess.Console.UserMenu;
 
 public abstract class UserMenuTemplate {
     protected BorrowManager _borrows;

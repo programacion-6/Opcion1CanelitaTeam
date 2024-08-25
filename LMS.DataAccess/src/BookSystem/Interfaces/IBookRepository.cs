@@ -1,4 +1,7 @@
-namespace BookSystem;
+using LMS.DataAccess.BookSystem.Entities;
+
+namespace LMS.DataAccess.BookSystem.Interfaces;
+
 public interface IBookRepository
 {
     void AddBook(Book book);

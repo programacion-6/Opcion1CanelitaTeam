@@ -1,3 +1,7 @@
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Interfaces;
+
+namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search;
+
 public class SearchOption {
     SearchInput? _search;
     public void SetSearchOption(SearchInput _search){

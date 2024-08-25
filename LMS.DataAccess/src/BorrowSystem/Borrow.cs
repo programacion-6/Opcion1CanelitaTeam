@@ -1,7 +1,8 @@
-namespace BorrowSystem;
-using BookSystem;
+using LMS.DataAccess.BookSystem.Entities;
+using LMS.DataAccess.UserSystem.Concretes;
 using Spectre.Console;
-using userSystem.Concrete;
+
+namespace LMS.DataAccess.BorrowSystem;
 
 public class Borrow : Borrowing{
     Book Book;

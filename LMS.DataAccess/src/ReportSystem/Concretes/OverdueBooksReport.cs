@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 using BorrowSystem;
 using Core.Handlers;
 using Opcion1CanelitaTeam.ReportSystem.Abstracts;
+=======
+using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.ReportSystem.Abstract;
+>>>>>>> 258ac0d (refactor: add namespaces and rename directories without errors)
 
-namespace Opcion1CanelitaTeam.ReportSystem.Concretes;
+namespace LMS.DataAccess.ReportSystem.Concretes;
 
 public class OverdueBooksReport : BaseReport
 {

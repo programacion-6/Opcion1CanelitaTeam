@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 using BorrowSystem;
 using Core.Exceptions;
 using Core.Handlers;
 using Opcion1CanelitaTeam.ReportSystem.Abstracts;
+=======
+using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.ReportSystem.Abstracts;
+>>>>>>> 258ac0d (refactor: add namespaces and rename directories without errors)
 
-namespace Opcion1CanelitaTeam.ReportSystem.Concretes;
+namespace LMS.DataAccess.ReportSystem.Concretes;
 
-public class BorrowPatronHistory : BaseReport
+public class BorrowPatronHistory : PatronReport
 {
     private readonly ILogService _logService;
 

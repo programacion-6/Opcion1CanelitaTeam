@@ -1,11 +1,10 @@
-using System.ComponentModel.Design;
-using BookSystem;
-using BorrowSystem;
-using FinesSystem;
-using LibraryMenu;
-using userSystem;
+using LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.FineSystem;
+using LMS.DataAccess.UserSystem;
 
-namespace LibraryConsole;
+namespace LMS.DataAccess.Console;
+
 public class Library
 {
     PatronManager Patrons;

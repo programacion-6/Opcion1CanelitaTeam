@@ -1,5 +1,9 @@
-using BookSystem;
-using SearchSystem;
+using LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Interfaces;
+using LMS.DataAccess.SearchSystem;
+using LMS.DataAccess.SearchSystem.BookSearch.Concretes;
+
+namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 
 public class SearchByTitleInput : SearchInput
 {
