@@ -41,6 +41,8 @@ package "Library system"{
     Library ..> HomePageMenu
     HomePageMenu ..> Login
     Login ..> PatronMenu
+    IReport ..* ReportStaffMenu
+    IReport ..* BorrowPatronHistoryInput
     PatronMenu ..> PatronSearchMenu
     PatronMenu ..> PatronBorrowMenu
     PatronMenu ..> ReturnContext : uses
