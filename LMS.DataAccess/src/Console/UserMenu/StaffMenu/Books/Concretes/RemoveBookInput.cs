@@ -1,8 +1,8 @@
 using LMS.DataAccess.BookSystem.Concretes;
-using LMS.DataAccess.Console.UserMenu.StaffMenu.Book.Interfaces;
+using LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Interfaces;
 using Spectre.Console;
 
-namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Book.Concretes;
+namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
 
 public class AddRemoveInput : BookInput
 {

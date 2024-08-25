@@ -31,23 +31,23 @@ public class PatronSearchMenu
                     .AddChoices(options)
             );
 
-            SearchOption search = new SearchOption();
+            OptionSearch optionSearch = new OptionSearch();
 
             switch (selectedOption)
             {
                 case "Search by Title":
-                    search.SetSearchOption(new SearchByTitleInput(_books));
-                    search.Execute();
+                    optionSearch.SetSearchOption(new SearchByTitleInput(_books));
+                    optionSearch.Execute();
                     break;
 
                 case "Search by Author":
-                    search.SetSearchOption(new SearchByAuthorInput(_books));
-                    search.Execute();
+                    optionSearch.SetSearchOption(new SearchByAuthorInput(_books));
+                    optionSearch.Execute();
                     break;
 
                 case "Search by ISBN":
-                    search.SetSearchOption(new SearchByISBNInput(_books));
-                    search.Execute();
+                    optionSearch.SetSearchOption(new SearchByISBNInput(_books));
+                    optionSearch.Execute();
                     break;
 
                 case "Exit":

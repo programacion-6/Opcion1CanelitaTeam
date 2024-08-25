@@ -1,4 +1,6 @@
-namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Book;
+using LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Interfaces;
+
+namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books;
 
 public class BookAction 
 {

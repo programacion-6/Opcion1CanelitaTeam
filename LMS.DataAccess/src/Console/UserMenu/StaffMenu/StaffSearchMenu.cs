@@ -1,4 +1,5 @@
 using LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.Console.UserMenu.PatronMenu.Search;
 using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 using LMS.DataAccess.UserSystem;
 using Spectre.Console;
@@ -36,7 +37,7 @@ public class StaffSearchMenu
                     .AddChoices(options)
             );
 
-            var search = new SearchOption();
+            var search = new OptionSearch();
 
             switch (selectedOption)
             {

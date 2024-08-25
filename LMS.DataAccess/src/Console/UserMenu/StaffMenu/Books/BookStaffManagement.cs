@@ -1,8 +1,8 @@
 using LMS.DataAccess.BookSystem.Concretes;
-using LMS.DataAccess.Console.UserMenu.StaffMenu.Book;
+using LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
 using Spectre.Console;
 
-namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Book;
+namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books;
 
 public class BookStaffManagement
 {
