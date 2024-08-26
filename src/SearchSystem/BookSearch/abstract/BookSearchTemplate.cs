@@ -1,4 +1,5 @@
 using BookSystem;
+using Core.Exceptions;
 
 public abstract class BookSearchTemplate <T> : SearchBase<BookRepository, Book, T>
 {
@@ -11,7 +12,7 @@ public abstract class BookSearchTemplate <T> : SearchBase<BookRepository, Book, 
 
     protected override void NoResultsFound()
     {
-        Console.WriteLine("No books found.");
+        throw new BookNotFoundException("No books found matching with the search criteria.");
     }
 
     protected abstract override List<Book> Search( T criterion);

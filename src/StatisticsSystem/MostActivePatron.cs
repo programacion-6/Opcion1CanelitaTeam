@@ -1,41 +1,63 @@
-using System.Linq;
 using BorrowSystem;
 using Spectre.Console;
+using Core.Exceptions;
+using Core.Handlers;
 
 public class MostActivePatron : StatisticReport
 {
-    public MostActivePatron(BorrowManager borrows) : base(borrows)
+    private readonly ILogService _logService;
+    
+    public MostActivePatron(BorrowManager borrows) 
+        : base(borrows)
     {
+        _logService = new LogService();
     }
 
     public override void Report()
     {
-        var borrowList = Borrows.GetBorrows();
-
-        var topPatrons = borrowList
-            .GroupBy(b => b.GetPatron().getName())
-            .OrderByDescending(g => g.Count())
-            .Take(3)
-            .Select(g => new { PatronName = g.Key, BorrowCount = g.Count() })
-            .ToList();
-
-        if (topPatrons.Any())
+        try
         {
-            var chart = new BarChart()
-                .Width(60)
-                .Label("[bold underline]Top 3 Most Active Patrons[/]")
-                .CenterLabel();
+            var borrowList = Borrows.GetBorrows();
 
-            foreach (var patron in topPatrons)
+            if (borrowList == null)
             {
-                chart.AddItem(patron.PatronName, patron.BorrowCount, Color.Green);
+                throw new BorrowNotFoundException("Failed to retrieve borrow records. The list doesn't exist.");
             }
 
-            AnsiConsole.Write(chart);
-        }
-        else
+            var topPatrons = borrowList
+                .GroupBy(b => b.GetPatron().getName())
+                .OrderByDescending(g => g.Count())
+                .Take(3)
+                .Select(g => new { PatronName = g.Key, BorrowCount = g.Count() })
+                .ToList();
+            
+            if (topPatrons.Any())
+            {
+                var chart = new BarChart()
+                    .Width(60)
+                    .Label("[bold underline]Top 3 Most Active Patrons[/]")
+                    .CenterLabel();
+
+                foreach (var patron in topPatrons)
+                {
+                    chart.AddItem(patron.PatronName, patron.BorrowCount, Color.Green);
+                }
+                
+                AnsiConsole.Write(chart);
+            }
+            else
+            {
+                AnsiConsole.MarkupLine("[red]No patrons have borrowed books yet.[/]");
+            }
+        } 
+        catch (BorrowNotFoundException ex)
         {
-            AnsiConsole.MarkupLine("[red]No patrons have borrowed books yet.[/]");
+            Console.WriteLine(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An unexpected error occurred while generating the report. Please contact your administrator.");
+            _logService.LogError(Severity.MEDIUM, $"{ex.Message}");
         }
     }
 }

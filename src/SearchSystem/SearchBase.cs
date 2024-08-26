@@ -1,27 +1,44 @@
-using System;
-using System.Collections.Generic;
+using Core.Exceptions;
+using Core.Handlers;
 
 public abstract class SearchBase < M, E, T >
 {
     protected M Repository;
+    private readonly ILogService _logService;
 
     public SearchBase(M manager)
     {
-        this.Repository = manager;
+        Repository = manager;
+        _logService = new LogService();
     }
 
     public virtual void PerformSearch(T criterion)
     {
         List<E> results = Search(criterion);
         
-        if (results.Count > 0)
+        try
         {
-            SearchResult(results);
+            if (results.Count > 0)
+            {
+                SearchResult(results);
+            }
+            else
+            {
+                NoResultsFound();
+            }
         }
-        
-        else
+        catch (BookNotFoundException ex)
         {
-            NoResultsFound();
+            Console.WriteLine(ex.Message);
+        }
+        catch (PatronNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An unexpected error occurred while searching.");
+            _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }
 
@@ -37,8 +54,5 @@ public abstract class SearchBase < M, E, T >
 
     protected abstract void DisplayDetails(E item);
 
-    protected virtual void NoResultsFound()
-    {
-        Console.WriteLine("No results found.");
-    }
+    protected abstract void NoResultsFound();
 }
