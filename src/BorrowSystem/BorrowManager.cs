@@ -27,6 +27,7 @@ public class BorrowManager
             
             Borrow borrow = new Borrow(patron, book, borrowDate, dueDate);
             Borrows.Add(borrow);
+            Console.WriteLine($"Successful Borrow of {book.Title} by {patron.getName()}"); 
         }
         catch (InvalidDateRangeException ex)
         {
