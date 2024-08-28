@@ -1,8 +1,6 @@
-using LMS.DataAccess.UserSystem.Entities;
-
 using Spectre.Console;
 
-namespace LMS.DataAccess.UserSystem.Concretes;
+namespace LMS.DataAccess.Systems.Entities.User;
 
 public class Patron : User
 {

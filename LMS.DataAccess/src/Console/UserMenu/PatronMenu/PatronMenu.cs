@@ -1,11 +1,9 @@
-using LMS.DataAccess.BookSystem.Concretes;
-using LMS.DataAccess.BorrowSystem;
 using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows;
 using LMS.DataAccess.Console.UserMenu.PatronMenu.Search;
 using LMS.DataAccess.Console.Utils.ItemsList;
 using LMS.DataAccess.Console.Utils.ItemsList.Concretes;
-using LMS.DataAccess.FineSystem;
-using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Systems.Entities.User;
 
 using Spectre.Console;
 

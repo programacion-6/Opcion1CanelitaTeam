@@ -1,7 +1,8 @@
-using LMS.DataAccess.BookSystem.Entities;
-using LMS.DataAccess.BookSystem.Interfaces;
 
-namespace LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.Systems.Entities;
+using LMS.DataAccess.Systems.Interfaces;
+
+namespace LMS.DataAccess.Systems.Concretes.Managers;
 
 public class BookRepository : IBookRepository
 {

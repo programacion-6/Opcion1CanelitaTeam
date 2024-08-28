@@ -1,7 +1,7 @@
-using LMS.DataAccess.BorrowSystem;
-using LMS.DataAccess.ReportSystem.Interfaces;
+using LMS.DataAccess.Services.Reports.Interfaces;
+using LMS.DataAccess.Systems.Concretes.Managers;
 
-namespace LMS.DataAccess.ReportSystem.Abstracts;
+namespace LMS.DataAccess.Services.Reports.Abstracts;
 
 public abstract class BaseReport : IReport
 {

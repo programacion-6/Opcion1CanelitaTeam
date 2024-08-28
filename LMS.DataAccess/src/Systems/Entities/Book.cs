@@ -1,4 +1,4 @@
-namespace LMS.DataAccess.BookSystem.Entities;
+namespace LMS.DataAccess.Systems.Entities;
 
 public class Book
 {

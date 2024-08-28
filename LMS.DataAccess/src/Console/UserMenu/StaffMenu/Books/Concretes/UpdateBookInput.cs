@@ -1,9 +1,10 @@
-using LMS.DataAccess.BookSystem.Concretes;
+using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Interfaces;
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
 
 using Spectre.Console;
+using LMS.DataAccess.Systems.Entities;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
 
@@ -20,7 +21,7 @@ public class AddUpdateInput : BookInput
     {
         var title = AnsiConsole.Prompt(new TextPrompt<string>("Enter the title of the book to update:"));
 
-        BookSystem.Entities.Book? book = (BookSystem.Entities.Book) PerformFind.Execute(new FindBookByTitle(_books, title));
+        Book? book = (Book) PerformFind.Execute(new FindBookByTitle(_books, title));
 
         if (book != null)
         {

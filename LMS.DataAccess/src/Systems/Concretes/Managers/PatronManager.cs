@@ -1,9 +1,9 @@
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
-using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Systems.Entities.User;
 using LMS.DataAccess.Utils;
 
-namespace LMS.DataAccess.UserSystem;
+namespace LMS.DataAccess.Systems.Concretes.Managers;
 
 public class PatronManager
 {

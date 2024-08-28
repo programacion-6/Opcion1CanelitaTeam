@@ -1,6 +1,6 @@
 using LMS.DataAccess.Core.Handlers;
 
-namespace LMS.DataAccess.Core.Exceptions;
+namespace LMS.DataAccess.Core.Exceptions.Abstracts;
 
 public abstract class BaseException : Exception
 {

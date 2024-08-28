@@ -1,4 +1,6 @@
-namespace LMS.DataAccess.StatisticSystem;
+using LMS.DataAccess.Services.Statistics.Abstracts;
+
+namespace LMS.DataAccess.Services.Statistics;
 
 public class Statistic
 {

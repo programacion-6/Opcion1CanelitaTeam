@@ -1,7 +1,7 @@
-using LMS.DataAccess.Core.Exceptions;
+using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
 
-namespace LMS.DataAccess.SearchSystem;
+namespace LMS.DataAccess.Services.Searchers;
 
 public abstract class SearchBase<M, E, T>
 {

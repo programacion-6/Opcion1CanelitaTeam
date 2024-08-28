@@ -1,8 +1,9 @@
-using LMS.DataAccess.BorrowSystem;
 using LMS.DataAccess.Core.Handlers;
-using LMS.DataAccess.ReportSystem.Abstracts;
+using LMS.DataAccess.Services.Reports.Abstracts;
+using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Systems.Entities.Borrowing;
 
-namespace LMS.DataAccess.ReportSystem.Concretes;
+namespace LMS.DataAccess.Services.Reports.Concretes;
 
 public class OverdueBooksReport : BaseReport
 {

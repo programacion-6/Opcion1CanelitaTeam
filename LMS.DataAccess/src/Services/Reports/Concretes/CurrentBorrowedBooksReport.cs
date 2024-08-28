@@ -1,10 +1,10 @@
-using LMS.DataAccess.BorrowSystem;
 using LMS.DataAccess.Core.Handlers;
-using LMS.DataAccess.ReportSystem.Abstracts;
+using LMS.DataAccess.Services.Reports.Abstracts;
+using LMS.DataAccess.Systems.Concretes.Managers;
 
 using Spectre.Console;
 
-namespace LMS.DataAccess.ReportSystem.Concretes;
+namespace LMS.DataAccess.Services.Reports.Concretes;
 
 public class CurrentBorrowBooksReport : BaseReport
 {

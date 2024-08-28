@@ -1,4 +1,4 @@
-namespace LMS.DataAccess.BorrowSystem;
+namespace LMS.DataAccess.Systems.Entities.Borrowing;
 
 public interface Borrowing
 {

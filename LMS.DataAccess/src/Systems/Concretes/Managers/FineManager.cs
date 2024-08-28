@@ -1,7 +1,8 @@
-using LMS.DataAccess.Core.Exceptions;
+using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Systems.Entities;
 
-namespace LMS.DataAccess.FineSystem;
+namespace LMS.DataAccess.Systems.Concretes.Managers;
 
 public class FineManager
 {

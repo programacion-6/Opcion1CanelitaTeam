@@ -1,8 +1,8 @@
-using LMS.DataAccess.Core.Exceptions;
-using LMS.DataAccess.UserSystem;
-using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Systems.Entities.User;
 
-namespace LMS.DataAccess.SearchSystem.PatronSearch.Abstract;
+namespace LMS.DataAccess.Services.Searchers.PatronSearchers.Abstracts;
 
 public abstract class PatronSearchTemplate<T> : SearchBase<PatronManager, Patron, T>
 {

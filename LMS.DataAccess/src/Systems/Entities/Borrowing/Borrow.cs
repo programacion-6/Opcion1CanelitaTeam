@@ -1,9 +1,8 @@
-using LMS.DataAccess.BookSystem.Entities;
-using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Systems.Entities.User;
 
 using Spectre.Console;
 
-namespace LMS.DataAccess.BorrowSystem;
+namespace LMS.DataAccess.Systems.Entities.Borrowing;
 
 public class Borrow : Borrowing
 {

@@ -1,9 +1,10 @@
-using LMS.DataAccess.BookSystem.Entities;
-using LMS.DataAccess.Core.Exceptions;
+using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
-using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Systems.Entities;
+using LMS.DataAccess.Systems.Entities.Borrowing;
+using LMS.DataAccess.Systems.Entities.User;
 
-namespace LMS.DataAccess.BorrowSystem;
+namespace LMS.DataAccess.Systems.Concretes.Managers;
 
 public class BorrowManager
 {

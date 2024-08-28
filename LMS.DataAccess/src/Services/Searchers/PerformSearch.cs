@@ -1,4 +1,4 @@
-namespace LMS.DataAccess.SearchSystem;
+namespace LMS.DataAccess.Services.Searchers;
 
 public class PerformSearch
 {

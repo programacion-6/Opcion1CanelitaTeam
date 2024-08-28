@@ -1,8 +1,8 @@
-using LMS.DataAccess.BookSystem.Concretes;
-using LMS.DataAccess.BookSystem.Entities;
-using LMS.DataAccess.SearchSystem.BookSearch.Abstract;
+using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Systems.Entities;
+using LMS.DataAccess.Services.Searchers.BookSearchers.Abstracts;
 
-namespace LMS.DataAccess.SearchSystem.BookSearch.Concretes;
+namespace LMS.DataAccess.SearchSystem.BookSearchers.Concretes;
 
 public class BookSearchByTitle : BookSearchTemplate<string>
 {

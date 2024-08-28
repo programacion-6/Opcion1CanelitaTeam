@@ -1,8 +1,8 @@
-using LMS.DataAccess.SearchSystem.PatronSearch.Abstract;
-using LMS.DataAccess.UserSystem;
-using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Services.Searchers.PatronSearchers.Abstracts;
+using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Systems.Entities.User;
 
-namespace LMS.DataAccess.SearchSystem.PatronSearch.Concretes;
+namespace LMS.DataAccess.Services.Searchers.PatronSearchers.Concretes;
 
 public class PatronSearchByName : PatronSearchTemplate<string>
 {

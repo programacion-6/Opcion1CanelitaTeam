@@ -1,7 +1,6 @@
-using LMS.DataAccess.UserSystem.Concretes;
-using LMS.DataAccess.UserSystem.Entities;
+using LMS.DataAccess.Systems.Entities.User;
 
-namespace LMS.DataAccess.UserSystem.Creator;
+namespace LMS.DataAccess.Systems.Concretes;
 
 public class StaffCreator : UserCreator
 {

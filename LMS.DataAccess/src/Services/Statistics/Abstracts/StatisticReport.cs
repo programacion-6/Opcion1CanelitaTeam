@@ -1,6 +1,6 @@
-using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.Systems.Concretes.Managers;
 
-namespace LMS.DataAccess.StatisticSystem;
+namespace LMS.DataAccess.Services.Statistics.Abstracts;
 
 public abstract class StatisticReport
 {

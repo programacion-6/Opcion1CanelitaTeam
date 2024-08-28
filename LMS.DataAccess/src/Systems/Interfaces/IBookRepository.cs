@@ -1,6 +1,6 @@
-using LMS.DataAccess.BookSystem.Entities;
+using LMS.DataAccess.Systems.Entities;
 
-namespace LMS.DataAccess.BookSystem.Interfaces;
+namespace LMS.DataAccess.Systems.Interfaces;
 
 public interface IBookRepository
 {

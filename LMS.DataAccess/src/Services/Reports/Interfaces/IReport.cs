@@ -1,4 +1,4 @@
-namespace LMS.DataAccess.ReportSystem.Interfaces;
+namespace LMS.DataAccess.Services.Reports.Interfaces;
 
 public interface IReport
 {

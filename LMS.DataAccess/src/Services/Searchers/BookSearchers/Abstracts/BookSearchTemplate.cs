@@ -1,8 +1,8 @@
-using LMS.DataAccess.BookSystem.Concretes;
-using LMS.DataAccess.BookSystem.Entities;
-using LMS.DataAccess.Core.Exceptions;
+using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Systems.Entities;
 
-namespace LMS.DataAccess.SearchSystem.BookSearch.Abstract;
+namespace LMS.DataAccess.Services.Searchers.BookSearchers.Abstracts;
 
 public abstract class BookSearchTemplate<T> : SearchBase<BookRepository, Book, T>
 {

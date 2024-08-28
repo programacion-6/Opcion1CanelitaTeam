@@ -1,4 +1,4 @@
-namespace LMS.DataAccess.UserSystem.Entities;
+namespace LMS.DataAccess.Systems.Entities.User;
 
 public abstract class User
 {
