@@ -39,7 +39,7 @@ public class PrepareData
         return Staffs;
     }
 
-    private static List<Book> PrepareBooks()
+    private static List<Book> PrepareBooks(BookRepository repository)
     {
         List<Book> books = new List<Book>();
 
@@ -52,6 +52,7 @@ public class PrepareData
         foreach (var book in books)
         {
             book.setStock(10);
+            repository.AddBook(book);
         }
 
         return books;
@@ -85,10 +86,10 @@ public class PrepareData
         StaffManager Staffs = new StaffManager();
         Staffs.SetStaffs(PrepareStaff());
         BookRepository Books = new BookRepository();
-        Books.SetBooksList(PrepareBooks());
+        PrepareBooks(Books);
 
         FineManager Fines = new FineManager();
-        BorrowManager Borrows = new BorrowManager(PrepareBorrows(PreparePatrons(), PrepareBooks()));
+        BorrowManager Borrows = new BorrowManager(PrepareBorrows(PreparePatrons(), Books.GetAllBooks()));
         return new Library(Patrons, Staffs, Borrows, Books, Fines);
     }
 }

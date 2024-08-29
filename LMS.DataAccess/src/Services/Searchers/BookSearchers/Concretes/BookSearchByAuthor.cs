@@ -13,7 +13,7 @@ public class BookSearchByAuthor : BookSearchTemplate<string>
     protected override List<Book> Search(string author)
     {
         List<Book> result = new List<Book>();
-        foreach (Book book in Repository.GetBooksList())
+        foreach (Book book in Repository.GetAllBooks())
         {
             if (book.Author.Equals(author, StringComparison.OrdinalIgnoreCase))
             {

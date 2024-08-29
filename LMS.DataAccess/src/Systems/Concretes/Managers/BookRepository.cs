@@ -28,37 +28,37 @@ public class BookRepository : IBookRepository
         }
     }
 
-    public void UpdateBook(string title, string? newTitle = null, string? newAuthor = null, string? newGenre = null, DateTime? newPublicationDate = null, int? newStock = null)
+    public void UpdateBook(string isbn, Book book)
     {
-        Book? bookToUpdate = _books.Find(b => b.Title == title);
+        Book? bookToUpdate = _books.Find(b => b.ISBN == isbn);
 
         if (bookToUpdate == null)
         {
-            System.Console.WriteLine($"[ERROR] Book with title '{title}' not found.");
+            System.Console.WriteLine("[ERROR] Book with not found.");
             return;
         }
 
-        if (_validator.ValidateUpdateParameters(title, newTitle, newAuthor, newGenre, newStock))
+        if (_validator.ValidateUpdateParameters(book))
         {
-            bookToUpdate.Title = newTitle ?? bookToUpdate.Title;
-            bookToUpdate.Author = newAuthor ?? bookToUpdate.Author;
-            bookToUpdate.Genre = newGenre ?? bookToUpdate.Genre;
-            bookToUpdate.PublicationDate = newPublicationDate ?? bookToUpdate.PublicationDate;
-            bookToUpdate.Stock = newStock ?? bookToUpdate.Stock;
+            bookToUpdate.Title = book.Title ?? bookToUpdate.Title;
+            bookToUpdate.Author = book.Author ?? bookToUpdate.Author;
+            bookToUpdate.Genre = book.Genre ?? bookToUpdate.Genre;
+            if (book.PublicationDate <= DateTime.Now) bookToUpdate.PublicationDate = book.PublicationDate;
+            bookToUpdate.Stock = book.Stock <= 0 ? book.Stock : bookToUpdate.Stock;
 
-            System.Console.WriteLine($"[INFO] Book '{title}' has been updated.");
+            System.Console.WriteLine($"[INFO] Book '{bookToUpdate.Title}' has been updated.");
         }
         else
         {
-            System.Console.WriteLine($"[ERROR] Book with title '{title}' cannot be updated. Invalid data.");
+            System.Console.WriteLine($"[ERROR] Book with title '{bookToUpdate.Title}' cannot be updated. Invalid data.");
         }
     }
 
-    public void RemoveBook(string title)
+    public void RemoveBook(string isbn)
     {
-        if (_validator.ValidateTitle(title))
+        if (_validator.ValidateTitle(isbn))
         {
-            Book? bookToRemove = _books.Find(b => b.Title == title);
+            Book? bookToRemove = _books.Find(b => b.ISBN == isbn);
             if (bookToRemove != null)
             {
                 _books.Remove(bookToRemove);
@@ -66,7 +66,7 @@ public class BookRepository : IBookRepository
         }
         else
         {
-            System.Console.WriteLine($"[ERROR] Book with title '{title}' cannot be removed. Invalid title.");
+            System.Console.WriteLine($"[ERROR] Book cannot be removed. Invalid isbn.");
         }
     }
 
@@ -91,13 +91,8 @@ public class BookRepository : IBookRepository
         return _validator.ValidateTitle(title) && _books.Find(b => b.Title == title)?.Stock > 0;
     }
 
-    public List<Book> GetBooksList()
+    public List<Book> GetAllBooks()
     {
         return _books;
-    }
-
-    public void SetBooksList(List<Book> books)
-    {
-        _books = books;
     }
 }

@@ -11,7 +11,7 @@ public class BookSearchByTitle : BookSearchTemplate<string>
     protected override List<Book> Search(string title)
     {
         List<Book> result = new List<Book>();
-        foreach (Book book in Repository.GetBooksList())
+        foreach (Book book in Repository.GetAllBooks())
         {
             if (book.Title.Equals(title, StringComparison.OrdinalIgnoreCase))
             {
