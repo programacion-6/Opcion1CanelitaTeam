@@ -1,5 +1,6 @@
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
+using LMS.DataAccess.Services.Validators;
 using LMS.DataAccess.Systems.Entities.User;
 using LMS.DataAccess.Utils;
 
@@ -7,84 +8,79 @@ namespace LMS.DataAccess.Systems.Concretes.Managers;
 
 public class PatronManager
 {
-    List<Patron> PatronsList;
+    private List<Patron> PatronsList;
+    private PatronValidator _validator;
 
     public PatronManager()
     {
         PatronsList = new List<Patron>();
+        _validator = new PatronValidator();
     }
 
     public void addPatron(Patron patron)
     {
-        string patronName = patron.getName();
-        Patron? patronaux = (Patron) PerformFind.Execute(new FindPatronByName(PatronsList, patronName));
-        if (patronaux == null)
-        {
-            PatronsList.Add(patron);
-            System.Console.WriteLine($"Patron with name '{patron.getName}' has been added.");
+         if (_validator.ValidatePatron(patron) && !PatronExists(patron.getName()))
+            {
+                PatronsList.Add(patron);
+                System.Console.WriteLine($"Patron '{patron.getName()}' added.");
+            }
+            else
+            {
+                System.Console.WriteLine($"[ERROR] Invalid patron data or patron already exists.");
+            }
         }
-    }
     public void UpdatePatron(string name, string? newName = null, int? newMembershipNumber = null, int? newPhoneNumber = null, string? newDirection = null, string? newPassword = null)
     {
-        Patron? patron = (Patron) PerformFind.Execute(new FindPatronByName(PatronsList, name));
-        if (patron != null)
-        {
-            if (!string.IsNullOrEmpty(newName))
+        Patron? patron = FindPatron(name);
+            if (patron == null)
             {
-                patron.setName(newName);
+                System.Console.WriteLine($"[ERROR] Patron '{name}' not found.");
+                return;
             }
-            if (newMembershipNumber.HasValue)
+
+            Patron updatedPatron = new Patron(
+                newName ?? patron.getName(),
+                newMembershipNumber ?? patron.getMemberShipNumber(),
+                newPhoneNumber ?? patron.getPhoneNumber(),
+                newDirection ?? patron.getDirection(),
+                newPassword ?? patron.getPassword()
+            );
+
+            if (_validator.ValidatePatron(updatedPatron))
             {
-                patron.setMemberShipNumber(newMembershipNumber.Value);
+                PatronsList[PatronsList.IndexOf(patron)] = updatedPatron;
+                System.Console.WriteLine($"Patron '{name}' updated.");
             }
-            if (newPhoneNumber.HasValue)
+            else
             {
-                patron.setPhoneNumber(newPhoneNumber.Value);
+                System.Console.WriteLine($"[ERROR] Invalid data for patron '{name}'.");
             }
-            if (!string.IsNullOrEmpty(newDirection))
-            {
-                patron.setDirection(newDirection);
-            }
-            if (!string.IsNullOrEmpty(newPassword))
-            {
-                patron.setPassword(newPassword);
-            }
-        }
 
     }
 
     public void RemovePatron(string name)
     {
-        Patron? patron = (Patron) PerformFind.Execute(new FindPatronByName(PatronsList, name));
-        if (patron != null)
-        {
-            PatronsList.Remove(patron);
-            System.Console.WriteLine($"Patron with name '{name}' has been removed.");
-        }
+        Patron? patron = FindPatron(name);
+            if (patron != null)
+            {
+                PatronsList.Remove(patron);
+                System.Console.WriteLine($"Patron '{name}' removed.");
+            }
+            else
+            {
+                System.Console.WriteLine($"[ERROR] Patron '{name}' not found.");
+            }
     }
 
     public Patron? ValidatePatron(string name, string password)
-    {
-        try
         {
-            foreach (Patron patron in PatronsList)
-            {
-                string patronName = patron.getName();
-                string patronPassword = patron.getPassword();
-                if (StringComparator.compare(patronName, name) && StringComparator.compare(patronPassword, password))
-                {
-                    return patron;
-                }
-            }
+            Patron? patron = FindPatron(name);
+            return (patron != null && _validator.ValidatePassword(password)) ? patron : null;
         }
-        catch (Exception ex)
-        {
-            System.Console.WriteLine($"Invalid credentials: {ex.Message}");
-        }
-
-        return null;
-    }
     public List<Patron> GetPatrons() => PatronsList;
+    private Patron? FindPatron(string name) =>
+            (Patron?)PerformFind.Execute(new FindPatronByName(PatronsList, name));
+    private bool PatronExists(string name) => FindPatron(name) != null;
     public void SetPatrons(List<Patron> patronList) => this.PatronsList = patronList;
 
 }
