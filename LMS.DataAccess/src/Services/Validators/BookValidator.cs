@@ -7,7 +7,6 @@ namespace LMS.DataAccess.Services.Validators
         private const int ISBN_LENGTH = 5;
         private const int MIN_FIELD_LENGTH = 3;
         private const int MAX_FIELD_LENGTH = 50;
-        private readonly List<string> _validGenres = new List<string> { "Fiction", "Non-Fiction", "Science Fiction", "Fantasy", "Biography", "History", "Children" };
 
         public bool ValidateBook(Book book)
         {
@@ -30,12 +29,12 @@ namespace LMS.DataAccess.Services.Validators
 
         public bool ValidateGenre(string genre)
         {
-            return !string.IsNullOrEmpty(genre) && _validGenres.Contains(genre);
+            return !string.IsNullOrEmpty(genre) && genre.Length >= MIN_FIELD_LENGTH && genre.Length <= MAX_FIELD_LENGTH;
         }
 
         public bool ValidateISBN(string isbn)
         {
-            return !string.IsNullOrEmpty(isbn) && isbn.Length == ISBN_LENGTH && isbn.All(char.IsDigit);
+            return !string.IsNullOrEmpty(isbn) && isbn.Length == ISBN_LENGTH;
         }
 
         public bool ValidateStock(int stock)
