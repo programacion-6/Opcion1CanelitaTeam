@@ -4,7 +4,7 @@ namespace LMS.DataAccess.Services.Validators
 {
     public class BookValidator
     {
-        private const int ISBN_LENGTH = 5;
+        private const int ISBN_LENGTH = 10;
         private const int MIN_FIELD_LENGTH = 3;
         private const int MAX_FIELD_LENGTH = 50;
 
