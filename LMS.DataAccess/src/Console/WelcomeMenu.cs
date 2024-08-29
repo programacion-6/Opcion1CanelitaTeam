@@ -1,8 +1,5 @@
-using LMS.DataAccess.BookSystem.Concretes;
-using LMS.DataAccess.BorrowSystem;
 using LMS.DataAccess.Console.LoginMenu;
-using LMS.DataAccess.FineSystem;
-using LMS.DataAccess.UserSystem;
+using LMS.DataAccess.Systems.Concretes.Managers;
 
 using Spectre.Console;
 

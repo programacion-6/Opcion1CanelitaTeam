@@ -1,8 +1,8 @@
-using LMS.DataAccess.BookSystem.Concretes;
-using LMS.DataAccess.BookSystem.Entities;
+using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Interfaces;
 
 using Spectre.Console;
+using LMS.DataAccess.Systems.Entities;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
 

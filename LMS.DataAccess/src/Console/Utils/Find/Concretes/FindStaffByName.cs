@@ -1,5 +1,5 @@
 using LMS.DataAccess.Console.Utils.Find.Interfaces;
-using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Systems.Entities.User;
 using LMS.DataAccess.Utils;
 
 namespace LMS.DataAccess.Console.Utils.Find.Concretes;

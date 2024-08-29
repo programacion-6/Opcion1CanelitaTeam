@@ -1,5 +1,5 @@
 using LMS.DataAccess.Console.Utils.ItemsList.Interfaces;
-using LMS.DataAccess.UserSystem.Concretes;
+using LMS.DataAccess.Systems.Entities.User;
 
 using Spectre.Console;
 

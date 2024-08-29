@@ -1,7 +1,7 @@
 using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Interfaces;
-using LMS.DataAccess.SearchSystem;
-using LMS.DataAccess.SearchSystem.PatronSearch.Concretes;
-using LMS.DataAccess.UserSystem;
+using LMS.DataAccess.Services.Searchers.PatronSearchers.Concretes;
+using LMS.DataAccess.Services.Searchers;
+using LMS.DataAccess.Systems.Concretes.Managers;
 
 namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 

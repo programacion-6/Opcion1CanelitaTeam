@@ -1,11 +1,10 @@
-using LMS.DataAccess.BookSystem.Concretes;
-using LMS.DataAccess.BookSystem.Entities;
-using LMS.DataAccess.BorrowSystem;
+using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Systems.Entities;
 using LMS.DataAccess.Console;
-using LMS.DataAccess.FineSystem;
-using LMS.DataAccess.UserSystem;
-using LMS.DataAccess.UserSystem.Concretes;
-using LMS.DataAccess.UserSystem.Creator;
+using LMS.DataAccess.Systems.Entities.User;
+using LMS.DataAccess.Systems.Concretes;
+using LMS.DataAccess.Systems.Entities.Borrowing;
+
 
 namespace LMS.DataAccess.Utils;
 

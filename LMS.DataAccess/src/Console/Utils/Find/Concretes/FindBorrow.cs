@@ -1,5 +1,6 @@
-using LMS.DataAccess.BorrowSystem;
 using LMS.DataAccess.Console.Utils.Find.Interfaces;
+using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Systems.Entities.Borrowing;
 
 namespace LMS.DataAccess.Console.Utils.Find.Concretes;
 
