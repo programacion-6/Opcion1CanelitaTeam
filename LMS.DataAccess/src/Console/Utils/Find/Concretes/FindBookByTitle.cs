@@ -14,7 +14,7 @@ public class FindBookByTitle : FindProcess
     }
     public Object FindItem()
     {
-        var book = Books.GetBooksList().Find(b => b.Title == Criteria);
+        var book = Books.GetAllBooks().Find(b => b.Title == Criteria);
         if (book == null)
         {
             throw new InvalidOperationException($"No book found with title: {Criteria}");

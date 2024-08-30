@@ -42,13 +42,18 @@ namespace LMS.DataAccess.Services.Validators
             return stock > 0;
         }
 
-        public bool ValidateUpdateParameters(string title, string? newTitle = null, string? newAuthor = null, string? newGenre = null, int? newStock = null)
+        public bool ValidatePublicationDate(DateTime date)
         {
-            return ValidateTitle(title) &&
-                   (newTitle == null || ValidateTitle(newTitle)) &&
-                   (newAuthor == null || ValidateAuthor(newAuthor)) &&
-                   (newGenre == null || ValidateGenre(newGenre)) &&
-                   (newStock == null || ValidateStock((int)newStock));
+            return date <= DateTime.Now;
+        }
+
+        public bool ValidateUpdateParameters(Book book)
+        {
+            return (book.Title == null || ValidateTitle(book.Title)) &&
+                   (book.Author == null || ValidateAuthor(book.Author)) &&
+                   (book.Genre == null || ValidateGenre(book.Genre)) &&
+                   ValidatePublicationDate(book.PublicationDate) &&
+                   ValidateStock((int)book.Stock);
         }
     }
 }

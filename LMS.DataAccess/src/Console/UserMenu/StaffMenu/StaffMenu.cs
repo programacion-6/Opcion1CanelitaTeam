@@ -66,7 +66,7 @@ public class StaffMenu : UserMenuTemplate
                     searchMenu.ShowSearchMenu();
                     break;
                 case "Books List":
-                    page.setPagination(new BookPagination(_books.GetBooksList()));
+                    page.setPagination(new BookPagination(_books.GetAllBooks()));
                     page.Execute();
                     break;
                 case "Patron List":

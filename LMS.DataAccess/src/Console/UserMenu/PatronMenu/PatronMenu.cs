@@ -59,7 +59,7 @@ public class PatronMenu : UserMenuTemplate
                     break;
 
                 case "Books List":
-                    page.setPagination(new BookPagination(_books.GetBooksList()));
+                    page.setPagination(new BookPagination(_books.GetAllBooks()));
                     page.Execute();
                     break;
 

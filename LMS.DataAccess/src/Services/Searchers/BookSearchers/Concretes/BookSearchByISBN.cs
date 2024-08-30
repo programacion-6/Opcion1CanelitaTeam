@@ -11,7 +11,7 @@ public class BookSearchByISBN : BookSearchTemplate<string>
     protected override List<Book> Search(string isbn)
     {
         List<Book> result = new List<Book>();
-        foreach (Book book in Repository.GetBooksList())
+        foreach (Book book in Repository.GetAllBooks())
         {
             if (book.ISBN.Equals(isbn, StringComparison.OrdinalIgnoreCase))
             {

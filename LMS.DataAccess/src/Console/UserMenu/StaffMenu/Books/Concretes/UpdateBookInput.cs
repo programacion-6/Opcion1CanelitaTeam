@@ -19,7 +19,7 @@ public class AddUpdateInput : BookInput
 
     public void BookOption()
     {
-        var title = AnsiConsole.Prompt(new TextPrompt<string>("Enter the title of the book to update:"));
+        var title = AnsiConsole.Prompt(new TextPrompt<string>("Enter the isbn of the book to update:"));
 
         Book? book = (Book) PerformFind.Execute(new FindBookByTitle(_books, title));
 
@@ -43,13 +43,9 @@ public class AddUpdateInput : BookInput
             {
                 newPublicationDate = book.PublicationDate;
             }
+            Book newBook = new Book(newTitle, newAuthor, newGenre, newPublicationDate, book.ISBN);
 
-            _books.UpdateBook(title,
-                string.IsNullOrWhiteSpace(newTitle) ? book.Title : newTitle,
-                string.IsNullOrWhiteSpace(newAuthor) ? book.Author : newAuthor,
-                string.IsNullOrWhiteSpace(newGenre) ? book.Genre : newGenre,
-                newPublicationDate,
-                newStock);
+            _books.UpdateBook(book.ISBN, newBook);
 
             AnsiConsole.MarkupLine("[green]Book updated successfully.[/]");
         }
