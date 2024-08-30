@@ -23,6 +23,7 @@ public class PatronMenu : UserMenuTemplate
     {
         while (true)
         {
+            AnsiConsole.Clear();
             var options = new[]
             {
                 "User details",

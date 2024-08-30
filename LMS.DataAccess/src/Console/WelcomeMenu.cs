@@ -26,6 +26,7 @@ public class WelcomeMenu
     {
         while (true)
         {
+            AnsiConsole.Clear();
             var choice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("[green]Welcome to the Library System[/]")
