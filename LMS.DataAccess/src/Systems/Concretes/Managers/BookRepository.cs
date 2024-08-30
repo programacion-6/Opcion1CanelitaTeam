@@ -34,7 +34,7 @@ public class BookRepository : IBookRepository
 
         if (bookToUpdate == null)
         {
-            System.Console.WriteLine("[ERROR] Book with not found.");
+            System.Console.WriteLine("[ERROR] Book not found.");
             return;
         }
 
