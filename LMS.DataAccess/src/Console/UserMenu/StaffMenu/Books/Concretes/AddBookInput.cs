@@ -27,7 +27,7 @@ public class AddBookInput : BookInput
             AnsiConsole.MarkupLine("[red]Invalid date format. Please use yyyy-MM-dd.[/]");
             publicationDateInput = AnsiConsole.Prompt(new TextPrompt<string>("Enter the publication date (yyyy-MM-dd) of the book:"));
         }
-        var isbn = AnsiConsole.Prompt(new TextPrompt<string>("Enter the ISBN of the book:"));
+        var isbn = Generator.GenerateISBN();
         var stockInput = AnsiConsole.Prompt(new TextPrompt<string>("Enter the stock of the book:"));
         int stock;
         while (!int.TryParse(stockInput, out stock))
