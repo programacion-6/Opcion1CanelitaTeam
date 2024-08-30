@@ -25,8 +25,8 @@ public class PatronsBorrowMenu
     {
         while (true)
         {
+            AnsiConsole.Clear();
             var options = new[] { "Borrow book", "Return book", "Exit" };
-
             var selectedOption = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("Patron Books Menu")
@@ -42,7 +42,7 @@ public class PatronsBorrowMenu
                     break;
 
                 case "Return book":
-                    borrowAction = new BorrowAction();
+                    borrowAction = new BorrowAction();          AnsiConsole.Clear();
                     borrowAction.SetBorrow(new ReturnBorrow(_patron, _borrows, _books, _fines));
                     borrowAction.Execute();
                     break;
