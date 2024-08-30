@@ -74,10 +74,4 @@ public class PatronMenu : UserMenuTemplate
             }
         }
     }
-    private void Pause()
-    {
-        AnsiConsole.MarkupLine("[gray]Press any key to continue...[/]");
-        System.Console.ReadKey(true);
-        AnsiConsole.Clear();
-    }
 }
