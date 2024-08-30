@@ -59,6 +59,13 @@ public class Login
         AnsiConsole.Clear();
         AnsiConsole.MarkupLine("[red]Invalid username or password. Please try again.[/]");
         var menu = new WelcomeMenu(_patrons, _staffs, _borrows, _books, _fines);
+        Pause();
         menu.ShowMenu();
+    }
+    private void Pause()
+    {
+        AnsiConsole.MarkupLine("[gray]Press any key to continue...[/]");
+        System.Console.ReadKey(true);
+        AnsiConsole.Clear();
     }
 }

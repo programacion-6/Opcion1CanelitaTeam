@@ -52,19 +52,16 @@ public class PatronMenu : UserMenuTemplate
                 case "Borrow Options":
                     var borrowMenu = new PatronsBorrowMenu(_borrows, _patron, _books, _fines);
                     borrowMenu.PatronBooksMenu();
-                    Pause();
                     break;
 
                 case "Search Tool":
                     var searchMenu = new PatronSearchMenu(_books);
                     searchMenu.PatronSearchMenuOptions();
-                    Pause();
                     break;
 
                 case "Books List":
                     page.setPagination(new BookPagination(_books.GetBooksList()));
                     page.Execute();
-                    Pause();
                     break;
 
                 case "Exit":
