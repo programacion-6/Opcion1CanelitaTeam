@@ -22,6 +22,7 @@ public class StaffSearchMenu
     {
         while (true)
         {
+            AnsiConsole.Clear();
             var options = new[]
             {
                 "Search book by Title",
@@ -45,26 +46,31 @@ public class StaffSearchMenu
                 case "Search book by Title":
                     search.SetSearchOption(new SearchByTitleInput(_books));
                     search.Execute();
+                    Pause();
                     break;
 
                 case "Search book by Author":
                     search.SetSearchOption(new SearchByAuthorInput(_books));
                     search.Execute();
+                    Pause();
                     break;
 
                 case "Search book by ISBN":
                     search.SetSearchOption(new SearchByISBNInput(_books));
                     search.Execute();
+                    Pause();
                     break;
 
                 case "Search patron by Name":
                     search.SetSearchOption(new SearchPatronByNameInput(_patrons));
                     search.Execute();
+                    Pause();
                     break;
 
                 case "Search patron by Membership Number":
                     search.SetSearchOption(new SearchPatronByMembershipNumberInput(_patrons));
                     search.Execute();
+                    Pause();
                     break;
 
                 case "Exit":
@@ -76,5 +82,11 @@ public class StaffSearchMenu
                     break;
             }
         }
+    }
+    private void Pause()
+    {
+        AnsiConsole.MarkupLine("[gray]Press any key to continue...[/]");
+        System.Console.ReadKey(true);
+        AnsiConsole.Clear();
     }
 }
