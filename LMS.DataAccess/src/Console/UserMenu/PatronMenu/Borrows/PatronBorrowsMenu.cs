@@ -42,7 +42,8 @@ public class PatronsBorrowMenu
                     break;
 
                 case "Return book":
-                    borrowAction = new BorrowAction();          AnsiConsole.Clear();
+                    borrowAction = new BorrowAction();          
+                    AnsiConsole.Clear();
                     borrowAction.SetBorrow(new ReturnBorrow(_patron, _borrows, _books, _fines));
                     borrowAction.Execute();
                     break;
