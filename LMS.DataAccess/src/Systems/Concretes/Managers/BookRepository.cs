@@ -1,4 +1,6 @@
 
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Services.Validators;
 using LMS.DataAccess.Systems.Entities;
 using LMS.DataAccess.Systems.Interfaces;
@@ -24,7 +26,7 @@ public class BookRepository : IBookRepository
         }
         else
         {
-            System.Console.WriteLine("[ERROR] Book cannot be added. Invalid data.");
+            ErrorHandler.HandleError(new InvalidInputException("Book cannot be added. Invalid data."));
         }
     }
 
@@ -50,7 +52,7 @@ public class BookRepository : IBookRepository
         }
         else
         {
-            System.Console.WriteLine($"[ERROR] Book with title '{bookToUpdate.Title}' cannot be updated. Invalid data.");
+            ErrorHandler.HandleError(new InvalidInputException($"Book with title '{bookToUpdate.Title}' cannot be updated. Invalid data."));
         }
     }
 
@@ -67,6 +69,7 @@ public class BookRepository : IBookRepository
         else
         {
             System.Console.WriteLine($"[ERROR] Book cannot be removed. Invalid isbn.");
+            ErrorHandler.HandleError(new InvalidInputException("Book cannot be removed. Invalid data."));
         }
     }
 
@@ -83,6 +86,7 @@ public class BookRepository : IBookRepository
         else
         {
             System.Console.WriteLine($"[ERROR] No books found in the genre '{genre}'. Invalid genre.");
+            ErrorHandler.HandleError(new InvalidInputException($"No books found in the genre '{genre}'. Invalid genre."));
         }
     }
 

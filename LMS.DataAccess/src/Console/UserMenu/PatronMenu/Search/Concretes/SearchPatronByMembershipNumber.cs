@@ -1,4 +1,6 @@
 using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Interfaces;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Services.Searchers;
 using LMS.DataAccess.Services.Searchers.PatronSearchers.Concretes;
 using LMS.DataAccess.Systems.Concretes.Managers;
@@ -24,7 +26,7 @@ public class SearchPatronByMembershipNumberInput : SearchInput
         }
         else
         {
-            System.Console.WriteLine("Invalid membership number. Please enter a valid number.");
+            ErrorHandler.HandleError(new InvalidInputException("Invalid membership number. Please enter a valid number."));
         }
     }
 }

@@ -1,5 +1,6 @@
 using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Logs;
 using LMS.DataAccess.Systems.Entities;
 
 namespace LMS.DataAccess.Systems.Concretes.Managers;
@@ -21,7 +22,7 @@ public class FineManager
         {
             if (Fines.Exists(f => f.GetBorrow().Equals(fine.GetBorrow())))
             {
-                throw new FineAlreadyExistsException("A fine already exists for this borrow record.");
+                ErrorHandler.HandleError(new FineAlreadyExistsException("A fine already exists for this borrow record."));
             }
             
             Fines.Add(fine);

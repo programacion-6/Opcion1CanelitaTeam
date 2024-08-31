@@ -1,4 +1,5 @@
 using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities.User;
 
@@ -15,7 +16,7 @@ public abstract class PatronSearchTemplate<T> : SearchBase<PatronManager, Patron
 
     protected override void NoResultsFound()
     {
-        throw new PatronNotFoundException("No patrons found matching with the search criteria.");
+        ErrorHandler.HandleError(new PatronNotFoundException("No patrons found matching with the search criteria."));
     }
 
     protected abstract override List<Patron> Search(T criterion);

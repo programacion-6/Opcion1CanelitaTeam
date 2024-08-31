@@ -1,5 +1,6 @@
 using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Logs;
 using LMS.DataAccess.Services.Reports.Abstracts;
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities.Borrowing;
@@ -47,7 +48,7 @@ public class BorrowPatronHistory : BaseReport
 
             if (!foundBorrowForPatron)
             {
-                throw new BorrowNotFoundException($"No borrow records found for {patronName}.");
+                ErrorHandler.HandleError(new BorrowNotFoundException($"No borrow records found for {patronName}."));
             }
         }
         catch (BorrowNotFoundException ex)

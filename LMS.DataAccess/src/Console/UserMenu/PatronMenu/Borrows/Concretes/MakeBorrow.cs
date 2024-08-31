@@ -1,6 +1,8 @@
 using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Interfaces;
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities;
 using LMS.DataAccess.Systems.Entities.Borrowing;
@@ -47,10 +49,6 @@ public class MakeBorrow : BorrowInput
                 {
                     AnsiConsole.MarkupLine("[yellow] Book is out of stock. [/]");
                 }
-            }
-            else
-            {
-                System.Console.WriteLine($"There is no book with {bookTitle} Title");
             }
         }
     }

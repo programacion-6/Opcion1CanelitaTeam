@@ -2,6 +2,8 @@ using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Interfaces;
 using LMS.DataAccess.Services.Searchers;
 using LMS.DataAccess.SearchSystem.BookSearchers.Concretes;
+using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Exceptions.Concretes;
 
 namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 
@@ -22,7 +24,7 @@ public class SearchByTitleInput : SearchInput
         }
         else
         {
-            System.Console.WriteLine("Title cannot be null or empty.");
+            ErrorHandler.HandleError(new InvalidInputException("Title cannot be null or empty."));
         }
     }
 }

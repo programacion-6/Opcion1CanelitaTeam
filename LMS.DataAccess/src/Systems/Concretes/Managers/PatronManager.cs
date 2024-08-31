@@ -1,5 +1,7 @@
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Services.Validators;
 using LMS.DataAccess.Systems.Entities.User;
 using LMS.DataAccess.Utils;
@@ -26,7 +28,7 @@ public class PatronManager
             }
             else
             {
-                System.Console.WriteLine($"[ERROR] Invalid patron data or patron already exists.");
+                ErrorHandler.HandleError(new InvalidInputException("Invalid patron data or patron already exists."));
             }
         }
     public void UpdatePatron(string name, string? newName = null, int? newMembershipNumber = null, int? newPhoneNumber = null, string? newDirection = null, string? newPassword = null)
@@ -34,7 +36,7 @@ public class PatronManager
         Patron? patron = FindPatron(name);
             if (patron == null)
             {
-                System.Console.WriteLine($"[ERROR] Patron '{name}' not found.");
+                ErrorHandler.HandleError(new InvalidInputException($"Patron '{name}' not found."));
                 return;
             }
 
@@ -53,7 +55,7 @@ public class PatronManager
             }
             else
             {
-                System.Console.WriteLine($"[ERROR] Invalid data for patron '{name}'.");
+                ErrorHandler.HandleError(new InvalidInputException($"Invalid data for patron '{name}'."));
             }
 
     }
@@ -68,7 +70,7 @@ public class PatronManager
             }
             else
             {
-                System.Console.WriteLine($"[ERROR] Patron '{name}' not found.");
+                ErrorHandler.HandleError(new InvalidInputException($"Patron '{name}'not found."));
             }
     }
 

@@ -1,6 +1,7 @@
 using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Services.Validators;
+using LMS.DataAccess.Core.Logs;
 using LMS.DataAccess.Systems.Entities;
 using LMS.DataAccess.Systems.Entities.Borrowing;
 using LMS.DataAccess.Systems.Entities.User;
@@ -30,7 +31,7 @@ public class BorrowManager
         }
         else
         {
-            System.Console.WriteLine($"Cannot add borrow invalid data. Try again");
+            ErrorHandler.HandleError(new InvalidDateRangeException("Cannot add borrow invalid data. Try again"));
         }
     }
 
@@ -42,7 +43,8 @@ public class BorrowManager
 
             if (borrow == null)
             {
-                throw new BorrowNotFoundException($"No borrow record found for {patronName} and {bookTitle}.");
+                ErrorHandler.HandleError(new BorrowNotFoundException($"No borrow record found for {patronName} and {bookTitle}."));
+                
             }
 
             Borrows.Remove(borrow);
@@ -83,7 +85,7 @@ public class BorrowManager
 
             if (!hasActiveBorrows)
             {
-                throw new BorrowNotFoundException($"No active borrows found for {patron.getName()}.");
+                ErrorHandler.HandleError(new BorrowNotFoundException($"No active borrows found for {patron.getName()}."));
             }
         }
         catch (BorrowNotFoundException ex)

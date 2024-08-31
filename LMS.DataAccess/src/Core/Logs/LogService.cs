@@ -1,4 +1,6 @@
-namespace LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Handlers;
+
+namespace LMS.DataAccess.Core.Logs;
 
 public class LogService : ILogService
 {

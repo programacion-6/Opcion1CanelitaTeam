@@ -1,6 +1,8 @@
 using LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Interfaces;
 using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities;
 using LMS.DataAccess.Systems.Entities.Borrowing;
@@ -50,10 +52,6 @@ public class ReturnBorrow : BorrowInput
                     System.Console.WriteLine($"A Fine was created because DueDate was {borrow.GetDueDate()} and was returned on {DateTime.Now}");
                     currentFine.FineDetails();
                 }
-            }
-            else
-            {
-                System.Console.WriteLine($"User {Patron.getName()} dont have a borrow with this title");
             }
         }
     }

@@ -1,5 +1,6 @@
 using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Logs;
 using LMS.DataAccess.Services.Statistics.Abstracts;
 using LMS.DataAccess.Systems.Concretes.Managers;
 
@@ -25,7 +26,7 @@ public class MostBorrowedBook : StatisticReport
             
             if (borrowList == null)
             {
-                throw new BorrowNotFoundException("Failed to retrieve borrow records. The list doesn't exist.");
+                ErrorHandler.HandleError(new BorrowNotFoundException("Failed to retrieve borrow records. The list doesn't exist."));
             }
 
             var topBooks = borrowList

@@ -3,6 +3,8 @@ using LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Interfaces;
 
 using Spectre.Console;
 using LMS.DataAccess.Systems.Entities;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
 
@@ -32,7 +34,7 @@ public class AddBookInput : BookInput
         int stock;
         while (!int.TryParse(stockInput, out stock))
         {
-            AnsiConsole.MarkupLine("[red]Invalid stock quantity. Please enter a valid number.[/]");
+            ErrorHandler.HandleError(new InvalidInputException("Invalid stock quantity. Please enter a valid number."));
             stockInput = AnsiConsole.Prompt(new TextPrompt<string>("Enter the stock of the book:"));
         }
 
