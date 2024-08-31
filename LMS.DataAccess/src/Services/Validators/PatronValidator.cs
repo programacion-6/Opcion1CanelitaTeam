@@ -6,8 +6,8 @@ namespace LMS.DataAccess.Services.Validators
     {
         private const int MIN_NAME_LENGTH = 3;
         private const int MAX_NAME_LENGTH = 50;
-        private const int PHONE_NUMBER_LENGTH = 10;
-        private const int MEMBERSHIP_NUMBER_LENGTH = 6;
+        private const int PHONE_NUMBER_LENGTH = 6;
+        private const int MEMBERSHIP_NUMBER_LENGTH = 10;
         private const int MIN_PASSWORD_LENGTH = 6;
 
         public bool ValidatePatron(Patron patron)

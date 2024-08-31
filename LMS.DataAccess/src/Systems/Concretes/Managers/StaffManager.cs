@@ -16,16 +16,18 @@ public class StaffManager
 
     public void AddStaff(Staff staff)
     {
-        string staffName = staff.getName();
-        Staff? staffaux = (Staff) PerformFind.Execute(new FindStaffByName(StaffList, staffName));
-        if (staffaux == null)
+        if (staff != null)
         {
-            StaffList.Add(staff);
-            System.Console.WriteLine($"Staff with name '{staff.getName()}' has been added.");
-        }
-        else
-        {
-            System.Console.WriteLine($"Staff with name '{staff.getName()}' already exists.");
+            string staffName = staff.getName();
+            if (StaffList.Contains(staff))
+            {
+                System.Console.WriteLine($"Staff with name '{staffName}' already exists.");
+            }
+            else
+            {
+                StaffList.Add(staff);
+                System.Console.WriteLine($"Staff with name '{staffName}' has been added.");
+            }
         }
     }
 
