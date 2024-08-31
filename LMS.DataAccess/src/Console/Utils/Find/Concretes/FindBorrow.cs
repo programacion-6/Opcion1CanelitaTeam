@@ -22,7 +22,7 @@ public class FindBorrow : FindProcess
         {
             string currentPatron = borrow.GetPatron().getName();
             string currentBook = borrow.GetBook().Title;
-            if (currentPatron == PatronName && currentBook == BookTitle)
+            if (currentPatron == PatronName && currentBook == BookTitle && borrow.GetDelivered() == false)
             {
                 return borrow;
             }

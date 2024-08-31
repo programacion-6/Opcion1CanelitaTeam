@@ -34,12 +34,19 @@ public class MakeBorrow : BorrowInput
 
             if (book != null)
             {
-                DateTime BorrowDate = DateTime.Now;
-                DateTime DueDate = BorrowDate.AddMonths(1);
-                book.DecreaseStock();
-                Borrow borrow = new Borrow(Patron, book, BorrowDate, DueDate);
+                if (book.Stock > 0)
+                {
+                    DateTime BorrowDate = DateTime.Now;
+                    DateTime DueDate = BorrowDate.AddMonths(1);
+                    book.DecreaseStock();
 
-                Borrows.AddBorrow(borrow);
+                    Borrow borrow = new Borrow(Patron, book, BorrowDate, DueDate);
+                    Borrows.AddBorrow(borrow);
+                }
+                else
+                {
+                    AnsiConsole.MarkupLine("[yellow] Book is out of stock. [/]");
+                }
             }
             else
             {
