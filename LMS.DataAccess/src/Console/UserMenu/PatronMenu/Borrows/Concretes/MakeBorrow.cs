@@ -3,6 +3,7 @@ using LMS.DataAccess.Console.Utils.Find;
 using LMS.DataAccess.Console.Utils.Find.Concretes;
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities;
+using LMS.DataAccess.Systems.Entities.Borrowing;
 using LMS.DataAccess.Systems.Entities.User;
 
 using Spectre.Console;
@@ -33,11 +34,19 @@ public class MakeBorrow : BorrowInput
 
             if (book != null)
             {
-                DateTime BorrowDate = DateTime.Now;
-                DateTime DueDate = BorrowDate.AddMonths(1);
-                book.DecreaseStock();
+                if (book.Stock > 0)
+                {
+                    DateTime BorrowDate = DateTime.Now;
+                    DateTime DueDate = BorrowDate.AddMonths(1);
+                    book.DecreaseStock();
 
-                Borrows.AddBorrow(Patron, book, BorrowDate, DueDate);
+                    Borrow borrow = new Borrow(Patron, book, BorrowDate, DueDate);
+                    Borrows.AddBorrow(borrow);
+                }
+                else
+                {
+                    AnsiConsole.MarkupLine("[yellow] Book is out of stock. [/]");
+                }
             }
             else
             {

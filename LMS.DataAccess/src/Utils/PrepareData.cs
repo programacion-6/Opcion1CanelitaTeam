@@ -39,7 +39,7 @@ public class PrepareData
         return Staffs;
     }
 
-    private static List<Book> PrepareBooks(BookRepository repository)
+    private static void PrepareBooks(BookRepository repository)
     {
         List<Book> books = new List<Book>();
 
@@ -54,11 +54,9 @@ public class PrepareData
             book.setStock(10);
             repository.AddBook(book);
         }
-
-        return books;
     }
 
-    private static List<Borrow> PrepareBorrows(List<Patron> patrons, List<Book> books)
+    private static void PrepareBorrows(BorrowManager borrowManager, List<Patron> patrons, List<Book> books)
     {
         List<Borrow> borrows = new List<Borrow>();
 
@@ -76,7 +74,10 @@ public class PrepareData
         borrows.Add(borrow4);
         borrows.Add(borrow5);
 
-        return borrows;
+        foreach (var borrow in borrows)
+        {
+            borrowManager.AddBorrow(borrow);
+        }
     }
 
     public static Library PrepareLibrary()
@@ -89,7 +90,8 @@ public class PrepareData
         PrepareBooks(Books);
 
         FineManager Fines = new FineManager();
-        BorrowManager Borrows = new BorrowManager(PrepareBorrows(PreparePatrons(), Books.GetAllBooks()));
+        BorrowManager Borrows = new BorrowManager();
+        PrepareBorrows(Borrows, Patrons.GetPatrons(), Books.GetAllBooks());
         return new Library(Patrons, Staffs, Borrows, Books, Fines);
     }
 }

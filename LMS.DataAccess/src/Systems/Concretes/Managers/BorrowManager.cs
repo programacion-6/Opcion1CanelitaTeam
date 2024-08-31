@@ -1,5 +1,6 @@
 using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Services.Validators;
 using LMS.DataAccess.Systems.Entities;
 using LMS.DataAccess.Systems.Entities.Borrowing;
 using LMS.DataAccess.Systems.Entities.User;
@@ -10,34 +11,26 @@ public class BorrowManager
 {
     List<Borrow> Borrows;
     private readonly ILogService _logService;
+    private BorrowValidator _borrowValidator;
 
-    public BorrowManager(List<Borrow> borrows)
+    public BorrowManager()
     {
-        Borrows = borrows;
+        Borrows = new List<Borrow>();
         _logService = new LogService();
+        _borrowValidator = new BorrowValidator();
     }
 
-    public void AddBorrow(Patron patron, Book book, DateTime borrowDate, DateTime dueDate)
+    public void AddBorrow(Borrow borrow)
     {
-        try
+
+        if (_borrowValidator.ValidateBorrow(borrow))
         {
-            if (borrowDate > dueDate)
-            {
-                throw new InvalidDateRangeException("Borrow date cannot be after due date.");
-            }
-            
-            Borrow borrow = new Borrow(patron, book, borrowDate, dueDate);
             Borrows.Add(borrow);
-            System.Console.WriteLine($"Successful Borrow of {book.Title} by {patron.getName()}"); 
+            System.Console.WriteLine($"Successful Borrow of {borrow.GetBook().Title} by {borrow.GetPatron().getName()}");
         }
-        catch (InvalidDateRangeException ex)
+        else
         {
-            System.Console.WriteLine(ex.Message);
-        }
-        catch (Exception ex)
-        {
-            System.Console.WriteLine($"An unexpected error occurred while adding a borrow.");
-            _logService.LogError(Severity.HIGH, $"{ex.Message}");            
+            System.Console.WriteLine($"Cannot add borrow invalid data. Try again");
         }
     }
 
@@ -67,18 +60,8 @@ public class BorrowManager
 
     public Borrow? FindBorrow(string patronName, string bookTitle)
     {
-        foreach (Borrow borrow in Borrows)
-        {
-            string currentPatron = borrow.GetPatron().getName();
-            string currentBook = borrow.GetBook().Title;
-
-            if (currentPatron == patronName && currentBook == bookTitle)
-            {
-                return borrow;
-            }
-        }
-
-        return null;
+        return Borrows.Find(b => b.GetPatron().getName().Equals(patronName, StringComparison.OrdinalIgnoreCase) &&
+        b.GetBook().Title.Equals(bookTitle, StringComparison.OrdinalIgnoreCase));
     }
 
     public void ActiveBorrowsFromPatron(Patron patron)
@@ -113,5 +96,6 @@ public class BorrowManager
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }
+    
     public List<Borrow> GetBorrows() => Borrows;
 }
