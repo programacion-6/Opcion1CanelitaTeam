@@ -1,9 +1,17 @@
 # Option 1 - Library Management System
 
-By Canelita Team:
+Canelita Team:
 - Ronaldo Mendoza
 - Alex Paca
 - José Luis Terán
+
+New Team Members (Los Gosus):
+- Sebasthian Salinas
+- Ignacion Villarroel
+- Luis Espinoza
+- Josue prado
+
+UML Link in [UML]([[https://docs.google.com/document/d/128JWc0ZBDK4FGLvrfFyhTGEVVu7W1VVpWqkQInYGBoM/edit?usp=sharing](https://github.com/programacion-6/Opcion1CanelitaTeam/pull/1/files)](https://drive.google.com/file/d/1IVK0H_tIamvZ8Mgc8oWo6c7geZhgwR7q/view?usp=sharing))
 
 Related Features in [Docs](https://docs.google.com/document/d/128JWc0ZBDK4FGLvrfFyhTGEVVu7W1VVpWqkQInYGBoM/edit?usp=sharing)
 
@@ -15,28 +23,28 @@ This is the directory structure that Opcion1CanelitaTeam project uses:
 
 ```bash
 .
-├── LMS.DataAccess
-│   ├── LMS.DataAccess.csproj
-│   ├── Program.cs
-│   └── src
-│       ├── BookSystem
-│       ├── BorrowSystem
-│       ├── Console
-│       ├── Core
-│       ├── FineSystem
-│       ├── ReportSystem
-│       ├── SearchSystem
-│       ├── StatisticSystem
-│       ├── UserSystem
-│       └── Utils
-├── LMS.Tests
-│   ├── GlobalUsings.cs
-│   ├── LMS.Tests.csproj
-│   └── UnitTest1.cs
-├── Opcion1CanelitaTeam.sln
+LMS.DataAccess
+│
+└── src
+    ├── Console
+    │   ├── LoginMenu
+    │   ├── UserMenu
+    │   ├── Utils
+    ├── Core
+    │   ├── Exceptions
+    │   └── Handlers
+    ├── Services
+    │   ├── Generator
+    │   ├── Reports
+    │   ├── Searchers
+    │   ├── Statistics
+    │   └── Validators
+    └── Systems
+    │   ├── Concretes
+    │   ├── Entities
+    │   ├── Interfaces
+    └── Utils
 ```
-
-You can visit this [link](https://learn.microsoft.com/en-us/dotnet/core/porting/project-structure) if you want to know more about **How to Structure .Net Projects.**
 
 ## Building
 
