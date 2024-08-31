@@ -19,7 +19,7 @@ public class PatronManager
 
     public void addPatron(Patron patron)
     {
-         if (_validator.ValidatePatron(patron) && !PatronExists(patron.getName()))
+         if (_validator.ValidatePatron(patron))
             {
                 PatronsList.Add(patron);
                 System.Console.WriteLine($"Patron '{patron.getName()}' added.");
