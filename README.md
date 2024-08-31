@@ -11,7 +11,7 @@ New Team Members (Los Gosus):
 - Luis Espinoza
 - Josue prado
 
-UML Link in [UML]([[https://docs.google.com/document/d/128JWc0ZBDK4FGLvrfFyhTGEVVu7W1VVpWqkQInYGBoM/edit?usp=sharing](https://github.com/programacion-6/Opcion1CanelitaTeam/pull/1/files)](https://drive.google.com/file/d/1IVK0H_tIamvZ8Mgc8oWo6c7geZhgwR7q/view?usp=sharing))
+UML Link in [UML](https://drive.google.com/file/d/1IVK0H_tIamvZ8Mgc8oWo6c7geZhgwR7q/view?usp=sharing)
 
 Related Features in [Docs](https://docs.google.com/document/d/128JWc0ZBDK4FGLvrfFyhTGEVVu7W1VVpWqkQInYGBoM/edit?usp=sharing)
 
