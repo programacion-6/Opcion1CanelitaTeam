@@ -22,7 +22,7 @@ public class MostActivePatron : StatisticReport
     {
         try
         {
-            var borrowList = Borrows.GetBorrows();
+            var borrowList = Borrows.GetAll();
 
             if (borrowList == null)
             {

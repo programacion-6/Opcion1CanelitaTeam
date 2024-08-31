@@ -9,8 +9,8 @@ namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 
 public class SearchByAuthorInput : SearchInput
 {
-    BookRepository _books;
-    public SearchByAuthorInput(BookRepository _books)
+    BookManager _books;
+    public SearchByAuthorInput(BookManager _books)
     {
         this._books = _books;
     }

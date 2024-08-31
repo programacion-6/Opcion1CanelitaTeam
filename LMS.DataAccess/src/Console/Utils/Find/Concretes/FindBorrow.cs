@@ -20,7 +20,7 @@ public class FindBorrow : FindProcess
 
     public object FindItem()
     {
-        foreach (Borrow borrow in Borrows.GetBorrows())
+        foreach (Borrow borrow in Borrows.GetAll())
         {
             string currentPatron = borrow.GetPatron().getName();
             string currentBook = borrow.GetBook().Title;

@@ -14,11 +14,11 @@ namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Borrows.Concretes;
 
 public class MakeBorrow : BorrowInput
 {
-    BookRepository Books;
+    BookManager Books;
     Patron Patron;
     BorrowManager Borrows;
 
-    public MakeBorrow(BookRepository Books, Patron Patron, BorrowManager Borrows)
+    public MakeBorrow(BookManager Books, Patron Patron, BorrowManager Borrows)
     {
         this.Books = Books;
         this.Patron = Patron;
@@ -43,7 +43,7 @@ public class MakeBorrow : BorrowInput
                     book.DecreaseStock();
 
                     Borrow borrow = new Borrow(Patron, book, BorrowDate, DueDate);
-                    Borrows.AddBorrow(borrow);
+                    Borrows.Add(borrow);
                 }
                 else
                 {

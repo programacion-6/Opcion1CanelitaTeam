@@ -9,10 +9,10 @@ namespace LMS.DataAccess.Console.UserMenu.StaffMenu;
 
 public class StaffSearchMenu
 {
-    private readonly BookRepository _books;
+    private readonly BookManager _books;
     private readonly PatronManager _patrons;
 
-    public StaffSearchMenu(BookRepository books, PatronManager patrons)
+    public StaffSearchMenu(BookManager books, PatronManager patrons)
     {
         _books = books;
         _patrons = patrons;

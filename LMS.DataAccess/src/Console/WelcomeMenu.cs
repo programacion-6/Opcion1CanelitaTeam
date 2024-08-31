@@ -10,10 +10,10 @@ public class WelcomeMenu
     private readonly PatronManager _patrons;
     private readonly StaffManager _staffs;
     private readonly BorrowManager _borrows;
-    private readonly BookRepository _books;
+    private readonly BookManager _books;
     private readonly FineManager _fines;
 
-    public WelcomeMenu(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookRepository books, FineManager fines)
+    public WelcomeMenu(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookManager books, FineManager fines)
     {
         _patrons = patrons;
         _staffs = staffs;

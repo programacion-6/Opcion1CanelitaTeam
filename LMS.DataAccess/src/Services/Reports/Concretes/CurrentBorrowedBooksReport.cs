@@ -28,7 +28,7 @@ public class CurrentBorrowBooksReport : BaseReport
         {
             GenerateReport();
 
-            var activeBorrows = _borrowManager.GetBorrows().Where(borrow => !borrow.GetDelivered()).ToList();
+            var activeBorrows = _borrowManager.GetAll().Where(borrow => !borrow.GetDelivered()).ToList();
 
             if (activeBorrows == null)
             {

@@ -16,10 +16,10 @@ public class ReturnBorrow : BorrowInput
 {
     Patron Patron;
     BorrowManager Borrows;
-    BookRepository Books;
+    BookManager Books;
     FineManager Fines;
 
-    public ReturnBorrow(Patron patron, BorrowManager borrows, BookRepository books, FineManager fines)
+    public ReturnBorrow(Patron patron, BorrowManager borrows, BookManager books, FineManager fines)
     {
         this.Patron = patron;
         this.Borrows = borrows;
@@ -48,7 +48,7 @@ public class ReturnBorrow : BorrowInput
                 if (DateTime.Now > borrow.GetDueDate())
                 {
                     Fine currentFine = new Fine(borrow);
-                    Fines.AddFine(currentFine);
+                    Fines.Add(currentFine);
                     System.Console.WriteLine($"A Fine was created because DueDate was {borrow.GetDueDate()} and was returned on {DateTime.Now}");
                     currentFine.FineDetails();
                 }

@@ -12,7 +12,7 @@ public class PatronSearchByMembershipNumber : PatronSearchTemplate<int>
     protected override List<Patron> Search(int membershipNumber)
     {
         List<Patron> result = new List<Patron>();
-        foreach (Patron patron in Repository.GetPatrons())
+        foreach (Patron patron in Repository.GetAll())
         {
             if (patron.getMemberShipNumber() == membershipNumber)
             {

@@ -74,7 +74,7 @@ public class ReportStaffMenu
                     System.Console.ReadKey();
                     break;
                 case "Fines List":
-                    page.setPagination(new FinesPagination(_fines.GetFines()));
+                    page.setPagination(new FinesPagination(_fines.GetAll()));
                     page.Execute();
                     break;
                 case "Exit":

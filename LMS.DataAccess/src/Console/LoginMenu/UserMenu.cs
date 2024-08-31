@@ -5,10 +5,10 @@ namespace LMS.DataAccess.Console.LoginMenu;
 public abstract class UserMenu
 {
     BorrowManager Borrows;
-    BookRepository Books;
+    BookManager Books;
     FineManager Fines;
 
-    public UserMenu(BorrowManager borrows, BookRepository books, FineManager fines)
+    public UserMenu(BorrowManager borrows, BookManager books, FineManager fines)
     {
         this.Borrows = borrows;
         this.Books = books;

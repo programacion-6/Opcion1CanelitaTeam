@@ -27,7 +27,7 @@ public class OverdueBooksReport : BaseReport
         {
             GenerateReport();
 
-            List<Borrow> borrowList = _borrowManager.GetBorrows();
+            List<Borrow> borrowList = _borrowManager.GetAll();
             if (borrowList == null)
             {
                 throw new InvalidOperationException("Failed to retrieve borrow records. The list is null.");

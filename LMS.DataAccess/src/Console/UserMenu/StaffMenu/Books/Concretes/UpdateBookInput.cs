@@ -12,18 +12,18 @@ namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
 
 public class AddUpdateInput : BookInput
 {
-    private readonly BookRepository _books;
+    private readonly BookManager _books;
 
-    public AddUpdateInput(BookRepository books)
+    public AddUpdateInput(BookManager books)
     {
         _books = books;
     }
 
     public void BookOption()
     {
-        var title = AnsiConsole.Prompt(new TextPrompt<string>("Enter the isbn of the book to update:"));
+        var isbn = AnsiConsole.Prompt(new TextPrompt<string>("Enter the isbn of the book to update:"));
 
-        Book? book = (Book) PerformFind.Execute(new FindBookByTitle(_books, title));
+        Book? book = _books.GetAll().Find(book => book.ISBN.Equals(isbn, StringComparison.OrdinalIgnoreCase));
 
         if (book != null)
         {
@@ -45,9 +45,9 @@ public class AddUpdateInput : BookInput
             {
                 newPublicationDate = book.PublicationDate;
             }
-            Book newBook = new Book(newTitle, newAuthor, newGenre, newPublicationDate, book.ISBN);
+            Book newBook = new Book(newTitle, newAuthor, newGenre, newPublicationDate, book.ISBN) {Stock = newStock};
 
-            _books.UpdateBook(book.ISBN, newBook);
+            _books.Update(newBook);
 
             AnsiConsole.MarkupLine("[green]Book updated successfully.[/]");
         }

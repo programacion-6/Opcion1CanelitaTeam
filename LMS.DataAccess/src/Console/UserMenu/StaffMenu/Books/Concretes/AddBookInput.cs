@@ -10,9 +10,9 @@ namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
 
 public class AddBookInput : BookInput
 {
-    private readonly BookRepository _books;
+    private readonly BookManager _books;
 
-    public AddBookInput(BookRepository books)
+    public AddBookInput(BookManager books)
     {
         _books = books;
     }
@@ -39,7 +39,7 @@ public class AddBookInput : BookInput
         }
 
         var newBook = new Book(title, author, genre, publicationDate, isbn) { Stock = stock };
-        _books.AddBook(newBook);
+        _books.Add(newBook);
 
         AnsiConsole.MarkupLine("[green]Book added successfully.[/]");
     }

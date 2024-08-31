@@ -6,14 +6,14 @@ namespace LMS.DataAccess.SearchSystem.BookSearchers.Concretes;
 
 public class BookSearchByAuthor : BookSearchTemplate<string>
 {
-    public BookSearchByAuthor(BookRepository bookManager) : base(bookManager)
+    public BookSearchByAuthor(BookManager bookManager) : base(bookManager)
     {
     }
 
     protected override List<Book> Search(string author)
     {
         List<Book> result = new List<Book>();
-        foreach (Book book in Repository.GetAllBooks())
+        foreach (Book book in Repository.GetAll())
         {
             if (book.Author.Equals(author, StringComparison.OrdinalIgnoreCase))
             {
