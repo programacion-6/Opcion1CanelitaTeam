@@ -76,8 +76,24 @@ public class PatronManager
 
     public Patron? ValidatePatron(string name, string password)
         {
-            Patron? patron = FindPatron(name);
-            return (patron != null && _validator.ValidatePassword(password)) ? patron : null;
+           try
+        {
+            foreach (Patron patron in PatronsList)
+            {
+                string patronName = patron.getName();
+                string patronPassword = patron.getPassword();
+                if (StringComparator.compare(patronName, name) && StringComparator.compare(patronPassword, password))
+                {
+                    return patron;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine($"Invalid credentials: {ex.Message}");
+        }
+
+        return null;
         }
     public List<Patron> GetPatrons() => PatronsList;
     private Patron? FindPatron(string name) =>

@@ -32,7 +32,7 @@ public class FindPatronByName : FindProcess
         catch (Exception ex)
         {
             System.Console.WriteLine($"An error occurred while searching for the staff: {ex.Message}");
-        }
-        throw new InvalidOperationException("The requested item was not found."); ;
+        } 
+        return null;
     }
 }

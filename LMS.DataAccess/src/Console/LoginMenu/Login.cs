@@ -1,5 +1,7 @@
 using LMS.DataAccess.Console.UserMenu.PatronMenu;
 using LMS.DataAccess.Console.UserMenu.StaffMenu;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities.User;
 using Spectre.Console;
@@ -45,6 +47,7 @@ public class Login
                 staffOptions.UserMenu();
                 return;
             }
+        
 
             Patron? patron = _patrons.ValidatePatron(username, password);
             if (patron != null)
@@ -56,8 +59,7 @@ public class Login
             }
         }
         
-        AnsiConsole.Clear();
-        AnsiConsole.MarkupLine("[red]Invalid username or password. Please try again.[/]");
+        ErrorHandler.HandleError(new InvalidInputException("Invalid username or password. Please try again."));
         var menu = new WelcomeMenu(_patrons, _staffs, _borrows, _books, _fines);
         Pause();
         menu.ShowMenu();
