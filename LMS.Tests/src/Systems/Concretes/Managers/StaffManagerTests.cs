@@ -1,60 +1,62 @@
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities.User;
 
-public class StaffnManagerTests
+public class StaffManagerTests
 {
-    
-    [Fact]
-    public void AddStaff_ValidStaff_ShouldAddToList()
+    private StaffManager _staffManager;
+
+    public StaffManagerTests()
     {
-        var staffManager = new StaffManager();
-        var staff = new Staff("Polo", 1234567890, 123456, "Sud", "Polo123");
+        _staffManager = new StaffManager();
+    }
 
-        staffManager.AddStaff(staff);
-
-        var staffs = staffManager.GetStaffs();
-        Assert.Contains(staff, staffs);
+    private Staff CreateTestStaff()
+    {
+        return new Staff("John Doe", 1234567890, 123456, "123 Main St", "Password1");
     }
 
     [Fact]
-    public void UpdateStaff_ValidData_ShouldUpdateStaff()
+    public void Add_ValidStaff_ReturnsTrue()
     {
-        var staffManager = new StaffManager();
-        var staff = new Staff("John Doe", 1234567890, 123456, "123 Main St", "Password123");
+        var staff = CreateTestStaff();
 
-        staffManager.AddStaff(staff);
-        staffManager.UpdateStaff("John Doe", newName: "Jane Doe", newPhoneNumber: 124456);
+        var result = _staffManager.Add(staff);
 
-        var updatedStaff = staffManager.GetStaffs().Find(p => p.getName() == "Jane Doe");
-
-        Assert.NotNull(updatedStaff);
-        Assert.Equal(124456, updatedStaff.getPhoneNumber());
+        Assert.True(result);
+        Assert.Single(_staffManager.GetAll());
     }
 
     [Fact]
-    public void RemoveStaff_ExistingStaff_ShouldRemoveFromList()
+    public void Add_DuplicateStaff_ReturnsFalse()
     {
-        var staffManager = new StaffManager();
-        var staff = new Staff("John Doe", 1234567890, 123456, "123 Main St", "Password123");
+        var staff = CreateTestStaff();
+        _staffManager.Add(staff);
 
-        staffManager.AddStaff(staff);
-        staffManager.RemoveStaff("John Doe");
+        var result = _staffManager.Add(staff);
 
-        var staffs = staffManager.GetStaffs();
-        Assert.DoesNotContain(staff, staffs);
+        Assert.False(result);
     }
 
     [Fact]
-    public void ValidateStaff_ValidCredentials_ShouldReturnStaff()
+    public void Remove_ValidStaff_ReturnsTrue()
     {
-        var staffManager = new StaffManager();
-        var staff = new Staff("John Doe", 1234567890, 123456, "123 Main St", "Password123");
+        var staff = CreateTestStaff();
+        _staffManager.Add(staff);
 
-        staffManager.AddStaff(staff);
+        var result = _staffManager.Remove(staff);
 
-        var validatedStaff = staffManager.ValidateStaff("John Doe", "Password123");
-
-        Assert.NotNull(validatedStaff);
-        Assert.Equal(staff, validatedStaff);
+        Assert.True(result);
+        Assert.Empty(_staffManager.GetAll());
     }
-}   
+
+    [Fact]
+    public void Remove_NonExistentStaff_ReturnsFalse()
+    {
+        var staff = CreateTestStaff();
+
+        var result = _staffManager.Remove(staff);
+
+        Assert.False(result);
+    }
+
+}

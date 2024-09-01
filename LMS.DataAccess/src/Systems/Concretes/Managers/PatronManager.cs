@@ -55,7 +55,7 @@ public class PatronManager : IBaseManager<Patron>
 
     public bool Remove(Patron patron)
     {
-        if (patron != null)
+        if (patron != null && PatronsList.Contains(patron))
         {
             PatronsList.Remove(patron);
             System.Console.WriteLine($"Patron '{patron}' removed.");

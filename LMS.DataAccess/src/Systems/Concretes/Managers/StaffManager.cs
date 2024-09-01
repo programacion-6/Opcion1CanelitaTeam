@@ -66,7 +66,7 @@ public class StaffManager : IBaseManager<Staff>
 
     public bool Remove(Staff staff)
     {
-        if (staff != null)
+        if (staff != null && StaffList.Contains(staff))
         {
             System.Console.WriteLine($"Staff with name '{staff.getName()}' has been removed.");
             StaffList.Remove(staff);
