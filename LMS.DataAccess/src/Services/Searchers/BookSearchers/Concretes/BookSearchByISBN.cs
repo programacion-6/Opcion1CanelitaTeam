@@ -6,12 +6,12 @@ namespace LMS.DataAccess.SearchSystem.BookSearchers.Concretes;
 
 public class BookSearchByISBN : BookSearchTemplate<string>
 {
-    public BookSearchByISBN(BookRepository bookManager) : base(bookManager) { }
+    public BookSearchByISBN(BookManager bookManager) : base(bookManager) { }
 
     protected override List<Book> Search(string isbn)
     {
         List<Book> result = new List<Book>();
-        foreach (Book book in Repository.GetAllBooks())
+        foreach (Book book in Repository.GetAll())
         {
             if (book.ISBN.Equals(isbn, StringComparison.OrdinalIgnoreCase))
             {

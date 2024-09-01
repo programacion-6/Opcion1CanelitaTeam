@@ -13,7 +13,7 @@ public class PatronMenu : UserMenuTemplate
 {
     private readonly Patron _patron;
 
-    public PatronMenu(Patron patron, BorrowManager borrows, BookRepository books, FineManager fines)
+    public PatronMenu(Patron patron, BorrowManager borrows, BookManager books, FineManager fines)
         : base(borrows, books, fines)
     {
         _patron = patron;
@@ -60,7 +60,7 @@ public class PatronMenu : UserMenuTemplate
                     break;
 
                 case "Books List":
-                    page.setPagination(new BookPagination(_books.GetAllBooks()));
+                    page.setPagination(new BookPagination(_books.GetAll()));
                     page.Execute();
                     break;
 

@@ -13,10 +13,10 @@ public class Login
     private readonly PatronManager _patrons;
     private readonly StaffManager _staffs;
     private readonly BorrowManager _borrows;
-    private readonly BookRepository _books;
+    private readonly BookManager _books;
     private readonly FineManager _fines;
 
-    public Login(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookRepository books, FineManager fines)
+    public Login(PatronManager patrons, StaffManager staffs, BorrowManager borrows, BookManager books, FineManager fines)
     {
         _patrons = patrons;
         _staffs = staffs;

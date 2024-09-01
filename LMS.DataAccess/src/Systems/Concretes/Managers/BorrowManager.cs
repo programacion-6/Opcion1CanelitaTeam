@@ -5,10 +5,13 @@ using LMS.DataAccess.Core.Logs;
 using LMS.DataAccess.Systems.Entities;
 using LMS.DataAccess.Systems.Entities.Borrowing;
 using LMS.DataAccess.Systems.Entities.User;
+using LMS.DataAccess.Systems.Interfaces;
+
+using Spectre.Console;
 
 namespace LMS.DataAccess.Systems.Concretes.Managers;
 
-public class BorrowManager
+public class BorrowManager : IBaseManager<Borrow>
 {
     List<Borrow> Borrows;
     private readonly ILogService _logService;
@@ -21,42 +24,66 @@ public class BorrowManager
         _borrowValidator = new BorrowValidator();
     }
 
-    public void AddBorrow(Borrow borrow)
+    public bool Add(Borrow borrow)
     {
 
         if (_borrowValidator.ValidateBorrow(borrow))
         {
             Borrows.Add(borrow);
             System.Console.WriteLine($"Successful Borrow of {borrow.GetBook().Title} by {borrow.GetPatron().getName()}");
+            return true;
         }
         else
         {
-            ErrorHandler.HandleError(new InvalidDateRangeException("Cannot add borrow invalid data. Try again"));
+            System.Console.WriteLine($"Cannot add borrow invalid data. Try again");
+            return false;
         }
     }
 
-    public void RemoveBorrow(string patronName, string bookTitle)
+    public bool Remove(Borrow borrow)
     {
         try
         {
-            Borrow? borrow = FindBorrow(patronName, bookTitle);
-
             if (borrow == null)
             {
-                ErrorHandler.HandleError(new BorrowNotFoundException($"No borrow record found for {patronName} and {bookTitle}."));
-                
+                ErrorHandler.HandleError(new BorrowNotFoundException($"No borrow record found."));
+                return false;
             }
 
             Borrows.Remove(borrow);
+            return true;
         }
         catch (BorrowNotFoundException ex)
         {
             System.Console.WriteLine(ex.Message);
+            return false;
         }
         catch (Exception ex)
         {
             System.Console.WriteLine($"An unexpected error occurred while adding a borrow.");
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
+            return false;
+        }
+    }
+
+    public bool Update(Borrow borrow)
+    {
+        var title = AnsiConsole.Ask<string>("[gray] Enter the title of the book:");
+        var name = AnsiConsole.Ask<string>("[gray] Enter the name of the patron:");
+        var borrowToUpdate = FindBorrow(name, title);
+        if (borrowToUpdate != null)
+        {
+            borrowToUpdate.SetPatron(borrow.GetPatron());
+            borrowToUpdate.SetBook(borrow.GetBook());
+            borrowToUpdate.SetDueDate(borrow.GetDueDate());
+            borrowToUpdate.SetBorrowDate(borrow.GetBorrowDate());
+            borrowToUpdate.SetDelivered(borrow.GetDelivered());
+            return true;
+        }
+        else
+        {
+            AnsiConsole.WriteLine("[gray] Borrow does not exist. [/]");
+            return false;
         }
     }
 
@@ -98,6 +125,6 @@ public class BorrowManager
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }
-    
-    public List<Borrow> GetBorrows() => Borrows;
+
+    public List<Borrow> GetAll() => Borrows;
 }

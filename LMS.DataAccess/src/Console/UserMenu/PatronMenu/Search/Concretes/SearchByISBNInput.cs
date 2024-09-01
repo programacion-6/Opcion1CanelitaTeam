@@ -9,8 +9,8 @@ namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 
 public class SearchByISBNInput : SearchInput
 {
-    BookRepository _books;
-    public SearchByISBNInput(BookRepository _books)
+    BookManager _books;
+    public SearchByISBNInput(BookManager _books)
     {
         this._books = _books;
     }

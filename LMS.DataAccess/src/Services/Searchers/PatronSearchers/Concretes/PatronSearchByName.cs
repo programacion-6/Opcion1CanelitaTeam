@@ -11,7 +11,7 @@ public class PatronSearchByName : PatronSearchTemplate<string>
     protected override List<Patron> Search(string name)
     {
         List<Patron> result = new List<Patron>();
-        foreach (Patron patron in Repository.GetPatrons())
+        foreach (Patron patron in Repository.GetAll())
         {
             if (patron.getName().Equals(name, StringComparison.OrdinalIgnoreCase))
             {

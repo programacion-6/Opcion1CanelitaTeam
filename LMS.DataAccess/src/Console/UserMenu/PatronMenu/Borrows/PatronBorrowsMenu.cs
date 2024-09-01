@@ -10,10 +10,10 @@ public class PatronsBorrowMenu
 {
     private readonly BorrowManager _borrows;
     private readonly Patron _patron;
-    private readonly BookRepository _books;
+    private readonly BookManager _books;
     private readonly FineManager _fines;
 
-    public PatronsBorrowMenu(BorrowManager borrows, Patron patron, BookRepository books, FineManager fines)
+    public PatronsBorrowMenu(BorrowManager borrows, Patron patron, BookManager books, FineManager fines)
     {
         _borrows = borrows;
         _patron = patron;

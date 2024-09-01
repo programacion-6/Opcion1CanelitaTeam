@@ -7,9 +7,9 @@ namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books;
 
 public class BookStaffManagement
 {
-    private readonly BookRepository _books;
+    private readonly BookManager _books;
 
-    public BookStaffManagement(BookRepository books)
+    public BookStaffManagement(BookManager books)
     {
         _books = books;
     }

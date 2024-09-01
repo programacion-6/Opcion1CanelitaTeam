@@ -1,60 +1,89 @@
-using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities.User;
+using LMS.DataAccess.Systems.Concretes.Managers;
 
 public class PatronManagerTests
 {
-    
     [Fact]
-    public void AddPatron_ValidPatron_ShouldAddToList()
-    {
-        var patronManager = new PatronManager();
-        var patron = new Patron("Polo", 1234567890, 123456, "Sud", "Polo123");
-
-        patronManager.addPatron(patron);
-
-        var patrons = patronManager.GetPatrons();
-        Assert.Contains(patron, patrons);
-    }
-
-    [Fact]
-    public void UpdatePatron_ValidData_ShouldUpdatePatron()
+    public void Add_ValidPatron_ReturnsTrue()
     {
         var patronManager = new PatronManager();
         var patron = new Patron("John Doe", 1234567890, 123456, "123 Main St", "Password123");
 
-        patronManager.addPatron(patron);
-        patronManager.UpdatePatron("John Doe", newName: "Jane Doe", newPhoneNumber: 124456);
+        bool result = patronManager.Add(patron);
 
-        var updatedPatron = patronManager.GetPatrons().Find(p => p.getName() == "Jane Doe");
-
-        Assert.NotNull(updatedPatron);
-        Assert.Equal(124456, updatedPatron.getPhoneNumber());
+        Assert.True(result);
+        Assert.Contains(patron, patronManager.GetAll());
     }
 
     [Fact]
-    public void RemovePatron_ExistingPatron_ShouldRemoveFromList()
+    public void Add_InvalidName_ReturnsFalse()
     {
         var patronManager = new PatronManager();
-        var patron = new Patron("John Doe", 1234567890, 123456, "123 Main St", "Password123");
+        var patron = new Patron("JD", 1234567890, 123456, "123 Main St", "Password123");
 
-        patronManager.addPatron(patron);
-        patronManager.RemovePatron("John Doe");
+        bool result = patronManager.Add(patron);
 
-        var patrons = patronManager.GetPatrons();
-        Assert.DoesNotContain(patron, patrons);
+        Assert.False(result);
+        Assert.DoesNotContain(patron, patronManager.GetAll());
     }
 
     [Fact]
-    public void ValidatePatron_ValidCredentials_ShouldReturnPatron()
+    public void Add_InvalidMembershipNumber_ReturnsFalse()
+    {
+        var patronManager = new PatronManager();
+        var patron = new Patron("John Doe", 12345, 123456, "123 Main St", "Password123");
+
+        bool result = patronManager.Add(patron);
+
+        Assert.False(result);
+        Assert.DoesNotContain(patron, patronManager.GetAll());
+    }
+
+    [Fact]
+    public void Add_InvalidPhoneNumber_ReturnsFalse()
+    {
+        var patronManager = new PatronManager();
+        var patron = new Patron("John Doe", 1234567890, 12345, "123 Main St", "Password123");
+
+        bool result = patronManager.Add(patron);
+
+        Assert.False(result);
+        Assert.DoesNotContain(patron, patronManager.GetAll());
+    }
+
+    [Fact]
+    public void Add_InvalidPassword_ReturnsFalse()
+    {
+        var patronManager = new PatronManager();
+        var patron = new Patron("John Doe", 1234567890, 123456, "123 Main St", "pass");
+
+        bool result = patronManager.Add(patron);
+
+        Assert.False(result);
+        Assert.DoesNotContain(patron, patronManager.GetAll());
+    }
+
+    [Fact]
+    public void Remove_ValidPatron_ReturnsTrue()
     {
         var patronManager = new PatronManager();
         var patron = new Patron("John Doe", 1234567890, 123456, "123 Main St", "Password123");
+        patronManager.Add(patron);
 
-        patronManager.addPatron(patron);
+        bool result = patronManager.Remove(patron);
 
-        var validatedPatron = patronManager.ValidatePatron("John Doe", "Password123");
-
-        Assert.NotNull(validatedPatron);
-        Assert.Equal(patron, validatedPatron);
+        Assert.True(result);
     }
-}   
+
+    [Fact]
+    public void Remove_NonExistingPatron_ReturnsFalse()
+    {
+        var patronManager = new PatronManager();
+        var patron = new Patron("NonExisting Patron", 1234567890, 123456, "123 Main St", "Pa123");
+
+        bool result = patronManager.Remove(patron);
+
+        Assert.False(result);
+    }
+
+}

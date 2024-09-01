@@ -7,9 +7,9 @@ namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search;
 
 public class PatronSearchMenu
 {
-    private readonly BookRepository _books;
+    private readonly BookManager _books;
 
-    public PatronSearchMenu(BookRepository books)
+    public PatronSearchMenu(BookManager books)
     {
         _books = books;
     }

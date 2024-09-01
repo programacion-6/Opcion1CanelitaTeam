@@ -14,7 +14,7 @@ public class StaffMenu : UserMenuTemplate
     private readonly Staff _staff;
     private readonly PatronManager _patrons;
 
-    public StaffMenu(Staff staff, BorrowManager borrows, BookRepository books, PatronManager patrons, FineManager fines)
+    public StaffMenu(Staff staff, BorrowManager borrows, BookManager books, PatronManager patrons, FineManager fines)
         : base(borrows, books, fines)
     {
         _staff = staff;
@@ -66,11 +66,11 @@ public class StaffMenu : UserMenuTemplate
                     searchMenu.ShowSearchMenu();
                     break;
                 case "Books List":
-                    page.setPagination(new BookPagination(_books.GetAllBooks()));
+                    page.setPagination(new BookPagination(_books.GetAll()));
                     page.Execute();
                     break;
                 case "Patron List":
-                    page.setPagination(new PatronPagination(_patrons.GetPatrons()));
+                    page.setPagination(new PatronPagination(_patrons.GetAll()));
                     page.Execute();
                     break;
                 case "Exit":

@@ -1,66 +1,67 @@
 using LMS.DataAccess.Systems.Entities;
 using LMS.DataAccess.Systems.Concretes.Managers;
 
-public class BookRepositoryTests
+public class BookManagerTests
 {
-    private readonly BookRepository _repository;
-
-    public BookRepositoryTests()
+    [Fact]
+    public void Add_ValidBook_ReturnsTrue()
     {
-        _repository = new BookRepository();
+        var bookManager = new BookManager();
+        var book = new Book("Title", "Author", "Genre", DateTime.Now.AddDays(-2), "1234567890") { Stock = 5 };
+
+        bool result = bookManager.Add(book);
+
+        Assert.True(result);
+        Assert.Contains(book, bookManager.GetAll());
     }
 
     [Fact]
-    public void AddBook_ValidBook_AddsBookToList()
+    public void Add_InvalidBook_ReturnsFalse()
     {
-        var book = new Book("1984", "George Orwell", "Dystopian", new DateTime(1949, 6, 8), "1234567890") { Stock = 5};
-        _repository.AddBook(book);
+        var bookManager = new BookManager();
+        var book = new Book("", "Author", "Genre", DateTime.Now, "12345");
 
-        var allBooks = _repository.GetAllBooks();
-        Assert.Contains(book, allBooks);
+        bool result = bookManager.Add(book);
+
+        Assert.False(result);
+        Assert.DoesNotContain(book, bookManager.GetAll());
     }
 
     [Fact]
-    public void UpdateBook_ValidUpdate_UpdatesBookDetails()
+    public void Remove_InvalidBook_ReturnsFalse()
     {
-        var originalBook = new Book("Original Title", "Original Author", "Fiction", new DateTime(2000, 1, 1), "1234567890")  { Stock = 5};
-        _repository.AddBook(originalBook) ;
-        var updatedBook = new Book("Updated Title", "Updated Author", "Fiction", new DateTime(1999, 1, 1), "1234567890")  { Stock = 5};
+        var bookManager = new BookManager();
+        var book = new Book("Title", "Author", "Genre", DateTime.Now, "12345");
 
-        _repository.UpdateBook("1234567890", updatedBook);
+        bool result = bookManager.Remove(book);
 
-        var allBooks = _repository.GetAllBooks();
-        var book = allBooks.Find(b => b.ISBN == "1234567890");
-        if (book != null)
-        {
-            Assert.Equal("Updated Title", book.Title);
-            Assert.Equal("Updated Author", book.Author);
-            Assert.Equal("Fiction", book.Genre);
-            Assert.Equal(new DateTime(1999, 1, 1), book.PublicationDate);
-        }
+        Assert.False(result);
     }
 
-
     [Fact]
-    public void RemoveBook_ValidISBN_RemovesBookFromList()
+    public void CheckAvailability_BookInStock_ReturnsTrue()
     {
-        var book = new Book("To Be Removed", "Author", "Genre", new DateTime(2000, 1, 1), "9876543210")  { Stock = 5};
-        _repository.AddBook(book);
+        var bookManager = new BookManager();
+        var book = new Book("Title", "Author", "Genre", DateTime.Now, "1234567890") { Stock = 6 };
+        book.Stock = 5;
+        bookManager.Add(book);
 
-        _repository.RemoveBook("9876543210");
+        bool result = bookManager.CheckAvailability("Title");
 
-        var allBooks = _repository.GetAllBooks();
-        Assert.DoesNotContain(book, allBooks);
+        Assert.True(result);
     }
 
     [Fact]
     public void CheckAvailability_BookOutOfStock_ReturnsFalse()
     {
-        var book = new Book("Unavailable Book", "Author", "Genre", new DateTime(2000, 1, 1), "555") { Stock = 0};
-        _repository.AddBook(book);
+        var bookManager = new BookManager();
+        var book = new Book("Title", "Author", "Genre", DateTime.Now, "1234567890");
+        book.Stock = 0;
+        bookManager.Add(book);
 
-        var isAvailable = _repository.CheckAvailability("Unavailable Book");
+        bool result = bookManager.CheckAvailability("Title");
 
-        Assert.False(isAvailable);
+        Assert.False(result);
     }
+
 }

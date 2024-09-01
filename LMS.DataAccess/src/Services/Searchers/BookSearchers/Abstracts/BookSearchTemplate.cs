@@ -5,9 +5,9 @@ using LMS.DataAccess.Core.Handlers;
 
 namespace LMS.DataAccess.Services.Searchers.BookSearchers.Abstracts;
 
-public abstract class BookSearchTemplate<T> : SearchBase<BookRepository, Book, T>
+public abstract class BookSearchTemplate<T> : SearchBase<BookManager, Book, T>
 {
-    public BookSearchTemplate(BookRepository bookManager) : base(bookManager) { }
+    public BookSearchTemplate(BookManager bookManager) : base(bookManager) { }
 
     protected override void DisplayDetails(Book book)
     {

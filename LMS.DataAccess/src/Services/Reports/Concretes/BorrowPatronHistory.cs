@@ -28,7 +28,7 @@ public class BorrowPatronHistory : BaseReport
         {
             GenerateReport();
             
-            List<Borrow> borrowList = _borrowManager.GetBorrows();
+            List<Borrow> borrowList = _borrowManager.GetAll();
             if (borrowList == null || borrowList.Count == 0)
             {
                 System.Console.WriteLine("There are no borrowing records in the system.");

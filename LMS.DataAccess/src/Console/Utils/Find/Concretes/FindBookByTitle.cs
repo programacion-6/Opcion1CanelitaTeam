@@ -7,16 +7,16 @@ namespace LMS.DataAccess.Console.Utils.Find.Concretes;
 
 public class FindBookByTitle : FindProcess
 {
-    BookRepository Books;
+    BookManager Books;
     string Criteria;
-    public FindBookByTitle(BookRepository Books, string criteria)
+    public FindBookByTitle(BookManager Books, string criteria)
     {
         this.Books = Books;
         this.Criteria = criteria;
     }
     public Object FindItem()
     {
-        var book = Books.GetAllBooks().Find(b => b.Title == Criteria);
+        var book = Books.GetAll().Find(b => b.Title == Criteria);
         if (book == null)
         {
             ErrorHandler.HandleError(new InvalidInputException($"No book found with title: {Criteria}"));

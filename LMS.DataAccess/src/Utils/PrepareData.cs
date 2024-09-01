@@ -10,7 +10,7 @@ namespace LMS.DataAccess.Utils;
 
 public class PrepareData
 {
-    private static List<Patron> PreparePatrons()
+    private static void PreparePatrons(PatronManager patronManager)
     {
         List<Patron> Patrons = new List<Patron>();
         PatronCreator creator = new PatronCreator();
@@ -22,10 +22,13 @@ public class PrepareData
         Patrons.Add(patron2);
         Patrons.Add(patron3);
 
-        return Patrons;
+        foreach (Patron patron in Patrons)
+        {
+            patronManager.Add(patron);
+        }
     }
 
-    private static List<Staff> PrepareStaff()
+    private static void PrepareStaff(StaffManager staffManager)
     {
         List<Staff> Staffs = new List<Staff>();
         StaffCreator creator = new StaffCreator();
@@ -35,11 +38,13 @@ public class PrepareData
         Staffs.Add(patron1);
         Staffs.Add(patron2);
 
-
-        return Staffs;
+        foreach (Staff staff in Staffs)
+        {
+            staffManager.Add(staff);
+        }
     }
 
-    private static void PrepareBooks(BookRepository repository)
+    private static void PrepareBooks(BookManager repository)
     {
         List<Book> books = new List<Book>();
 
@@ -52,7 +57,7 @@ public class PrepareData
         foreach (var book in books)
         {
             book.setStock(10);
-            repository.AddBook(book);
+            repository.Add(book);
         }
     }
 
@@ -64,7 +69,7 @@ public class PrepareData
 
         Borrow borrow1 = new Borrow(patrons[0], books[0], DateTime.Now.AddDays(-10), DateTime.Now.AddDays(20));
         Borrow borrow2 = new Borrow(patrons[1], books[1], DateTime.Now.AddDays(-5), DateTime.Now.AddDays(25));
-        Borrow borrow3 = new Borrow(patrons[2], books[2], DateTime.Now.AddDays(-15), overdue);
+        Borrow borrow3 = new Borrow(patrons[2], books[2], DateTime.Now.AddDays(-15), overdue);  
         Borrow borrow4 = new Borrow(patrons[0], books[4], DateTime.Now.AddDays(-10), DateTime.Now.AddDays(20));
         Borrow borrow5 = new Borrow(patrons[0], books[4], DateTime.Now.AddDays(-10), DateTime.Now.AddDays(20));
 
@@ -76,22 +81,22 @@ public class PrepareData
 
         foreach (var borrow in borrows)
         {
-            borrowManager.AddBorrow(borrow);
+            borrowManager.Add(borrow);
         }
     }
 
     public static Library PrepareLibrary()
     {
         PatronManager Patrons = new PatronManager();
-        Patrons.SetPatrons(PreparePatrons());
+        PreparePatrons(Patrons);
         StaffManager Staffs = new StaffManager();
-        Staffs.SetStaffs(PrepareStaff());
-        BookRepository Books = new BookRepository();
+        PrepareStaff(Staffs);
+        BookManager Books = new BookManager();
         PrepareBooks(Books);
 
         FineManager Fines = new FineManager();
         BorrowManager Borrows = new BorrowManager();
-        PrepareBorrows(Borrows, Patrons.GetPatrons(), Books.GetAllBooks());
+        PrepareBorrows(Borrows, Patrons.GetAll(), Books.GetAll());
         return new Library(Patrons, Staffs, Borrows, Books, Fines);
     }
 }
