@@ -25,6 +25,7 @@ public class Login
 
     public void LoginMenu()
     {
+        AnsiConsole.Clear();
         AnsiConsole.MarkupLine("[green]===== Login =====[/]");
 
         string? username = AnsiConsole.Ask<string>("Enter [yellow]Username[/]:");
@@ -56,6 +57,13 @@ public class Login
 
         AnsiConsole.MarkupLine("[red]Invalid username or password. Please try again.[/]");
         var menu = new WelcomeMenu(_patrons, _staffs, _borrows, _books, _fines);
+        Pause();
         menu.ShowMenu();
+    }
+    private void Pause()
+    {
+        AnsiConsole.MarkupLine("[gray]Press any key to continue...[/]");
+        System.Console.ReadKey(true);
+        AnsiConsole.Clear();
     }
 }

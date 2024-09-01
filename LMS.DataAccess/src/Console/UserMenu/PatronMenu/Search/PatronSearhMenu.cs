@@ -18,6 +18,7 @@ public class PatronSearchMenu
     {
         while (true)
         {
+            AnsiConsole.Clear();
             var options = new[]
             {
                 "Search by Title",
@@ -39,16 +40,19 @@ public class PatronSearchMenu
                 case "Search by Title":
                     optionSearch.SetSearchOption(new SearchByTitleInput(_books));
                     optionSearch.Execute();
+                    Pause();
                     break;
 
                 case "Search by Author":
                     optionSearch.SetSearchOption(new SearchByAuthorInput(_books));
                     optionSearch.Execute();
+                    Pause();
                     break;
 
                 case "Search by ISBN":
                     optionSearch.SetSearchOption(new SearchByISBNInput(_books));
                     optionSearch.Execute();
+                    Pause();
                     break;
 
                 case "Exit":
@@ -60,5 +64,11 @@ public class PatronSearchMenu
                     break;
             }
         }
+    }
+    private void Pause()
+    {
+        AnsiConsole.MarkupLine("[gray]Press any key to continue...[/]");
+        System.Console.ReadKey(true);
+        AnsiConsole.Clear();
     }
 }

@@ -25,6 +25,7 @@ public class PatronsBorrowMenu
     {
         while (true)
         {
+            AnsiConsole.Clear();
             var options = new[] { "Borrow book", "Return book", "Exit" };
 
             var selectedOption = AnsiConsole.Prompt(
@@ -39,12 +40,14 @@ public class PatronsBorrowMenu
                     var borrowAction = new BorrowAction();
                     borrowAction.SetBorrow(new MakeBorrow(_books, _patron, _borrows));
                     borrowAction.Execute();
+                    Pause();
                     break;
 
                 case "Return book":
                     borrowAction = new BorrowAction();
                     borrowAction.SetBorrow(new ReturnBorrow(_patron, _borrows, _books, _fines));
                     borrowAction.Execute();
+                    Pause();
                     break;
 
                 case "Exit":
@@ -56,5 +59,11 @@ public class PatronsBorrowMenu
                     break;
             }
         }
+    }
+    private void Pause()
+    {
+        AnsiConsole.MarkupLine("[gray]Press any key to continue...[/]");
+        System.Console.ReadKey(true);
+        AnsiConsole.Clear();
     }
 }
