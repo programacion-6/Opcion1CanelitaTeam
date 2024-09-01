@@ -1,5 +1,7 @@
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Console.Utils.Find.Interfaces;
+using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Exceptions.Concretes;
 
 namespace LMS.DataAccess.Console.Utils.Find.Concretes;
 
@@ -17,7 +19,7 @@ public class FindBookByTitle : FindProcess
         var book = Books.GetAllBooks().Find(b => b.Title == Criteria);
         if (book == null)
         {
-            throw new InvalidOperationException($"No book found with title: {Criteria}");
+            ErrorHandler.HandleError(new InvalidInputException($"No book found with title: {Criteria}"));
         }
         return book;
     }

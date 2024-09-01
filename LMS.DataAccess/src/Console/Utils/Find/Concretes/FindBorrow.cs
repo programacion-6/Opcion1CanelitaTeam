@@ -1,4 +1,6 @@
 using LMS.DataAccess.Console.Utils.Find.Interfaces;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities.Borrowing;
 
@@ -27,6 +29,7 @@ public class FindBorrow : FindProcess
                 return borrow;
             }
         }
-        throw new InvalidOperationException("The requested item was not found."); ;
+        ErrorHandler.HandleError(new InvalidInputException("The requested borrow was not found."));
+        return null;
     }
 }

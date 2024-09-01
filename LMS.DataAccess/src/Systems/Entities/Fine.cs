@@ -1,5 +1,6 @@
 using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Logs;
 using LMS.DataAccess.Systems.Entities.Borrowing;
 
 namespace LMS.DataAccess.Systems.Entities;
@@ -31,7 +32,7 @@ public class Fine
 
             if (difference.TotalDays < 0)
             {
-                throw new InvalidDateRangeException("Return date cannot be before the due date.");
+                ErrorHandler.HandleError(new InvalidDateRangeException("Return date cannot be before the due date."));
             }
 
             int weeksLate = (int)(difference.TotalDays / NUMBER_OF_DAYS);

@@ -5,6 +5,8 @@ using LMS.DataAccess.Console.Utils.Find.Concretes;
 
 using Spectre.Console;
 using LMS.DataAccess.Systems.Entities;
+using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Exceptions.Concretes;
 
 namespace LMS.DataAccess.Console.UserMenu.StaffMenu.Books.Concretes;
 
@@ -51,7 +53,7 @@ public class AddUpdateInput : BookInput
         }
         else
         {
-            AnsiConsole.MarkupLine("[red]Book not found.[/]");
+            ErrorHandler.HandleError(new InvalidInputException("Book not found"));
         }
     }
 }

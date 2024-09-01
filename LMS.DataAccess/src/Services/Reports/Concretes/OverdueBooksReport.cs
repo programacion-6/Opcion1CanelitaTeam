@@ -1,4 +1,5 @@
 using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Logs;
 using LMS.DataAccess.Services.Reports.Abstracts;
 using LMS.DataAccess.Systems.Concretes.Managers;
 using LMS.DataAccess.Systems.Entities.Borrowing;

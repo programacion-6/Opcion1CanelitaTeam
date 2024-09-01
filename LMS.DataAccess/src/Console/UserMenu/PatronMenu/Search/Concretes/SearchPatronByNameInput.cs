@@ -2,6 +2,8 @@ using LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Interfaces;
 using LMS.DataAccess.Services.Searchers.PatronSearchers.Concretes;
 using LMS.DataAccess.Services.Searchers;
 using LMS.DataAccess.Systems.Concretes.Managers;
+using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Exceptions.Concretes;
 
 namespace LMS.DataAccess.Console.UserMenu.PatronMenu.Search.Concretes;
 
@@ -23,7 +25,7 @@ public class SearchPatronByNameInput : SearchInput
         }
         else
         {
-            System.Console.WriteLine("Title cannot be null or empty.");
+            ErrorHandler.HandleError(new InvalidInputException("Name cannot be null or empty."));
         }
     }
 }

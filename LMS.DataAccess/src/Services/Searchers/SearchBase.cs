@@ -1,5 +1,6 @@
 using LMS.DataAccess.Core.Exceptions.Concretes;
 using LMS.DataAccess.Core.Handlers;
+using LMS.DataAccess.Core.Logs;
 
 namespace LMS.DataAccess.Services.Searchers;
 

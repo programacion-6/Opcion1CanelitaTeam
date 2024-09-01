@@ -1,4 +1,6 @@
 using LMS.DataAccess.Console.Utils.Find.Interfaces;
+using LMS.DataAccess.Core.Exceptions.Concretes;
+using LMS.DataAccess.Core.Handlers;
 using LMS.DataAccess.Systems.Entities.User;
 using LMS.DataAccess.Utils;
 
@@ -25,6 +27,7 @@ public class FindStaffByName : FindProcess
                     return staff;
                 }
             }
+            ErrorHandler.HandleError(new InvalidInputException("The requested item was not found."));
         }
         catch (Exception ex)
         {
