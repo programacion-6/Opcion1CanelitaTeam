@@ -16,7 +16,7 @@ public class PatronPagination : ListPagination
 
     public void DisplayList()
     {
-        int pageSize = 2;
+        int pageSize = 5;
         int currentPage = 1;
         int totalPages = (int) Math.Ceiling(_patrons.Count / (double) pageSize);
 

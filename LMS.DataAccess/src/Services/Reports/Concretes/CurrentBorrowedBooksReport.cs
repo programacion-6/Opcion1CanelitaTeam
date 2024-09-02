@@ -35,7 +35,7 @@ public class CurrentBorrowBooksReport : BaseReport
                 throw new InvalidOperationException("Failed to retrieve borrow records.");
             }
 
-            int pageSize = 2;
+            int pageSize = 5;
             int totalPages = (int)Math.Ceiling((double)activeBorrows.Count / pageSize);
             int currentPage = 1;
 

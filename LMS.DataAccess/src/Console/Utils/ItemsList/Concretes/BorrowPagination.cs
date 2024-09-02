@@ -1,34 +1,31 @@
 using LMS.DataAccess.Console.Utils.ItemsList.Interfaces;
-using LMS.DataAccess.Systems.Entities;
-
+using LMS.DataAccess.Systems.Entities.Borrowing;
 using Spectre.Console;
 
-namespace LMS.DataAccess.Console.Utils.ItemsList.Concretes;
-
-public class BookPagination : ListPagination
+public class BorrowPagination : ListPagination
 {
-    private readonly List<Book> _books;
+    private readonly List<Borrow> _borrows;
 
-    public BookPagination(List<Book> books)
+    public BorrowPagination(List<Borrow> borrows)
     {
-        _books = books.Where(b => b.Stock > 0).ToList();
+        _borrows = borrows;
     }
 
     public void DisplayList()
     {
-        if (_books.Count == 0)
+        if (_borrows.Count == 0)
         {
-            AnsiConsole.MarkupLine("[yellow]No books available.[/]");
+            AnsiConsole.MarkupLine("[yellow]No active borrows found.[/]");
             return;
         }
 
         int pageSize = 5;
         int currentPage = 1;
-        int totalPages = (_books.Count + pageSize - 1) / pageSize;
+        int totalPages = (_borrows.Count + pageSize - 1) / pageSize;
 
         while (true)
         {
-            var currentPageBooks = _books
+            var currentPageBorrows = _borrows
                 .Skip((currentPage - 1) * pageSize)
                 .Take(pageSize)
                 .ToList();
@@ -37,20 +34,20 @@ public class BookPagination : ListPagination
             AnsiConsole.MarkupLine($"[bold]Page {currentPage}/{totalPages}[/]");
 
             var table = new Table();
-            table.AddColumn("Title");
-            table.AddColumn("Author");
-            table.AddColumn("Genre");
-            table.AddColumn("Publication Date");
-            table.AddColumn("Stock");
+            table.AddColumn("Patron");
+            table.AddColumn("Book");
+            table.AddColumn("Borrow Date");
+            table.AddColumn("Due Date");
+            table.AddColumn("Returned");
 
-            foreach (var book in currentPageBooks)
+            foreach (var borrow in currentPageBorrows)
             {
                 table.AddRow(
-                    book.Title,
-                    book.Author,
-                    book.Genre,
-                    book.PublicationDate.ToString("yyyy-MM-dd"),
-                    book.Stock.ToString());
+                    borrow.GetPatron().getName(),
+                    borrow.GetBook().Title,
+                    borrow.GetBorrowDate().ToString("yyyy-MM-dd"),
+                    borrow.GetDueDate().ToString("yyyy-MM-dd"),
+                    borrow.GetDelivered() ? "[green]Yes[/]" : "[red]No[/]");
             }
 
             AnsiConsole.Write(table);
@@ -62,11 +59,11 @@ public class BookPagination : ListPagination
             if (currentPage < totalPages)
                 options.Add("Next Page");
 
-            options.Add("Exit");
+            options.Add("Return Book");
 
             var selectedOption = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                    .Title("Navigate through the books")
+                    .Title("Navigate through active borrows")
                     .AddChoices(options)
             );
 
@@ -74,7 +71,7 @@ public class BookPagination : ListPagination
                 currentPage--;
             else if (selectedOption == "Next Page")
                 currentPage++;
-            else if (selectedOption == "Exit")
+            else if (selectedOption == "Return Book")
                 break;
         }
     }
