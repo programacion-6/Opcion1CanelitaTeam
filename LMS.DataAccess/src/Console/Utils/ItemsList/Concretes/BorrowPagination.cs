@@ -59,7 +59,7 @@ public class BorrowPagination : ListPagination
             if (currentPage < totalPages)
                 options.Add("Next Page");
 
-            options.Add("Exit");
+            options.Add("Return Book");
 
             var selectedOption = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
@@ -71,7 +71,7 @@ public class BorrowPagination : ListPagination
                 currentPage--;
             else if (selectedOption == "Next Page")
                 currentPage++;
-            else if (selectedOption == "Exit")
+            else if (selectedOption == "Return Book")
                 break;
         }
     }

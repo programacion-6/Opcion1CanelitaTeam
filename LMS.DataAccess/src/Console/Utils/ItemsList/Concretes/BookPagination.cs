@@ -22,7 +22,7 @@ public class BookPagination : ListPagination
             return;
         }
 
-        int pageSize = 3;
+        int pageSize = 5;
         int currentPage = 1;
         int totalPages = (_books.Count + pageSize - 1) / pageSize;
 
