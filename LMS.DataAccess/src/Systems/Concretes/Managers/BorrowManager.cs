@@ -95,24 +95,21 @@ public class BorrowManager : IBaseManager<Borrow>
 
     public void ActiveBorrowsFromPatron(Patron patron)
     {
-
         try
         {
             System.Console.WriteLine("LIST OF NOT RETURNED BORROWS");
+            var activeBorrows = Borrows.Where(borrow => 
+                borrow.GetPatron().getName().Equals(patron.getName()) && 
+                !borrow.GetDelivered()).ToList();
 
-            bool hasActiveBorrows = false;
-            foreach (Borrow borrow in Borrows)
+            if (activeBorrows.Any())
             {
-                if (borrow.GetPatron().getName().Equals(patron.getName()) && borrow.GetDelivered() == false)
-                {
-                    borrow.BorrowDetails();
-                    hasActiveBorrows = true;
-                }
+                var borrowPagination = new BorrowPagination(activeBorrows);
+                borrowPagination.DisplayList();
             }
-
-            if (!hasActiveBorrows)
+            else
             {
-                ErrorHandler.HandleError(new BorrowNotFoundException($"No active borrows found for {patron.getName()}."));
+                throw new BorrowNotFoundException($"No active borrows found for {patron.getName()}.");
             }
         }
         catch (BorrowNotFoundException ex)
@@ -125,6 +122,7 @@ public class BorrowManager : IBaseManager<Borrow>
             _logService.LogError(Severity.HIGH, $"{ex.Message}");
         }
     }
+
 
     public List<Borrow> GetAll() => Borrows;
 }
