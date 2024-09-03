@@ -17,6 +17,22 @@ Related Features in [Docs](https://docs.google.com/document/d/128JWc0ZBDK4FGLvrf
 
 Dashboard in [Trello](https://trello.com/invite/b/66bfaefd90f57fac8d8a89e2/ATTIe5dc79647cc83c4c1277915c7108c2f8B6931ADF/lms-canelita-team)
 
+## Implementation and Refactors
+
+- Implementation of test for book and pattern managers
+- Implementation of test for staff manager and models
+- Implementation of template design pattern to managers  
+- Implementation of validators for book and pattern managers          
+- UI page layout refactoring                  
+- Refactoring of the error handler                          
+- Refactoring of borrow manager                         
+- Refactoring and improvement of the UI                          
+- Book repository refactoring                        
+- Project structure refactoring              
+
+
+Translated with DeepL.com (free version)
+
 ## Directory Structure
 
 This is the directory structure that Opcion1CanelitaTeam project uses:
